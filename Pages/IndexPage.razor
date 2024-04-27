@@ -1,0 +1,19 @@
+﻿@page "/"
+@using DataJuggler.Blazor.Components
+@using ObjectLibrary.Enumerations
+@using NTouch.Components
+
+<PageTitle>Index</PageTitle>
+
+<h1>@Title</h1>
+
+<div class="height24"></div>
+
+@if (ScreenType == ScreenTypeEnum.EditContact)
+{
+    <ContactEditor Parent="this"></ContactEditor>    
+}
+else
+{
+    <button class="bluebutton2" @onclick=AddContact>Add Contact</button>
+}

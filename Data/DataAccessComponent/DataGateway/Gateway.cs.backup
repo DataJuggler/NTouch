@@ -1,0 +1,691 @@
+
+#region using statements
+
+using DataAccessComponent.Controllers;
+using DataAccessComponent.DataOperations;
+using DataAccessComponent.Data;
+using ObjectLibrary.BusinessObjects;
+using System;
+using System.Collections.Generic;
+using Microsoft.Data.SqlClient;
+
+#endregion
+
+namespace DataAccessComponent.DataGateway
+{
+
+    #region class Gateway
+    /// <summary>
+    /// This class is used to manage DataOperations
+    /// between the client and the DataAccessComponent.
+    /// Do not change the method name or the parameters for the
+    /// code generated methods or they will be recreated the next 
+    /// time you code generate with DataTier.Net. If you need additional
+    /// parameters passed to a method either create an override or
+    /// add or set properties to the temp object that is passed in.
+    /// </summary>
+    public class Gateway
+    {
+
+        #region Private Variables
+        private ApplicationController appController;
+        private string connectionName;
+        #endregion
+
+        #region Constructor
+        /// <summary>
+        /// Create a new instance of a Gateway object.
+        /// </summary>
+        public Gateway(string connectionName = "")
+        {
+            // store the ConnectionName
+            this.ConnectionName = connectionName;
+
+            // Perform Initializations for this object
+            Init();
+        }
+        #endregion
+
+        #region Methods
+        
+            #region DeleteContact(int id, Contact tempContact = null)
+            /// <summary>
+            /// This method is used to delete Contact objects.
+            /// </summary>
+            /// <param name="id">Delete the Contact with this id</param>
+            /// <param name="tempContact">Pass in a tempContact to perform a custom delete.</param>
+            public bool DeleteContact(int id, Contact tempContact = null)
+            {
+                // initial value
+                bool deleted = false;
+        
+                // if the AppController exists
+                if (this.HasAppController)
+                {
+                    // if the tempContact does not exist
+                    if (tempContact == null)
+                    {
+                        // create a temp Contact
+                        tempContact = new Contact();
+                    }
+        
+                    // if the id is set
+                    if (id > 0)
+                    {
+                        // set the primary key
+                        tempContact.UpdateIdentity(id);
+                    }
+        
+                    // perform the delete
+                    deleted = this.AppController.ControllerManager.ContactController.Delete(tempContact);
+                }
+        
+                // return value
+                return deleted;
+            }
+            #endregion
+        
+            #region DeleteContactAlert(int id, ContactAlert tempContactAlert = null)
+            /// <summary>
+            /// This method is used to delete ContactAlert objects.
+            /// </summary>
+            /// <param name="id">Delete the ContactAlert with this id</param>
+            /// <param name="tempContactAlert">Pass in a tempContactAlert to perform a custom delete.</param>
+            public bool DeleteContactAlert(int id, ContactAlert tempContactAlert = null)
+            {
+                // initial value
+                bool deleted = false;
+        
+                // if the AppController exists
+                if (this.HasAppController)
+                {
+                    // if the tempContactAlert does not exist
+                    if (tempContactAlert == null)
+                    {
+                        // create a temp ContactAlert
+                        tempContactAlert = new ContactAlert();
+                    }
+        
+                    // if the id is set
+                    if (id > 0)
+                    {
+                        // set the primary key
+                        tempContactAlert.UpdateIdentity(id);
+                    }
+        
+                    // perform the delete
+                    deleted = this.AppController.ControllerManager.ContactAlertController.Delete(tempContactAlert);
+                }
+        
+                // return value
+                return deleted;
+            }
+            #endregion
+        
+            #region DeleteContactImage(int id, ContactImage tempContactImage = null)
+            /// <summary>
+            /// This method is used to delete ContactImage objects.
+            /// </summary>
+            /// <param name="id">Delete the ContactImage with this id</param>
+            /// <param name="tempContactImage">Pass in a tempContactImage to perform a custom delete.</param>
+            public bool DeleteContactImage(int id, ContactImage tempContactImage = null)
+            {
+                // initial value
+                bool deleted = false;
+        
+                // if the AppController exists
+                if (this.HasAppController)
+                {
+                    // if the tempContactImage does not exist
+                    if (tempContactImage == null)
+                    {
+                        // create a temp ContactImage
+                        tempContactImage = new ContactImage();
+                    }
+        
+                    // if the id is set
+                    if (id > 0)
+                    {
+                        // set the primary key
+                        tempContactImage.UpdateIdentity(id);
+                    }
+        
+                    // perform the delete
+                    deleted = this.AppController.ControllerManager.ContactImageController.Delete(tempContactImage);
+                }
+        
+                // return value
+                return deleted;
+            }
+            #endregion
+        
+            #region DeleteContactNote(int id, ContactNote tempContactNote = null)
+            /// <summary>
+            /// This method is used to delete ContactNote objects.
+            /// </summary>
+            /// <param name="id">Delete the ContactNote with this id</param>
+            /// <param name="tempContactNote">Pass in a tempContactNote to perform a custom delete.</param>
+            public bool DeleteContactNote(int id, ContactNote tempContactNote = null)
+            {
+                // initial value
+                bool deleted = false;
+        
+                // if the AppController exists
+                if (this.HasAppController)
+                {
+                    // if the tempContactNote does not exist
+                    if (tempContactNote == null)
+                    {
+                        // create a temp ContactNote
+                        tempContactNote = new ContactNote();
+                    }
+        
+                    // if the id is set
+                    if (id > 0)
+                    {
+                        // set the primary key
+                        tempContactNote.UpdateIdentity(id);
+                    }
+        
+                    // perform the delete
+                    deleted = this.AppController.ControllerManager.ContactNoteController.Delete(tempContactNote);
+                }
+        
+                // return value
+                return deleted;
+            }
+            #endregion
+        
+            #region ExecuteNonQuery(string procedureName, SqlParameter[] sqlParameters)
+            /// <summary>
+            /// This method Executes a Non Query StoredProcedure
+            /// </summary>
+            public PolymorphicObject ExecuteNonQuery(string procedureName, SqlParameter[] sqlParameters)
+            {
+                // initial value
+                PolymorphicObject returnValue = new PolymorphicObject();
+
+                // locals
+                List<PolymorphicObject> parameters = new List<PolymorphicObject>();
+
+                // create the parameters
+                PolymorphicObject procedureNameParameter = new PolymorphicObject();
+                PolymorphicObject sqlParametersParameter = new PolymorphicObject();
+
+                // if the procedureName exists
+                if (!String.IsNullOrEmpty(procedureName))
+                {
+                    // Create an instance of the SystemMethods object
+                    SystemMethods systemMethods = new SystemMethods();
+
+                    // setup procedureNameParameter
+                    procedureNameParameter.Name = "ProcedureName";
+                    procedureNameParameter.Text = procedureName;
+
+                    // setup sqlParametersParameter
+                    sqlParametersParameter.Name = "SqlParameters";
+                    sqlParametersParameter.ObjectValue = sqlParameters;
+
+                    // Add these parameters to the parameters
+                    parameters.Add(procedureNameParameter);
+                    parameters.Add(sqlParametersParameter);
+
+                    // get the dataConnector
+                    DataAccessComponent.Data.DataConnector dataConnector = GetDataConnector();
+
+                    // Execute the query
+                    returnValue = systemMethods.ExecuteNonQuery(parameters, dataConnector);
+                }
+
+                // return value
+                return returnValue;
+            }
+            #endregion
+
+            #region FindContact(int id, Contact tempContact = null)
+            /// <summary>
+            /// This method is used to find 'Contact' objects.
+            /// </summary>
+            /// <param name="id">Find the Contact with this id</param>
+            /// <param name="tempContact">Pass in a tempContact to perform a custom find.</param>
+            public Contact FindContact(int id, Contact tempContact = null)
+            {
+                // initial value
+                Contact contact = null;
+
+                // if the AppController exists
+                if (this.HasAppController)
+                {
+                    // if the tempContact does not exist
+                    if (tempContact == null)
+                    {
+                        // create a temp Contact
+                        tempContact = new Contact();
+                    }
+
+                    // if the id is set
+                    if (id > 0)
+                    {
+                        // set the primary key
+                        tempContact.UpdateIdentity(id);
+                    }
+
+                    // perform the find
+                    contact = this.AppController.ControllerManager.ContactController.Find(tempContact);
+                }
+
+                // return value
+                return contact;
+            }
+            #endregion
+
+            #region FindContactAlert(int id, ContactAlert tempContactAlert = null)
+            /// <summary>
+            /// This method is used to find 'ContactAlert' objects.
+            /// </summary>
+            /// <param name="id">Find the ContactAlert with this id</param>
+            /// <param name="tempContactAlert">Pass in a tempContactAlert to perform a custom find.</param>
+            public ContactAlert FindContactAlert(int id, ContactAlert tempContactAlert = null)
+            {
+                // initial value
+                ContactAlert contactAlert = null;
+
+                // if the AppController exists
+                if (this.HasAppController)
+                {
+                    // if the tempContactAlert does not exist
+                    if (tempContactAlert == null)
+                    {
+                        // create a temp ContactAlert
+                        tempContactAlert = new ContactAlert();
+                    }
+
+                    // if the id is set
+                    if (id > 0)
+                    {
+                        // set the primary key
+                        tempContactAlert.UpdateIdentity(id);
+                    }
+
+                    // perform the find
+                    contactAlert = this.AppController.ControllerManager.ContactAlertController.Find(tempContactAlert);
+                }
+
+                // return value
+                return contactAlert;
+            }
+            #endregion
+
+            #region FindContactImage(int id, ContactImage tempContactImage = null)
+            /// <summary>
+            /// This method is used to find 'ContactImage' objects.
+            /// </summary>
+            /// <param name="id">Find the ContactImage with this id</param>
+            /// <param name="tempContactImage">Pass in a tempContactImage to perform a custom find.</param>
+            public ContactImage FindContactImage(int id, ContactImage tempContactImage = null)
+            {
+                // initial value
+                ContactImage contactImage = null;
+
+                // if the AppController exists
+                if (this.HasAppController)
+                {
+                    // if the tempContactImage does not exist
+                    if (tempContactImage == null)
+                    {
+                        // create a temp ContactImage
+                        tempContactImage = new ContactImage();
+                    }
+
+                    // if the id is set
+                    if (id > 0)
+                    {
+                        // set the primary key
+                        tempContactImage.UpdateIdentity(id);
+                    }
+
+                    // perform the find
+                    contactImage = this.AppController.ControllerManager.ContactImageController.Find(tempContactImage);
+                }
+
+                // return value
+                return contactImage;
+            }
+            #endregion
+
+            #region FindContactNote(int id, ContactNote tempContactNote = null)
+            /// <summary>
+            /// This method is used to find 'ContactNote' objects.
+            /// </summary>
+            /// <param name="id">Find the ContactNote with this id</param>
+            /// <param name="tempContactNote">Pass in a tempContactNote to perform a custom find.</param>
+            public ContactNote FindContactNote(int id, ContactNote tempContactNote = null)
+            {
+                // initial value
+                ContactNote contactNote = null;
+
+                // if the AppController exists
+                if (this.HasAppController)
+                {
+                    // if the tempContactNote does not exist
+                    if (tempContactNote == null)
+                    {
+                        // create a temp ContactNote
+                        tempContactNote = new ContactNote();
+                    }
+
+                    // if the id is set
+                    if (id > 0)
+                    {
+                        // set the primary key
+                        tempContactNote.UpdateIdentity(id);
+                    }
+
+                    // perform the find
+                    contactNote = this.AppController.ControllerManager.ContactNoteController.Find(tempContactNote);
+                }
+
+                // return value
+                return contactNote;
+            }
+            #endregion
+
+            #region GetDataConnector()
+            /// <summary>
+            /// This method (safely) returns the Data Connector from the
+            /// AppController.DataBridget.DataManager.DataConnector
+            /// </summary>
+            private DataConnector GetDataConnector()
+            {
+                // initial value
+                DataConnector dataConnector = null;
+
+                // if the AppController exists
+                if (this.AppController != null)
+                {
+                    // return the DataConnector from the AppController
+                    dataConnector = this.AppController.GetDataConnector();
+                }
+
+                // return value
+                return dataConnector;
+            }
+            #endregion
+
+            #region GetLastException()
+            /// <summary>
+            /// This method returns the last Exception from the AppController if one exists.
+            /// Always test for null before refeferencing the Exception returned as it will be null 
+            /// if no errors were encountered.
+            /// </summary>
+            /// <returns></returns>
+            public Exception GetLastException()
+            {
+                // initial value
+                Exception exception = null;
+
+                // If the AppController object exists
+                if (this.HasAppController)
+                {
+                    // return the Exception from the AppController
+                    exception = this.AppController.Exception;
+
+                    // Set to null after the exception is retrieved so it does not return again
+                    this.AppController.Exception = null;
+                }
+
+                // return value
+                return exception;
+            }
+            #endregion
+
+            #region Init()
+            /// <summary>
+            /// Perform Initializations for this object.
+            /// </summary>
+            private void Init()
+            {
+                // Create Application Controller
+                this.AppController = new ApplicationController(ConnectionName);
+            }
+            #endregion
+
+            #region LoadContactAlerts(ContactAlert tempContactAlert = null)
+            /// <summary>
+            /// This method loads a collection of 'ContactAlert' objects.
+            /// </summary>
+            public List<ContactAlert> LoadContactAlerts(ContactAlert tempContactAlert = null)
+            {
+                // initial value
+                List<ContactAlert> contactAlerts = null;
+
+                // if the AppController exists
+                if (this.HasAppController)
+                {
+                    // perform the load
+                    contactAlerts = this.AppController.ControllerManager.ContactAlertController.FetchAll(tempContactAlert);
+                }
+
+                // return value
+                return contactAlerts;
+            }
+            #endregion
+
+            #region LoadContactImages(ContactImage tempContactImage = null)
+            /// <summary>
+            /// This method loads a collection of 'ContactImage' objects.
+            /// </summary>
+            public List<ContactImage> LoadContactImages(ContactImage tempContactImage = null)
+            {
+                // initial value
+                List<ContactImage> contactImages = null;
+
+                // if the AppController exists
+                if (this.HasAppController)
+                {
+                    // perform the load
+                    contactImages = this.AppController.ControllerManager.ContactImageController.FetchAll(tempContactImage);
+                }
+
+                // return value
+                return contactImages;
+            }
+            #endregion
+
+            #region LoadContactNotes(ContactNote tempContactNote = null)
+            /// <summary>
+            /// This method loads a collection of 'ContactNote' objects.
+            /// </summary>
+            public List<ContactNote> LoadContactNotes(ContactNote tempContactNote = null)
+            {
+                // initial value
+                List<ContactNote> contactNotes = null;
+
+                // if the AppController exists
+                if (this.HasAppController)
+                {
+                    // perform the load
+                    contactNotes = this.AppController.ControllerManager.ContactNoteController.FetchAll(tempContactNote);
+                }
+
+                // return value
+                return contactNotes;
+            }
+            #endregion
+
+            #region LoadContacts(Contact tempContact = null)
+            /// <summary>
+            /// This method loads a collection of 'Contact' objects.
+            /// </summary>
+            public List<Contact> LoadContacts(Contact tempContact = null)
+            {
+                // initial value
+                List<Contact> contacts = null;
+
+                // if the AppController exists
+                if (this.HasAppController)
+                {
+                    // perform the load
+                    contacts = this.AppController.ControllerManager.ContactController.FetchAll(tempContact);
+                }
+
+                // return value
+                return contacts;
+            }
+            #endregion
+
+            #region SaveContact(ref Contact contact)
+            /// <summary>
+            /// This method is used to save 'Contact' objects.
+            /// </summary>
+            /// <param name="contact">The Contact to save.</param>
+            public bool SaveContact(ref Contact contact)
+            {
+                // initial value
+                bool saved = false;
+
+                // if the AppController exists
+                if (this.HasAppController)
+                {
+                    // perform the save
+                    saved = this.AppController.ControllerManager.ContactController.Save(ref contact);
+                }
+
+                // return value
+                return saved;
+            }
+            #endregion
+
+            #region SaveContactAlert(ref ContactAlert contactAlert)
+            /// <summary>
+            /// This method is used to save 'ContactAlert' objects.
+            /// </summary>
+            /// <param name="contactAlert">The ContactAlert to save.</param>
+            public bool SaveContactAlert(ref ContactAlert contactAlert)
+            {
+                // initial value
+                bool saved = false;
+
+                // if the AppController exists
+                if (this.HasAppController)
+                {
+                    // perform the save
+                    saved = this.AppController.ControllerManager.ContactAlertController.Save(ref contactAlert);
+                }
+
+                // return value
+                return saved;
+            }
+            #endregion
+
+            #region SaveContactImage(ref ContactImage contactImage)
+            /// <summary>
+            /// This method is used to save 'ContactImage' objects.
+            /// </summary>
+            /// <param name="contactImage">The ContactImage to save.</param>
+            public bool SaveContactImage(ref ContactImage contactImage)
+            {
+                // initial value
+                bool saved = false;
+
+                // if the AppController exists
+                if (this.HasAppController)
+                {
+                    // perform the save
+                    saved = this.AppController.ControllerManager.ContactImageController.Save(ref contactImage);
+                }
+
+                // return value
+                return saved;
+            }
+            #endregion
+
+            #region SaveContactNote(ref ContactNote contactNote)
+            /// <summary>
+            /// This method is used to save 'ContactNote' objects.
+            /// </summary>
+            /// <param name="contactNote">The ContactNote to save.</param>
+            public bool SaveContactNote(ref ContactNote contactNote)
+            {
+                // initial value
+                bool saved = false;
+
+                // if the AppController exists
+                if (this.HasAppController)
+                {
+                    // perform the save
+                    saved = this.AppController.ControllerManager.ContactNoteController.Save(ref contactNote);
+                }
+
+                // return value
+                return saved;
+            }
+            #endregion
+
+        #endregion
+
+        #region Properties
+
+            #region AppController
+            /// <summary>
+            /// This property gets or sets the value for 'AppController'.
+            /// </summary>
+            public ApplicationController AppController
+            {
+                get { return appController; }
+                set { appController = value; }
+            }
+            #endregion
+
+            #region ConnectionName
+            /// <summary>
+            /// This property gets or sets the value for 'ConnectionName'.
+            /// </summary>
+            public string ConnectionName
+            {
+                get { return connectionName; }
+                set { connectionName = value; }
+            }
+            #endregion
+            
+            #region HasAppController
+            /// <summary>
+            /// This property returns true if this object has an 'AppController'.
+            /// </summary>
+            public bool HasAppController
+            {
+                get
+                {
+                    // initial value
+                    bool hasAppController = (this.AppController != null);
+
+                    // return value
+                    return hasAppController;
+                }
+            }
+            #endregion
+
+            #region HasConnectionName
+            /// <summary>
+            /// This property returns true if the 'ConnectionName' exists.
+            /// </summary>
+            public bool HasConnectionName
+            {
+                get
+                {
+                    // initial value
+                    bool hasConnectionName = (!String.IsNullOrEmpty(this.ConnectionName));
+                    
+                    // return value
+                    return hasConnectionName;
+                }
+            }
+            #endregion
+            
+        #endregion
+
+    }
+    #endregion
+
+}
+
