@@ -113,7 +113,13 @@ namespace NTouch.Components
                 }
                 else if (component is CalendarComponent)
                 {
+                    // Store
                     CalendarControl = component as CalendarComponent;
+
+                    if (HasCalendarControl)
+                    {
+                        
+                    }
                 }
             }
             #endregion

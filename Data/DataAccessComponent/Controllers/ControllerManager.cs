@@ -26,6 +26,7 @@ namespace DataAccessComponent.Controllers
         private ErrorHandler errorProcessor;
         private ApplicationController appController;
         private ContactController contactController;
+        private StateController stateController;
         #endregion
 
         #region Constructor
@@ -53,6 +54,7 @@ namespace DataAccessComponent.Controllers
             {
                 // Create Child Controllers
                 this.ContactController = new ContactController(this.ErrorProcessor, this.AppController);
+                this.StateController = new StateController(this.ErrorProcessor, this.AppController);
             }
             #endregion
 
@@ -81,6 +83,14 @@ namespace DataAccessComponent.Controllers
             {
                 get { return contactController; }
                 set { contactController = value; }
+            }
+            #endregion
+
+            #region StateController
+            public StateController StateController
+            {
+                get { return stateController; }
+                set { stateController = value; }
             }
             #endregion
 

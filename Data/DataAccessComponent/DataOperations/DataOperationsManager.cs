@@ -30,6 +30,7 @@ namespace DataAccessComponent.DataOperations
         private DataManager dataManager;
         private SystemMethods systemMethods;
         private ContactMethods contactMethods;
+        private StateMethods stateMethods;
         #endregion
 
         #region Constructor
@@ -57,6 +58,7 @@ namespace DataAccessComponent.DataOperations
                 // Create Child DataOperatonMethods
                 this.SystemMethods = new SystemMethods();
                 this.ContactMethods = new ContactMethods(this.DataManager);
+                this.StateMethods = new StateMethods(this.DataManager);
             }
             #endregion
 
@@ -85,6 +87,14 @@ namespace DataAccessComponent.DataOperations
             {
                 get { return contactMethods; }
                 set { contactMethods = value; }
+            }
+            #endregion
+
+            #region StateMethods
+            public StateMethods StateMethods
+            {
+                get { return stateMethods; }
+                set { stateMethods = value; }
             }
             #endregion
 

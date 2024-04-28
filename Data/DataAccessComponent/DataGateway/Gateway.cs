@@ -85,6 +85,43 @@ namespace DataAccessComponent.DataGateway
             }
             #endregion
         
+            #region DeleteState(int id, State tempState = null)
+            /// <summary>
+            /// This method is used to delete State objects.
+            /// </summary>
+            /// <param name="id">Delete the State with this id</param>
+            /// <param name="tempState">Pass in a tempState to perform a custom delete.</param>
+            public bool DeleteState(int id, State tempState = null)
+            {
+                // initial value
+                bool deleted = false;
+        
+                // if the AppController exists
+                if (this.HasAppController)
+                {
+                    // if the tempState does not exist
+                    if (tempState == null)
+                    {
+                        // create a temp State
+                        tempState = new State();
+                    }
+        
+                    // if the id is set
+                    if (id > 0)
+                    {
+                        // set the primary key
+                        tempState.UpdateIdentity(id);
+                    }
+        
+                    // perform the delete
+                    deleted = this.AppController.ControllerManager.StateController.Delete(tempState);
+                }
+        
+                // return value
+                return deleted;
+            }
+            #endregion
+        
             #region ExecuteNonQuery(string procedureName, SqlParameter[] sqlParameters)
             /// <summary>
             /// This method Executes a Non Query StoredProcedure
@@ -165,6 +202,43 @@ namespace DataAccessComponent.DataGateway
 
                 // return value
                 return contact;
+            }
+            #endregion
+
+            #region FindState(int id, State tempState = null)
+            /// <summary>
+            /// This method is used to find 'State' objects.
+            /// </summary>
+            /// <param name="id">Find the State with this id</param>
+            /// <param name="tempState">Pass in a tempState to perform a custom find.</param>
+            public State FindState(int id, State tempState = null)
+            {
+                // initial value
+                State state = null;
+
+                // if the AppController exists
+                if (this.HasAppController)
+                {
+                    // if the tempState does not exist
+                    if (tempState == null)
+                    {
+                        // create a temp State
+                        tempState = new State();
+                    }
+
+                    // if the id is set
+                    if (id > 0)
+                    {
+                        // set the primary key
+                        tempState.UpdateIdentity(id);
+                    }
+
+                    // perform the find
+                    state = this.AppController.ControllerManager.StateController.Find(tempState);
+                }
+
+                // return value
+                return state;
             }
             #endregion
 
@@ -249,6 +323,27 @@ namespace DataAccessComponent.DataGateway
             }
             #endregion
 
+            #region LoadStates(State tempState = null)
+            /// <summary>
+            /// This method loads a collection of 'State' objects.
+            /// </summary>
+            public List<State> LoadStates(State tempState = null)
+            {
+                // initial value
+                List<State> states = null;
+
+                // if the AppController exists
+                if (this.HasAppController)
+                {
+                    // perform the load
+                    states = this.AppController.ControllerManager.StateController.FetchAll(tempState);
+                }
+
+                // return value
+                return states;
+            }
+            #endregion
+
             #region SaveContact(ref Contact contact)
             /// <summary>
             /// This method is used to save 'Contact' objects.
@@ -264,6 +359,28 @@ namespace DataAccessComponent.DataGateway
                 {
                     // perform the save
                     saved = this.AppController.ControllerManager.ContactController.Save(ref contact);
+                }
+
+                // return value
+                return saved;
+            }
+            #endregion
+
+            #region SaveState(ref State state)
+            /// <summary>
+            /// This method is used to save 'State' objects.
+            /// </summary>
+            /// <param name="state">The State to save.</param>
+            public bool SaveState(ref State state)
+            {
+                // initial value
+                bool saved = false;
+
+                // if the AppController exists
+                if (this.HasAppController)
+                {
+                    // perform the save
+                    saved = this.AppController.ControllerManager.StateController.Save(ref state);
                 }
 
                 // return value

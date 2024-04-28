@@ -18,8 +18,10 @@ namespace ObjectLibrary.BusinessObjects
         #region Private Variables
         private string address;
         private string city;
+        private DateTime createdDate;
         private string emailAddress;
         private string firstName;
+        private DateTime followUpDate;
         private int id;
         private string imagePath;
         private string lastName;
@@ -75,6 +77,20 @@ namespace ObjectLibrary.BusinessObjects
             }
             #endregion
 
+            #region DateTime CreatedDate
+            public DateTime CreatedDate
+            {
+                get
+                {
+                    return createdDate;
+                }
+                set
+                {
+                    createdDate = value;
+                }
+            }
+            #endregion
+
             #region string EmailAddress
             public string EmailAddress
             {
@@ -99,6 +115,20 @@ namespace ObjectLibrary.BusinessObjects
                 set
                 {
                     firstName = value;
+                }
+            }
+            #endregion
+
+            #region DateTime FollowUpDate
+            public DateTime FollowUpDate
+            {
+                get
+                {
+                    return followUpDate;
+                }
+                set
+                {
+                    followUpDate = value;
                 }
             }
             #endregion
