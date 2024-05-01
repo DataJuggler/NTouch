@@ -27,7 +27,8 @@ namespace NTouch.Components
         private IBlazorComponentParent parent;
         private List<IBlazorComponent> children;
         private ValidationComponent zipControl;
-        private CalendarComponent calendarControl;
+        private CalendarComponent lastContactedDateControl;
+        private CalendarComponent followUpDateControl;
         private string title;
         #endregion
 
@@ -113,12 +114,15 @@ namespace NTouch.Components
                 }
                 else if (component is CalendarComponent)
                 {
-                    // Store
-                    CalendarControl = component as CalendarComponent;
-
-                    if (HasCalendarControl)
+                    if (component.Name == "LastContactedDateControl")
                     {
-                        
+                        // Store
+                        LastContactedDateControl = component as CalendarComponent;
+                    }
+                    else if (component.Name == "FollowUpDateControl")
+                    {
+                        // Store
+                        FollowUpDateControl = component as CalendarComponent;
                     }
                 }
             }
@@ -146,17 +150,6 @@ namespace NTouch.Components
         #endregion
 
         #region Properties
-
-            #region CalendarControl
-            /// <summary>
-            /// This property gets or sets the value for 'CalendarControl'.
-            /// </summary>
-            public CalendarComponent CalendarControl
-            {
-                get { return calendarControl; }
-                set { calendarControl = value; }
-            }
-            #endregion
             
             #region Children
             /// <summary>
@@ -169,20 +162,14 @@ namespace NTouch.Components
             }
             #endregion
             
-            #region HasCalendarControl
+            #region FollowUpCalendarControl
             /// <summary>
-            /// This property returns true if this object has a 'CalendarControl'.
+            /// This property gets or sets the value for 'FollowUpCalendarControl'.
             /// </summary>
-            public bool HasCalendarControl
+            public CalendarComponent FollowUpDateControl
             {
-                get
-                {
-                    // initial value
-                    bool hasCalendarControl = (this.CalendarControl != null);
-                    
-                    // return value
-                    return hasCalendarControl;
-                }
+                get { return followUpDateControl; }
+                set { followUpDateControl = value; }
             }
             #endregion
             
@@ -199,6 +186,23 @@ namespace NTouch.Components
                     
                     // return value
                     return hasChildren;
+                }
+            }
+            #endregion
+            
+            #region HasLastContactedDateControl
+            /// <summary>
+            /// This property returns true if this object has a 'LastContactedDateControl'.
+            /// </summary>
+            public bool HasLastContactedDateControl
+            {
+                get
+                {
+                    // initial value
+                    bool hasLastContactedDateControl = (this.LastContactedDateControl != null);
+                    
+                    // return value
+                    return hasLastContactedDateControl;
                 }
             }
             #endregion
@@ -251,6 +255,17 @@ namespace NTouch.Components
                     // return value
                     return hasZipControl;
                 }
+            }
+            #endregion
+            
+            #region LastContactedDateControl
+            /// <summary>
+            /// This property gets or sets the value for 'LastContactedDateControl'.
+            /// </summary>
+            public CalendarComponent LastContactedDateControl
+            {
+                get { return lastContactedDateControl; }
+                set { lastContactedDateControl = value; }
             }
             #endregion
             
