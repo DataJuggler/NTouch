@@ -24,6 +24,7 @@ namespace ObjectLibrary.BusinessObjects
         private DateTime followUpDate;
         private int id;
         private string imagePath;
+        private DateTime lastContactDate;
         private string lastName;
         private string notes;
         private string phoneNumber;
@@ -153,6 +154,20 @@ namespace ObjectLibrary.BusinessObjects
                 set
                 {
                     imagePath = value;
+                }
+            }
+            #endregion
+
+            #region DateTime LastContactDate
+            public DateTime LastContactDate
+            {
+                get
+                {
+                    return lastContactDate;
+                }
+                set
+                {
+                    lastContactDate = value;
                 }
             }
             #endregion

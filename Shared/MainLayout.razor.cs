@@ -6,8 +6,6 @@ using DataJuggler.Blazor.Components;
 using DataJuggler.Blazor.Components.Interfaces;
 using DataJuggler.Blazor.Components.Util;
 using DataJuggler.UltimateHelper;
-using ObjectLibrary.BusinessObjects;
-using ObjectLibrary.Enumerations;
 using NTouch.Pages;
 
 #endregion
@@ -24,7 +22,6 @@ namespace NTouch.Shared
         
         #region Private Variables
         private List<IBlazorComponent> children;
-        private ScreenTypeEnum screenType;
         private IndexPage indexPage;
         #endregion
 
@@ -36,9 +33,6 @@ namespace NTouch.Shared
         {
             // Create a new collection of 'IBlazorComponentParent' objects.
             Children = new List<IBlazorComponent>();
-
-            // Default
-            ScreenType = ScreenTypeEnum.ViewContact;
         }
         #endregion
         
@@ -151,17 +145,6 @@ namespace NTouch.Shared
             {
                 get { return indexPage; }
                 set { indexPage = value; }
-            }
-            #endregion
-            
-            #region ScreenType
-            /// <summary>
-            /// This property gets or sets the value for 'ScreenType'.
-            /// </summary>
-            public ScreenTypeEnum ScreenType
-            {
-                get { return screenType; }
-                set { screenType = value; }
             }
             #endregion
             

@@ -48,43 +48,6 @@ namespace DataAccessComponent.DataGateway
 
         #region Methods
         
-            #region DeleteContact(int id, Contact tempContact = null)
-            /// <summary>
-            /// This method is used to delete Contact objects.
-            /// </summary>
-            /// <param name="id">Delete the Contact with this id</param>
-            /// <param name="tempContact">Pass in a tempContact to perform a custom delete.</param>
-            public bool DeleteContact(int id, Contact tempContact = null)
-            {
-                // initial value
-                bool deleted = false;
-        
-                // if the AppController exists
-                if (this.HasAppController)
-                {
-                    // if the tempContact does not exist
-                    if (tempContact == null)
-                    {
-                        // create a temp Contact
-                        tempContact = new Contact();
-                    }
-        
-                    // if the id is set
-                    if (id > 0)
-                    {
-                        // set the primary key
-                        tempContact.UpdateIdentity(id);
-                    }
-        
-                    // perform the delete
-                    deleted = this.AppController.ControllerManager.ContactController.Delete(tempContact);
-                }
-        
-                // return value
-                return deleted;
-            }
-            #endregion
-        
             #region ExecuteNonQuery(string procedureName, SqlParameter[] sqlParameters)
             /// <summary>
             /// This method Executes a Non Query StoredProcedure
@@ -128,43 +91,6 @@ namespace DataAccessComponent.DataGateway
 
                 // return value
                 return returnValue;
-            }
-            #endregion
-
-            #region FindContact(int id, Contact tempContact = null)
-            /// <summary>
-            /// This method is used to find 'Contact' objects.
-            /// </summary>
-            /// <param name="id">Find the Contact with this id</param>
-            /// <param name="tempContact">Pass in a tempContact to perform a custom find.</param>
-            public Contact FindContact(int id, Contact tempContact = null)
-            {
-                // initial value
-                Contact contact = null;
-
-                // if the AppController exists
-                if (this.HasAppController)
-                {
-                    // if the tempContact does not exist
-                    if (tempContact == null)
-                    {
-                        // create a temp Contact
-                        tempContact = new Contact();
-                    }
-
-                    // if the id is set
-                    if (id > 0)
-                    {
-                        // set the primary key
-                        tempContact.UpdateIdentity(id);
-                    }
-
-                    // perform the find
-                    contact = this.AppController.ControllerManager.ContactController.Find(tempContact);
-                }
-
-                // return value
-                return contact;
             }
             #endregion
 
@@ -225,49 +151,6 @@ namespace DataAccessComponent.DataGateway
             {
                 // Create Application Controller
                 this.AppController = new ApplicationController(ConnectionName);
-            }
-            #endregion
-
-            #region LoadContacts(Contact tempContact = null)
-            /// <summary>
-            /// This method loads a collection of 'Contact' objects.
-            /// </summary>
-            public List<Contact> LoadContacts(Contact tempContact = null)
-            {
-                // initial value
-                List<Contact> contacts = null;
-
-                // if the AppController exists
-                if (this.HasAppController)
-                {
-                    // perform the load
-                    contacts = this.AppController.ControllerManager.ContactController.FetchAll(tempContact);
-                }
-
-                // return value
-                return contacts;
-            }
-            #endregion
-
-            #region SaveContact(ref Contact contact)
-            /// <summary>
-            /// This method is used to save 'Contact' objects.
-            /// </summary>
-            /// <param name="contact">The Contact to save.</param>
-            public bool SaveContact(ref Contact contact)
-            {
-                // initial value
-                bool saved = false;
-
-                // if the AppController exists
-                if (this.HasAppController)
-                {
-                    // perform the save
-                    saved = this.AppController.ControllerManager.ContactController.Save(ref contact);
-                }
-
-                // return value
-                return saved;
             }
             #endregion
 

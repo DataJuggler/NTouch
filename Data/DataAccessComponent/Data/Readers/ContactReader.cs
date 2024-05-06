@@ -44,11 +44,12 @@ namespace DataAccessComponent.Data.Readers
                 int followUpDatefield = 5;
                 int idfield = 6;
                 int imagePathfield = 7;
-                int lastNamefield = 8;
-                int notesfield = 9;
-                int phoneNumberfield = 10;
-                int statefield = 11;
-                int zipCodefield = 12;
+                int lastContactDatefield = 8;
+                int lastNamefield = 9;
+                int notesfield = 10;
+                int phoneNumberfield = 11;
+                int statefield = 12;
+                int zipCodefield = 13;
 
                 try
                 {
@@ -61,6 +62,7 @@ namespace DataAccessComponent.Data.Readers
                     contact.FollowUpDate = DataHelper.ParseDate(dataRow.ItemArray[followUpDatefield]);
                     contact.UpdateIdentity(DataHelper.ParseInteger(dataRow.ItemArray[idfield], 0));
                     contact.ImagePath = DataHelper.ParseString(dataRow.ItemArray[imagePathfield]);
+                    contact.LastContactDate = DataHelper.ParseDate(dataRow.ItemArray[lastContactDatefield]);
                     contact.LastName = DataHelper.ParseString(dataRow.ItemArray[lastNamefield]);
                     contact.Notes = DataHelper.ParseString(dataRow.ItemArray[notesfield]);
                     contact.PhoneNumber = DataHelper.ParseString(dataRow.ItemArray[phoneNumberfield]);

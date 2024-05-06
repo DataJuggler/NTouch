@@ -6,7 +6,7 @@ Go
 -- =========================================================
 -- Procure Name: Contact_Insert
 -- Author:           Data Juggler - Data Tier.Net Procedure Generator
--- Create Date:   4/28/2024
+-- Create Date:   5/2/2024
 -- Description:    Insert a new Contact
 -- =========================================================
 
@@ -44,6 +44,7 @@ Create PROCEDURE Contact_Insert
     @FirstName nvarchar(25),
     @FollowUpDate datetime,
     @ImagePath nvarchar(255),
+    @LastContactDate datetime,
     @LastName nvarchar(25),
     @Notes nvarchar(255),
     @PhoneNumber nvarchar(20),
@@ -59,10 +60,10 @@ BEGIN
 
     -- Begin Insert Statement
     Insert Into [Contact]
-    ([Address],[City],[CreatedDate],[EmailAddress],[FirstName],[FollowUpDate],[ImagePath],[LastName],[Notes],[PhoneNumber],[State],[ZipCode])
+    ([Address],[City],[CreatedDate],[EmailAddress],[FirstName],[FollowUpDate],[ImagePath],[LastContactDate],[LastName],[Notes],[PhoneNumber],[State],[ZipCode])
 
     -- Begin Values List
-    Values(@Address, @City, @CreatedDate, @EmailAddress, @FirstName, @FollowUpDate, @ImagePath, @LastName, @Notes, @PhoneNumber, @State, @ZipCode)
+    Values(@Address, @City, @CreatedDate, @EmailAddress, @FirstName, @FollowUpDate, @ImagePath, @LastContactDate, @LastName, @Notes, @PhoneNumber, @State, @ZipCode)
 
     -- Return ID of new record
     SELECT SCOPE_IDENTITY()
@@ -75,7 +76,7 @@ Go
 -- =========================================================
 -- Procure Name: Contact_Update
 -- Author:           Data Juggler - Data Tier.Net Procedure Generator
--- Create Date:   4/28/2024
+-- Create Date:   5/2/2024
 -- Description:    Update an existing Contact
 -- =========================================================
 
@@ -114,6 +115,7 @@ Create PROCEDURE Contact_Update
     @FollowUpDate datetime,
     @Id int,
     @ImagePath nvarchar(255),
+    @LastContactDate datetime,
     @LastName nvarchar(25),
     @Notes nvarchar(255),
     @PhoneNumber nvarchar(20),
@@ -138,6 +140,7 @@ BEGIN
     [FirstName] = @FirstName,
     [FollowUpDate] = @FollowUpDate,
     [ImagePath] = @ImagePath,
+    [LastContactDate] = @LastContactDate,
     [LastName] = @LastName,
     [Notes] = @Notes,
     [PhoneNumber] = @PhoneNumber,
@@ -155,7 +158,7 @@ Go
 -- =========================================================
 -- Procure Name: Contact_Find
 -- Author:           Data Juggler - Data Tier.Net Procedure Generator
--- Create Date:   4/28/2024
+-- Create Date:   5/2/2024
 -- Description:    Find an existing Contact
 -- =========================================================
 
@@ -196,7 +199,7 @@ BEGIN
     SET NOCOUNT ON
 
     -- Begin Select Statement
-    Select [Address],[City],[CreatedDate],[EmailAddress],[FirstName],[FollowUpDate],[Id],[ImagePath],[LastName],[Notes],[PhoneNumber],[State],[ZipCode]
+    Select [Address],[City],[CreatedDate],[EmailAddress],[FirstName],[FollowUpDate],[Id],[ImagePath],[LastContactDate],[LastName],[Notes],[PhoneNumber],[State],[ZipCode]
 
     -- From tableName
     From [Contact]
@@ -212,7 +215,7 @@ Go
 -- =========================================================
 -- Procure Name: Contact_Delete
 -- Author:           Data Juggler - Data Tier.Net Procedure Generator
--- Create Date:   4/28/2024
+-- Create Date:   5/2/2024
 -- Description:    Delete an existing Contact
 -- =========================================================
 
@@ -266,7 +269,7 @@ Go
 -- =========================================================
 -- Procure Name: Contact_FetchAll
 -- Author:           Data Juggler - Data Tier.Net Procedure Generator
--- Create Date:   4/28/2024
+-- Create Date:   5/2/2024
 -- Description:    Returns all Contact objects
 -- =========================================================
 
@@ -304,7 +307,7 @@ BEGIN
     SET NOCOUNT ON
 
     -- Begin Select Statement
-    Select [Address],[City],[CreatedDate],[EmailAddress],[FirstName],[FollowUpDate],[Id],[ImagePath],[LastName],[Notes],[PhoneNumber],[State],[ZipCode]
+    Select [Address],[City],[CreatedDate],[EmailAddress],[FirstName],[FollowUpDate],[Id],[ImagePath],[LastContactDate],[LastName],[Notes],[PhoneNumber],[State],[ZipCode]
 
     -- From tableName
     From [Contact]
@@ -317,7 +320,7 @@ Go
 -- =========================================================
 -- Procure Name: State_Insert
 -- Author:           Data Juggler - Data Tier.Net Procedure Generator
--- Create Date:   4/28/2024
+-- Create Date:   5/2/2024
 -- Description:    Insert a new State
 -- =========================================================
 
@@ -376,7 +379,7 @@ Go
 -- =========================================================
 -- Procure Name: State_Update
 -- Author:           Data Juggler - Data Tier.Net Procedure Generator
--- Create Date:   4/28/2024
+-- Create Date:   5/2/2024
 -- Description:    Update an existing State
 -- =========================================================
 
@@ -436,7 +439,7 @@ Go
 -- =========================================================
 -- Procure Name: State_Find
 -- Author:           Data Juggler - Data Tier.Net Procedure Generator
--- Create Date:   4/28/2024
+-- Create Date:   5/2/2024
 -- Description:    Find an existing State
 -- =========================================================
 
@@ -493,7 +496,7 @@ Go
 -- =========================================================
 -- Procure Name: State_Delete
 -- Author:           Data Juggler - Data Tier.Net Procedure Generator
--- Create Date:   4/28/2024
+-- Create Date:   5/2/2024
 -- Description:    Delete an existing State
 -- =========================================================
 
@@ -547,7 +550,7 @@ Go
 -- =========================================================
 -- Procure Name: State_FetchAll
 -- Author:           Data Juggler - Data Tier.Net Procedure Generator
--- Create Date:   4/28/2024
+-- Create Date:   5/2/2024
 -- Description:    Returns all State objects
 -- =========================================================
 

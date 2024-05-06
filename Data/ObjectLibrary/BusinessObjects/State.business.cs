@@ -37,8 +37,18 @@ namespace ObjectLibrary.BusinessObjects
                 // Return Cloned Object
                 return newState;
             }
-            #endregion
+        #endregion
 
+            #region ToString()
+            /// <summary>
+            /// method returns the String
+            /// </summary>
+            public override string ToString()
+            {
+                return Name;
+            }
+            #endregion
+            
         #endregion
 
         #region Properties

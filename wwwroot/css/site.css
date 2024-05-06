@@ -29,6 +29,12 @@
     left: 0px;
     color: white;
 }
+.border1
+{
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+}
 .buttoncontainer
 {
     height: 8vh;
@@ -40,9 +46,24 @@
     left: 20vw;
     bottom: 0px;
 }
+.container
+{
+    display: inline-block;
+    height: 120px;
+    min-height: 120px;
+    max-height: 120px;
+    width: 152px  !important;
+    max-width: 152px  !important;
+    min-width: 152px !important; 
+    position: relative;
+    left: -34vw;
+    overflow: visible !important;
+    z-index: 200 !important;
+    background-color: white;
+}
 
 html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;    
 }
 
 h1:focus {

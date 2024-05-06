@@ -7,9 +7,15 @@ using DataJuggler.Blazor.Components.Interfaces;
 using DataJuggler.Blazor.Components.Util;
 using Microsoft.AspNetCore.Components;
 using NTouch.Shared;
-using ObjectLibrary.Enumerations;
-using ObjectLibrary.BusinessObjects;
 using NTouch.Components;
+using ObjectLibrary.BusinessObjects;
+using ObjectLibrary.Enumerations;
+using DataAccessComponent.Connection;
+using DataJuggler.Excelerate;
+using DataJuggler.UltimateHelper;
+using NTouch.Objects;
+using DataAccessComponent.DataGateway;
+using DataJuggler.NET8.Enumerations;
 
 #endregion
 
@@ -29,6 +35,14 @@ namespace NTouch.Pages
         private IBlazorComponentParent parent;
         private string title;
         private ContactEditor contactEditor;
+        private Label statusLabel;
+        private ScreenTypeEnum screenType;
+
+        // Test Only
+        private CheckedListBox listBox;
+
+        private ValidationComponent firstNameControl;
+        private ValidationComponent LastNameControl;
         #endregion
 
         #region Constructor
@@ -53,15 +67,11 @@ namespace NTouch.Pages
             /// </summary>
             public void AddContact()
             {
-                // if the value for HasMainLayout is true
-                if (HasMainLayout)
-                {
-                    // Set the ScreenType
-                    MainLayout.ScreenType = ScreenTypeEnum.EditContact;
+                // Set the ScreenType
+                ScreenType = ScreenTypeEnum.EditContact;
 
-                    // Update the UI
-                    Refresh();
-                }
+                // Update the UI
+                Refresh();
             }
             #endregion
             
@@ -73,6 +83,48 @@ namespace NTouch.Pages
             {
                  // probably not used
                 return ComponentHelper.FindChildByName(Children, name);
+            }
+            #endregion
+            
+            #region ImportExcel()
+            /// <summary>
+            /// Import Excel
+            /// </summary>
+            public void ImportExcel()
+            {
+                WorksheetInfo info = new WorksheetInfo();
+                info.LoadColumnOptions = LoadColumnOptionsEnum.LoadAllColumnsExceptExcluded;
+                info.ColumnsToLoad = 3;
+                info.Path = "C:\\Temp\\States.xlsx";
+                info.SheetName = "State";
+
+                // Load the worksheet
+                Worksheet worksheet = ExcelDataLoader.LoadWorksheet(info);
+
+                // Load the States from Excel
+                List<NTouch.Objects.State> states = NTouch.Objects.State.Load(worksheet);
+
+                // If the states collection exists and has one or more items
+                if (ListHelper.HasOneOrMoreItems(states))
+                {
+                    // Set the Connection String
+                    Gateway gateway = new Gateway(Connection.Name);
+
+                    // iterate the states
+                    foreach (NTouch.Objects.State state in states)
+                    {
+                        // Create a new state
+                        ObjectLibrary.BusinessObjects.State dbState = new ObjectLibrary.BusinessObjects.State();
+                        dbState.Name = state.Name;
+                        dbState.Code = state.Code;
+
+                        // Perform the save
+                        bool saved = gateway.SaveState(ref dbState);
+                    }
+                }
+
+                // Show a message
+                StatusLabel.SetTextValue("Import Excel Finished");
             }
             #endregion
             
@@ -106,7 +158,25 @@ namespace NTouch.Pages
             /// </summary>
             public void Register(IBlazorComponent component)
             {
-                
+                if (component is Label)
+                {
+                    // Store
+                    StatusLabel = component as Label;
+                }
+                else if (component is CheckedListBox)
+                {
+                    ListBox = component as CheckedListBox;
+
+                    // if the value for HasListBox is true
+                    if (HasListBox)
+                    {  
+                        // Load the Items for this enum
+                        List<Item> items = ItemHelper.LoadItems(typeof(TargetFrameworkEnum));
+                        
+                        // Set the items on the list box
+                        ListBox.SetItems(items);
+                    }
+                }
             }
             #endregion
             
@@ -153,6 +223,23 @@ namespace NTouch.Pages
             }
             #endregion
             
+            #region HasListBox
+            /// <summary>
+            /// This property returns true if this object has a 'ListBox'.
+            /// </summary>
+            public bool HasListBox
+            {
+                get
+                {
+                    // initial value
+                    bool hasListBox = (this.ListBox != null);
+                    
+                    // return value
+                    return hasListBox;
+                }
+            }
+            #endregion
+            
             #region HasMainLayout
             /// <summary>
             /// This property returns true if this object has a 'MainLayout'.
@@ -184,6 +271,34 @@ namespace NTouch.Pages
                     // return value
                     return hasParent;
                 }
+            }
+            #endregion
+            
+            #region HasStatusLabel
+            /// <summary>
+            /// This property returns true if this object has a 'StatusLabel'.
+            /// </summary>
+            public bool HasStatusLabel
+            {
+                get
+                {
+                    // initial value
+                    bool hasStatusLabel = (this.StatusLabel != null);
+                    
+                    // return value
+                    return hasStatusLabel;
+                }
+            }
+            #endregion
+            
+            #region ListBox
+            /// <summary>
+            /// This property gets or sets the value for 'ListBox'.
+            /// </summary>
+            public CheckedListBox ListBox
+            {
+                get { return listBox; }
+                set { listBox = value; }
             }
             #endregion
             
@@ -248,26 +363,23 @@ namespace NTouch.Pages
             
             #region ScreenType
             /// <summary>
-            /// This read only property returns the value of ScreenType from the object ParentMainLayout.
+            /// This property gets or sets the value for 'ScreenType'.
             /// </summary>
             public ScreenTypeEnum ScreenType
             {
-                
-                get
-                {
-                    // initial value
-                    ScreenTypeEnum screenType = ScreenTypeEnum.ListContacts;
-                    
-                    // if Parent MainLayout exists
-                    if (HasMainLayout)
-                    {
-                        // set the return value
-                        screenType = MainLayout.ScreenType;
-                    }
-                    
-                    // return value
-                    return screenType;
-                }
+                get { return screenType; }
+                set { screenType = value; }
+            }
+            #endregion
+            
+            #region StatusLabel
+            /// <summary>
+            /// This property gets or sets the value for 'StatusLabel'.
+            /// </summary>
+            public Label StatusLabel
+            {
+                get { return statusLabel; }
+                set { statusLabel = value; }
             }
             #endregion
             

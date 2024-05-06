@@ -9,6 +9,10 @@ using DataJuggler.UltimateHelper;
 using Microsoft.AspNetCore.Components;
 using NTouch.Pages;
 using ObjectLibrary.Enumerations;
+using DataAccessComponent.DataGateway;
+using DataAccessComponent.Connection;
+using DataJuggler.NET8;
+using DataJuggler.NET8.Enumerations;
 
 #endregion
 
@@ -30,6 +34,7 @@ namespace NTouch.Components
         private CalendarComponent lastContactedDateControl;
         private CalendarComponent followUpDateControl;
         private string title;
+        private ComboBox stateComboBox;
         #endregion
 
         #region Constructor
@@ -51,13 +56,12 @@ namespace NTouch.Components
             /// </summary>
             public void Cancel()
             {
-                // if the value for HasParentIndexPage is true
-                if ((HasParentIndexPage) && (ParentIndexPage.HasMainLayout))
+                if (HasParentIndexPage)
                 {
-                    // List contacts
-                    ParentIndexPage.MainLayout.ScreenType = ScreenTypeEnum.ListContacts;
+                    // Set the Index Page
+                    ParentIndexPage.ScreenType = ScreenTypeEnum.IndexPage;
 
-                    // Update
+                    // Update the UI
                     ParentIndexPage.Refresh();
                 }
             }
@@ -80,7 +84,17 @@ namespace NTouch.Components
             /// </summary>
             public void ReceiveData(Message message)
             {
-                
+                if (NullHelper.Exists(message))
+                {
+                    if (message.Text.Contains("text"))
+                    {
+                        // get the key pressed
+                        string keyPressed = message.Text.Replace("text: Key", "");
+
+                        // Filter the list of items
+                        
+                    }   
+                }
             }
             #endregion
             
@@ -123,6 +137,26 @@ namespace NTouch.Components
                     {
                         // Store
                         FollowUpDateControl = component as CalendarComponent;
+                    }
+                }
+                else if (component is ComboBox)
+                {
+                    // Create a new instance of a 'Gateway' object.
+                    Gateway gateway = new Gateway(Connection.Name);
+
+                    // load the States
+                    List<ObjectLibrary.BusinessObjects.State> states = gateway.LoadStates();
+
+                    // Store
+                    StateComboBox = component as ComboBox;
+
+                    // if the value for HasStateComboBox is true
+                    if (HasStateComboBox)
+                    {
+                        // Load the ComboBox
+                        // StateComboBox.LoadItems(states);
+
+                        StateComboBox.LoadItems(typeof(TargetFrameworkEnum));
                     }
                 }
             }
@@ -241,6 +275,23 @@ namespace NTouch.Components
             }
             #endregion
             
+            #region HasStateComboBox
+            /// <summary>
+            /// This property returns true if this object has a 'StateComboBox'.
+            /// </summary>
+            public bool HasStateComboBox
+            {
+                get
+                {
+                    // initial value
+                    bool hasStateComboBox = (this.StateComboBox != null);
+                    
+                    // return value
+                    return hasStateComboBox;
+                }
+            }
+            #endregion
+            
             #region HasZipControl
             /// <summary>
             /// This property returns true if this object has a 'ZipControl'.
@@ -314,6 +365,17 @@ namespace NTouch.Components
                     // return value
                     return parentIndexPage;
                 }
+            }
+            #endregion
+            
+            #region StateComboBox
+            /// <summary>
+            /// This property gets or sets the value for 'StateComboBox'.
+            /// </summary>
+            public ComboBox StateComboBox
+            {
+                get { return stateComboBox; }
+                set { stateComboBox = value; }
             }
             #endregion
             

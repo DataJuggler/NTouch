@@ -1,8 +1,11 @@
 ﻿@using DataJuggler.Blazor.Components
+@using System.Drawing
+@using DataJuggler.Blazor.Components.Enumerations
 
 <h3>@Title</h3>
 
 <ValidationComponent Name="FirstNameControl" Parent="this" Caption="First Name:" ClassName="displayinlineblock"
+    SendAllTextToParent="true"
     Column1Width="100" LabelClassName="down3 right2" Width="240"></ValidationComponent>
 <ValidationComponent Name="LastNameControl" Parent="this" Caption="Last Name:" ClassName="displayinlineblock"
     Column1Width="100" LabelClassName="down3 right2" Width="240"></ValidationComponent>
@@ -17,25 +20,31 @@
 <ValidationComponent Name="CityControl" Parent="this" Caption="City:" ClassName="displayinlineblock"
     Column1Width="100" Column2Width="220" LabelClassName="down3 right2" 
     TextBoxWidth="200" Width="360"></ValidationComponent>
-<ValidationComponent Name="StateControl" Parent="this" Caption="State:" ClassName="displayinlineblock"
-    Column1Width="100" Column2Width="220" LabelClassName="down3 right2" 
-    TextBoxWidth="200" Width="360"></ValidationComponent>
+<ComboBox Name="StateComboBox" Theme=ThemeEnum.Blue LabelColor="Color.Black"                
+        Position="relative" Visible="true" Left="0" Top="-2" LabelClassName="down3 right1"
+        Height="32" ButtonHeight="26" ButtonWidth="24"SelectedText="" ZIndex=180
+        ButtonPosition="relative" ButtonLeft="-29" CheckedListPosition="relative"
+        ButtonTop="-.84" ListZIndex=80 CheckedListClassName="container border1" CheckedListZIndex="180"
+        CheckListMode="true" ListItemWidth=120 Width="140" CheckedListheight=88 CheckedListWidth="120"
+        CheckedListLeft=540 CheckedListTop=-8 ClassName="zindex40"
+        LabelFontSizeUnit="vh" LabelFontSize="2.4" LabelWidth=8 LabelBackColor="blue"
+        VisibleCount="6" LabelText="State:" Parent="this" ListItemLeft="0" ListItemTop="8">
+</ComboBox>
 <ValidationComponent Name="ZipControl" Parent="this" Caption="Zip:" ClassName="displayinlineblock"
-    Column1Width="100" Column2Width="220" LabelClassName="down3 right2"
-    TextBoxWidth="200" Width="360"></ValidationComponent>
-<ValidationComponent Name="NotesControl" Caption="Notes:" ClassName="displayinlineblock"
+    Column1Width="100" Column2Width="220" LabelClassName="down3 right2" ZIndex="0"
+    TextBoxWidth="124" Width="360"></ValidationComponent>
+<CalendarComponent Name="LastContactedDateControl" Unit="px" HeightUnit="px"
+    CalendarTop="-112" CalendarLeft="64" Parent="this"  Height="146" 
+    Caption="Last Contacted:" Width="224" Column2Width="128" Position="relative"
+    Top="0" LabelClassName="down4 right2" ControlHeight="48">
+</CalendarComponent>
+<CalendarComponent Name="FollowUpDateControl" Unit="px"  HeightUnit="px" Height="146" Caption="Follow Up Date:" 
+    Width="224" CalendarTop="-116" CalendarLeft="64" Parent="this"  ControlHeight="48"
+    Column2Width="128" Position="relative" Top="-12" LabelClassName="down4 right2" TextBoxWidth="124">
+</CalendarComponent>
+<ValidationComponent Name="NotesControl" Caption="Notes:" ClassName="displayinlineblock" Top=-12
     Multiline="true" Column1Width="100" Column2Width="220" LabelClassName="up88 right2"
     Height="96" TextBoxWidth="200" Width="360"></ValidationComponent>
-<CalendarComponent Name="LastContactedDateControl" Unit="px" HeightUnit="px" 
-    CalendarTop="-112" CalendarLeft="64" Parent="this" Zindex="30"
-    Caption="Last Contacted:" Width="224" Column2Width="128" Position="relative" 
-    Top="-8" LabelClassName="down4 right2" TextBoxWidth="124" ControlHeight="48">
-</CalendarComponent>
-<CalendarComponent Name="FollowUpDateControl" Unit="px"  HeightUnit="px" Caption="Follow Up Date:" 
-    Width="224" CalendarTop="-64" CalendarLeft="64" Parent="this" 
-    Column2Width="128" Position="relative" Top="-64" LabelClassName="down4 right2" TextBoxWidth="124">
-</CalendarComponent>
-
 <div class="buttoncontainer">
     <button class="bluebutton" @onclick=Save>Save</button>
     <button class="bluebutton" @onclick=Cancel>Cancel</button>

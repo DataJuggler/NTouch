@@ -1,19 +1,33 @@
 ﻿@page "/"
 @using DataJuggler.Blazor.Components
-@using ObjectLibrary.Enumerations
 @using NTouch.Components
+@using ObjectLibrary.Enumerations
+@using System.Drawing
 
 <PageTitle>Index</PageTitle>
 
 <h1>@Title</h1>
 
 <div class="height24"></div>
+<br />
 
 @if (ScreenType == ScreenTypeEnum.EditContact)
 {
-    <ContactEditor Parent="this"></ContactEditor>    
+    <ContactEditor Parent="this"></ContactEditor>
+    @* <CheckedListBox Parent="this" HeightUnit="px" Height="80"
+        Width=120 ListItemWidth=120 ListItemLeft=12 CheckBoxTextXPosition="-1" CheckBoxTextYPosition="-1"
+        ListItemTop="0" ListBackgroundColor="Color.Orange" Top="0" CheckBoxXPosition="-4" CheckBoxYPosition=1
+        Left=0  ListItemClassName="" ListItemHeight="16" ClassName="container border1">
+    </CheckedListBox> *@
 }
 else
 {
     <button class="bluebutton2" @onclick=AddContact>Add Contact</button>
 }
+
+@* 
+
+<button class="bluebutton2" @onclick=@ImportExcel>Import Excel</button>
+
+<Label Name="StatusLabel" Parent="this"></Label> *@
+

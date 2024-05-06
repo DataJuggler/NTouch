@@ -22,8 +22,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="DataJuggler.Blazor.Components" Version="8.6.26" />
+    <PackageReference Include="DataJuggler.Blazor.Components" Version="8.7.28" />
     <PackageReference Include="DataJuggler.Blazor.FileUpload" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Objects\" />
   </ItemGroup>
 
   <ItemGroup>
