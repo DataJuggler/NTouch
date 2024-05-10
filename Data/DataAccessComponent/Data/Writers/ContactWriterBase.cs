@@ -222,8 +222,8 @@ namespace DataAccessComponent.Data.Writers
                     // set parameters[10]
                     parameters[10] = param;
 
-                    // Create [State] parameter
-                    param = new SqlParameter("@State", contact.State);
+                    // Create [StateId] parameter
+                    param = new SqlParameter("@StateId", contact.StateId);
 
                     // set parameters[11]
                     parameters[11] = param;
@@ -390,8 +390,8 @@ namespace DataAccessComponent.Data.Writers
                     // set parameters[10]
                     parameters[10] = param;
 
-                    // Create parameter for [State]
-                    param = new SqlParameter("@State", contact.State);
+                    // Create parameter for [StateId]
+                    param = new SqlParameter("@StateId", contact.StateId);
 
                     // set parameters[11]
                     parameters[11] = param;

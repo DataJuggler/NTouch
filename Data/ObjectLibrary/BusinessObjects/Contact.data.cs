@@ -28,7 +28,7 @@ namespace ObjectLibrary.BusinessObjects
         private string lastName;
         private string notes;
         private string phoneNumber;
-        private string state;
+        private int stateId;
         private string zipCode;
         #endregion
 
@@ -214,16 +214,16 @@ namespace ObjectLibrary.BusinessObjects
             }
             #endregion
 
-            #region string State
-            public string State
+            #region int StateId
+            public int StateId
             {
                 get
                 {
-                    return state;
+                    return stateId;
                 }
                 set
                 {
-                    state = value;
+                    stateId = value;
                 }
             }
             #endregion

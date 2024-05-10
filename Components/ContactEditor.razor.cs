@@ -46,7 +46,7 @@ namespace NTouch.Components
         private CalendarComponent followUpDateControl;
         private ValidationComponent notesControl;
         private string title;
-        
+        private Contact selectedContact;
         #endregion
 
         #region Constructor
@@ -230,11 +230,16 @@ namespace NTouch.Components
             /// </summary>
             public void Save()
             {
-                if (HasParentIndexPage)
-                {
-                    // Import the Excel
-                    ParentIndexPage.ImportExcel();
-                }
+                // Create a new instance of a 'Contact' object.
+                Contact contact = new Contact();
+
+                // set each property
+                contact.FirstName = FirstNameControl.Text;
+                contact.LastName = LastNameControl.Text;
+                contact.PhoneNumber = PhoneControl.Text;
+                contact.EmailAddress = EmailControl.Text;
+                contact.Address = AddressControl.Text;
+                contact.City = CityControl.Text;                
             }
             #endregion
             
@@ -414,6 +419,23 @@ namespace NTouch.Components
             }
             #endregion
             
+            #region HasSelectedContact
+            /// <summary>
+            /// This property returns true if this object has a 'SelectedContact'.
+            /// </summary>
+            public bool HasSelectedContact
+            {
+                get
+                {
+                    // initial value
+                    bool hasSelectedContact = (this.SelectedContact != null);
+                    
+                    // return value
+                    return hasSelectedContact;
+                }
+            }
+            #endregion
+            
             #region HasStateComboBox
             /// <summary>
             /// This property returns true if this object has a 'StateComboBox'.
@@ -537,6 +559,42 @@ namespace NTouch.Components
             {
                 get { return phoneControl; }
                 set { phoneControl = value; }
+            }
+            #endregion
+            
+            #region SelectedContact
+            /// <summary>
+            /// This property gets or sets the value for 'SelectedContact'.
+            /// </summary>
+            public Contact SelectedContact
+            {
+                get { return selectedContact; }
+                set { selectedContact = value; }
+            }
+            #endregion
+            
+            #region SelectedContactId
+            /// <summary>
+            /// This read only property returns the value of SelectedContactId from the object SelectedContact.
+            /// </summary>
+            public int SelectedContactId
+            {
+                
+                get
+                {
+                    // initial value
+                    int selectedContactId = 0;
+
+                    // if the value for HasSelectedContact is true
+                    if (HasSelectedContact)
+                    {
+                        // Set the return value
+                        selectedContactId = SelectedContact.Id;
+                    }
+                    
+                    // return value
+                    return selectedContactId;
+                }
             }
             #endregion
             

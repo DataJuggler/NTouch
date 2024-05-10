@@ -92,6 +92,7 @@ namespace NTouch.Pages
             /// </summary>
             public void ImportExcel()
             {
+                // Create a new instance of a 'WorksheetInfo' object.
                 WorksheetInfo info = new WorksheetInfo();
                 info.LoadColumnOptions = LoadColumnOptionsEnum.LoadAllColumnsExceptExcluded;
                 info.ColumnsToLoad = 3;
@@ -119,7 +120,7 @@ namespace NTouch.Pages
                         state.Code = tempState.Code;
 
                         // Perform the save
-                        bool saved = gateway.SaveState(ref state);
+                        bool saved = gateway.SaveState(ref state);                        
                     }
                 }
 

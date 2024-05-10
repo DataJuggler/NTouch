@@ -397,6 +397,32 @@ namespace DataAccessComponent.DataGateway
             }
             #endregion
 
+                #region LoadContactPreferencesForContactId(int contactId)
+                /// <summary>
+                /// This method is used to load 'ContactPreference' objects for the ContactId given.
+                /// </summary>
+                public List<ContactPreference> LoadContactPreferencesForContactId(int contactId)
+                {
+                    // initial value
+                    List<ContactPreference> contactPreferences = null;
+                    
+                    // Create a temp ContactPreference object
+                    ContactPreference tempContactPreference = new ContactPreference();
+                    
+                    // Set the value for LoadByContactId to true
+                    tempContactPreference.LoadByContactId = true;
+                    
+                    // Set the value for ContactId
+                    tempContactPreference.ContactId = contactId;
+                    
+                    // Perform the load
+                    contactPreferences = LoadContactPreferences(tempContactPreference);
+                    
+                    // return value
+                    return contactPreferences;
+                }
+                #endregion
+                
             #region LoadContacts(Contact tempContact = null)
             /// <summary>
             /// This method loads a collection of 'Contact' objects.

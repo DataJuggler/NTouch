@@ -48,7 +48,7 @@ Create PROCEDURE Contact_Insert
     @LastName nvarchar(25),
     @Notes nvarchar(255),
     @PhoneNumber nvarchar(20),
-    @State nvarchar(20),
+    @StateId int,
     @ZipCode nvarchar(10)
 
 AS
@@ -60,10 +60,10 @@ BEGIN
 
     -- Begin Insert Statement
     Insert Into [Contact]
-    ([Address],[City],[CreatedDate],[EmailAddress],[FirstName],[FollowUpDate],[ImagePath],[LastContactDate],[LastName],[Notes],[PhoneNumber],[State],[ZipCode])
+    ([Address],[City],[CreatedDate],[EmailAddress],[FirstName],[FollowUpDate],[ImagePath],[LastContactDate],[LastName],[Notes],[PhoneNumber],[StateId],[ZipCode])
 
     -- Begin Values List
-    Values(@Address, @City, @CreatedDate, @EmailAddress, @FirstName, @FollowUpDate, @ImagePath, @LastContactDate, @LastName, @Notes, @PhoneNumber, @State, @ZipCode)
+    Values(@Address, @City, @CreatedDate, @EmailAddress, @FirstName, @FollowUpDate, @ImagePath, @LastContactDate, @LastName, @Notes, @PhoneNumber, @StateId, @ZipCode)
 
     -- Return ID of new record
     SELECT SCOPE_IDENTITY()
@@ -119,7 +119,7 @@ Create PROCEDURE Contact_Update
     @LastName nvarchar(25),
     @Notes nvarchar(255),
     @PhoneNumber nvarchar(20),
-    @State nvarchar(20),
+    @StateId int,
     @ZipCode nvarchar(10)
 
 AS
@@ -144,7 +144,7 @@ BEGIN
     [LastName] = @LastName,
     [Notes] = @Notes,
     [PhoneNumber] = @PhoneNumber,
-    [State] = @State,
+    [StateId] = @StateId,
     [ZipCode] = @ZipCode
 
     -- Update Matching Record
@@ -199,7 +199,7 @@ BEGIN
     SET NOCOUNT ON
 
     -- Begin Select Statement
-    Select [Address],[City],[CreatedDate],[EmailAddress],[FirstName],[FollowUpDate],[Id],[ImagePath],[LastContactDate],[LastName],[Notes],[PhoneNumber],[State],[ZipCode]
+    Select [Address],[City],[CreatedDate],[EmailAddress],[FirstName],[FollowUpDate],[Id],[ImagePath],[LastContactDate],[LastName],[Notes],[PhoneNumber],[StateId],[ZipCode]
 
     -- From tableName
     From [Contact]
@@ -307,7 +307,7 @@ BEGIN
     SET NOCOUNT ON
 
     -- Begin Select Statement
-    Select [Address],[City],[CreatedDate],[EmailAddress],[FirstName],[FollowUpDate],[Id],[ImagePath],[LastContactDate],[LastName],[Notes],[PhoneNumber],[State],[ZipCode]
+    Select [Address],[City],[CreatedDate],[EmailAddress],[FirstName],[FollowUpDate],[Id],[ImagePath],[LastContactDate],[LastName],[Notes],[PhoneNumber],[StateId],[ZipCode]
 
     -- From tableName
     From [Contact]
@@ -875,6 +875,70 @@ BEGIN
     From [State]
 
 END
+
+-- Begin Custom Methods
+
+
+set ANSI_NULLS ON
+set QUOTED_IDENTIFIER ON
+Go
+-- =========================================================
+-- Procure Name: ContactPreference_FetchAllForContactId
+-- Author:           Data Juggler - Data Tier.Net Procedure Generator
+-- Create Date:   5/10/2024
+-- Description:    Returns all ContactPreference objects for the ContactId given.
+-- =========================================================
+
+-- Check if the procedure already exists
+IF EXISTS (select * from syscomments where id = object_id ('ContactPreference_FetchAllForContactId'))
+
+    -- Procedure Does Exist, Drop First
+    BEGIN
+
+        -- Execute Drop
+        Drop Procedure ContactPreference_FetchAllForContactId
+
+        -- Test if procedure was dropped
+        IF OBJECT_ID('dbo.ContactPreference_FetchAllForContactId') IS NOT NULL
+
+            -- Print Line Drop Failed
+            PRINT '<<< Drop Failed On Procedure ContactPreference_FetchAllForContactId >>>'
+
+        Else
+
+            -- Print Line Procedure Dropped
+            PRINT '<<< Drop Suceeded On Procedure ContactPreference_FetchAllForContactId >>>'
+
+    End
+
+GO
+
+Create PROCEDURE ContactPreference_FetchAllForContactId
+
+    -- Create @ContactId Paramater
+    @ContactId int
+
+
+AS
+BEGIN
+
+    -- SET NOCOUNT ON added to prevent extra result sets from
+    -- interfering with SELECT statements.
+    SET NOCOUNT ON
+
+    -- Begin Select Statement
+    Select [ContactId],[ContactMethod],[Id]
+
+    -- From tableName
+    From [ContactPreference]
+
+    -- Load Matching Records
+    Where [ContactId] = @ContactId
+
+END
+
+
+-- End Custom Methods
 
 -- Thank you for using DataTier.Net.
 

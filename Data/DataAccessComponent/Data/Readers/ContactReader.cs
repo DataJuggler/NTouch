@@ -48,7 +48,7 @@ namespace DataAccessComponent.Data.Readers
                 int lastNamefield = 9;
                 int notesfield = 10;
                 int phoneNumberfield = 11;
-                int statefield = 12;
+                int stateIdfield = 12;
                 int zipCodefield = 13;
 
                 try
@@ -66,7 +66,7 @@ namespace DataAccessComponent.Data.Readers
                     contact.LastName = DataHelper.ParseString(dataRow.ItemArray[lastNamefield]);
                     contact.Notes = DataHelper.ParseString(dataRow.ItemArray[notesfield]);
                     contact.PhoneNumber = DataHelper.ParseString(dataRow.ItemArray[phoneNumberfield]);
-                    contact.State = DataHelper.ParseString(dataRow.ItemArray[statefield]);
+                    contact.StateId = DataHelper.ParseInteger(dataRow.ItemArray[stateIdfield], 0);
                     contact.ZipCode = DataHelper.ParseString(dataRow.ItemArray[zipCodefield]);
                 }
                 catch
