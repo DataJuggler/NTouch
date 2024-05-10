@@ -44,7 +44,7 @@
 .buttoncontainer
 {
     height: 8vh;
-    min-height: 20vh;
+    min-height: 8vh;
     width: 20vw;
     min-width: 20vw;
     float: right;    
@@ -76,6 +76,15 @@
     width: 200px !important;
     height: 80px;    
 }
+.customfileupload
+{  
+    display: inline-block;
+    cursor: pointer;
+    height: 48px;
+    min-height: 48px;
+    visibility: hidden;
+    display: none;    
+}
 .rightcolumn
 {
     float: right;
@@ -83,6 +92,13 @@
     right: 0;
     width: 40vw;
     height: 20vh;
+}
+
+input[type=file], /* FF, IE7+, chrome (except button) */
+input[type=file]::-webkit-file-upload-button
+{
+    cursor: pointer;
+    display: none;    
 }
 
 html, body {

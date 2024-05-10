@@ -16,6 +16,9 @@ using DataJuggler.NET8;
 using DataJuggler.NET8.Enumerations;
 using ObjectLibrary.BusinessObjects;
 using System.Xml.Serialization;
+using DataJuggler.Blazor.FileUpload;
+using Microsoft.AspNetCore.Components.Forms;
+using System.IO;
 
 #endregion
 
@@ -47,6 +50,7 @@ namespace NTouch.Components
         private ValidationComponent notesControl;
         private string title;
         private Contact selectedContact;
+        private string uploadButtonStyle;
         #endregion
 
         #region Constructor
@@ -87,6 +91,48 @@ namespace NTouch.Components
             {
                  // probably not used
                 return ComponentHelper.FindChildByName(Children, name);
+            }
+            #endregion
+
+            #region OnFileUploaded(UploadedFileInfo file)
+            /// <summary>
+            /// This method On File Uploaded
+            /// </summary>
+            public void OnFileUploaded(UploadedFileInfo file)
+            {
+                // if the file was uploaded
+                if (!file.Aborted)
+                {
+                   // To Do: Save the uploaded file
+                   string fileName = file.FullName;
+
+                   // if the value for HasSelectedContact is true
+                   if (HasSelectedContact)
+                   {
+                        // Create a fileInfo object
+                        FileInfo fileInfo = new FileInfo(fileName);
+
+                        // Set th ImagePath
+                        SelectedContact.ImagePath = "../Upload/" + System.Web.HttpUtility.UrlPathEncode(fileInfo.Name);
+                   }
+                }
+                else
+                {
+                    if (file.HasException)
+                    {
+                        string exception = file.Exception.ToString();
+                    }
+                    // To Do; Show Error Message
+                }
+            }
+            #endregion
+            
+            #region OnReset()
+            /// <summary>
+            /// On Reset
+            /// </summary>
+            public void OnReset()
+            {
             }
             #endregion
             
@@ -239,7 +285,12 @@ namespace NTouch.Components
                 contact.PhoneNumber = PhoneControl.Text;
                 contact.EmailAddress = EmailControl.Text;
                 contact.Address = AddressControl.Text;
-                contact.City = CityControl.Text;                
+                contact.City = CityControl.Text;
+                contact.StateId = StateComboBox.SelectedItem.Id;
+                contact.ZipCode = ZipControl.Text;
+                contact.LastContactDate = LastContactedDateControl.SelectedDate;
+                contact.FollowUpDate = FollowUpDateControl.SelectedDate;
+                contact.CreatedDate = DateTime.Now;
             }
             #endregion
             
@@ -522,7 +573,16 @@ namespace NTouch.Components
             public IBlazorComponentParent Parent
             {
                 get { return parent; }
-                set { parent = value; }
+                set
+                {
+                    parent = value;
+
+                    if (HasParent)
+                    {
+                        // Register witht he parent
+                        Parent.Register(this);
+                    }
+                }
             }
             #endregion
 
@@ -598,6 +658,31 @@ namespace NTouch.Components
             }
             #endregion
             
+            #region SelectedContactImagePath
+            /// <summary>
+            /// This read only property returns the value of SelectedContactImagePath from the object SelectedContact.
+            /// </summary>
+            public string SelectedContactImagePath
+            {
+                
+                get
+                {
+                    // initial value
+                    string selectedContactImagePath = "";
+                    
+                    // if SelectedContact exists
+                    if (HasSelectedContact)
+                    {
+                        // set the return value
+                        selectedContactImagePath = SelectedContact.ImagePath;
+                    }
+                    
+                    // return value
+                    return selectedContactImagePath;
+                }
+            }
+            #endregion
+            
             #region StateComboBox
             /// <summary>
             /// This property gets or sets the value for 'StateComboBox'.
@@ -617,6 +702,17 @@ namespace NTouch.Components
             {
                 get { return title; }
                 set { title = value; }
+            }
+            #endregion
+            
+            #region UploadButtonStyle
+            /// <summary>
+            /// This property gets or sets the value for 'UploadButtonStyle'.
+            /// </summary>
+            public string UploadButtonStyle
+            {
+                get { return uploadButtonStyle; }
+                set { uploadButtonStyle = value; }
             }
             #endregion
             

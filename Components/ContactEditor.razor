@@ -1,6 +1,23 @@
 ﻿@using DataJuggler.Blazor.Components
 @using System.Drawing
 @using DataJuggler.Blazor.Components.Enumerations
+@using DataJuggler.Blazor.FileUpload
+@using BlazorStyled
+@using DataJuggler.UltimateHelper
+
+<Styled @bind-Classname=@UploadButtonStyle>
+    background-image: url('../Images/BlueButton.png');
+    background-size: 100% 100%;
+    width: 180px;
+    height: 40px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    position: relative;
+    top: 20px;
+    left: 0px;
+    color: white;
+</Styled>
 
 <h3>@Title</h3>
 
@@ -53,8 +70,25 @@
             CheckBoxXPosition="-3.2" CheckBoxYPosition=".4" CheckBoxTextXPosition="-3" CheckBoxTextYPosition="0"
             CheckedListWidth=8 CheckedListTop="2" CheckedListLeft="72" ListItemWidth=4>
     </ComboBox>
-    <div class="buttoncontainer">
-        <button class="bluebutton" @onclick=Save>Save</button>
-        <button class="bluebutton" @onclick=Cancel>Cancel</button>
-    </div>
+    <div class="up400">
+        <div class="fontsize10 down8">Image:</div><br />
+        <FileUpload CustomSuccessMessage="Your file uploaded successfully." Parent="this"
+                    OnReset="@OnReset" ShowStatus="false"
+                    PartialGuidLength="12" FilterByExtension="true"
+                    ShowCustomButton="true" OnChange="OnFileUploaded" Visible="false"
+                    CustomButtonClassName="@UploadButtonStyle" AllowedExtensions=".jpg,.png"
+                    ShowResetButton="false" AppendPartialGuid="true" ButtonText="Upload"
+                    CustomExtensionMessage="Only .png and .jpg extensions are allowed." MultipleFiles="false"
+                    InputFileClassName="customfileupload" Status="Refresh" ResetButtonText=""
+                    FileTooLargeMessage="File must be below 20 meg.">
+        </FileUpload>
+        @if ((HasSelectedContact) && (TextHelper.Exists(SelectedContact.ImagePath)))
+        {
+            <img src="@SelectedContactImagePath" class="up8" height="256" width="256" />
+        }
+    </div>    
+</div>
+<div class="buttoncontainer">
+    <button class="bluebutton" @onclick=Save>Save</button>
+    <button class="bluebutton" @onclick=Cancel>Cancel</button>
 </div>

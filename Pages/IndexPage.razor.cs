@@ -37,7 +37,7 @@ namespace NTouch.Pages
         private ContactEditor contactEditor;
         private Label statusLabel;
         private ScreenTypeEnum screenType;
-
+        
         // Test Only
         private CheckedListBox listBox;
 
@@ -176,6 +176,16 @@ namespace NTouch.Pages
                         
                         // Set the items on the list box
                         ListBox.SetItems(items);
+                    }
+                }
+                else if (component is ContactEditor)
+                {
+                    ContactEditor = component as ContactEditor;
+
+                    if (HasContactEditor)
+                    {
+                        // Create a new Contact
+                        ContactEditor.SelectedContact = new Contact();
                     }
                 }
             }
