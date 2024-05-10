@@ -44,14 +44,15 @@
 .buttoncontainer
 {
     height: 8vh;
-    min-height: 8vh;
-    width: 80vw;
-    min-width: 80vw;
-    float: left;    
+    min-height: 20vh;
+    width: 20vw;
+    min-width: 20vw;
+    float: right;    
     position: fixed;
-    right: 20vw;
+    right:24vw;
     bottom: 0px;
     justify-content: right;
+    white-space: nowrap;
 }
 .container
 {
@@ -72,7 +73,7 @@
 .container2
 {
     position: absolute;
-    width: 120px;
+    width: 200px !important;
     height: 80px;    
 }
 .rightcolumn

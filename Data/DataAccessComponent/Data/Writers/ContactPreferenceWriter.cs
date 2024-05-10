@@ -1,4 +1,5 @@
 
+
 #region using statements
 
 using DataAccessComponent.StoredProcedureManager.DeleteProcedures;
@@ -11,6 +12,7 @@ using System;
 using System.Data;
 
 #endregion
+
 
 namespace DataAccessComponent.Data.Writers
 {
@@ -25,38 +27,10 @@ namespace DataAccessComponent.Data.Writers
 
         #region Static Methods
 
-            #region CreateFetchAllContactPreferencesStoredProcedure(ContactPreference contactPreference)
-            /// <summary>
-            /// This method creates an instance of a
-            /// 'FetchAllContactPreferencesStoredProcedure' object and
-            /// creates the sql parameter[] array needed
-            /// to execute the procedure 'ContactPreference_FetchAll'.
-            /// </summary>
-            /// <returns>An instance of a(n) 'FetchAllContactPreferencesStoredProcedure' object.</returns>
-            public static new FetchAllContactPreferencesStoredProcedure CreateFetchAllContactPreferencesStoredProcedure(ContactPreference contactPreference)
-            {
-                // Initial value
-                FetchAllContactPreferencesStoredProcedure fetchAllContactPreferencesStoredProcedure = new FetchAllContactPreferencesStoredProcedure();
+            // *******************************************
+            // Write any overrides or custom methods here.
+            // *******************************************
 
-                // if the contactPreference object exists
-                if (contactPreference != null)
-                {
-                    // if LoadByContactId is true
-                    if (contactPreference.LoadByContactId)
-                    {
-                        // Change the procedure name
-                        fetchAllContactPreferencesStoredProcedure.ProcedureName = "ContactPreference_FetchAllForContactId";
-                        
-                        // Create the @ContactId parameter
-                        fetchAllContactPreferencesStoredProcedure.Parameters = SqlParameterHelper.CreateSqlParameters("@ContactId", contactPreference.ContactId);
-                    }
-                }
-                
-                // return value
-                return fetchAllContactPreferencesStoredProcedure;
-            }
-            #endregion
-            
         #endregion
 
     }

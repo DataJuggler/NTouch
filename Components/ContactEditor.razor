@@ -23,7 +23,7 @@
 <ComboBox Name="StateComboBox" Theme=ThemeEnum.Blue Unit="px" HeightUnit="px" Height="32" ZIndex="80"
     LabelText="State:" Width="224" Parent="this" ButtonHeight=25 ButtonWidth=24 ControlHeight="32"
     DropdownClassName="container2 border1gray textdonotwrap" TextBoxLeft="0" ButtonTop=-5 ButtonLeft=-26
-    ListItemWidth="120" ListZIndex=80 ListItemTop=24
+    ListItemWidth="180" ListZIndex=80 ListItemTop=24
     Column2Width="128" Position="relative" Top="0" LabelClassName="down4 right2" TextBoxWidth="124">
 </ComboBox>
 <ValidationComponent Name="ZipControl" Parent="this" Caption="Zip:" ClassName="displayinlineblock"
@@ -53,8 +53,8 @@
             CheckBoxXPosition="-3.2" CheckBoxYPosition=".4" CheckBoxTextXPosition="-3" CheckBoxTextYPosition="0"
             CheckedListWidth=8 CheckedListTop="2" CheckedListLeft="72" ListItemWidth=4>
     </ComboBox>
-</div>
-<div class="buttoncontainer">
-    <button class="bluebutton" @onclick=Save>Save</button>
-    <button class="bluebutton" @onclick=Cancel>Cancel</button>
+    <div class="buttoncontainer">
+        <button class="bluebutton" @onclick=Save>Save</button>
+        <button class="bluebutton" @onclick=Cancel>Cancel</button>
+    </div>
 </div>

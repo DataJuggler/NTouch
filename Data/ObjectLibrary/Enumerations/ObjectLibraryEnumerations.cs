@@ -18,9 +18,9 @@ namespace ObjectLibrary.Enumerations
     }
     #endregion
 
-    #region enum ContactMethodEnum : int
+    #region ContactMethodEnum : int
     /// <summary>
-    /// This enum is the types of contact methods a contact prefers.
+    /// This enum is the type of communication methods contact prefers
     /// </summary>
     public enum ContactMethodEnum : int
     {

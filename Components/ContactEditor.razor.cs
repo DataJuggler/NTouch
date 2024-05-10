@@ -7,6 +7,7 @@ using DataJuggler.Blazor.Components.Interfaces;
 using DataJuggler.Blazor.Components.Util;
 using DataJuggler.UltimateHelper;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using NTouch.Pages;
 using ObjectLibrary.Enumerations;
 using DataAccessComponent.DataGateway;
