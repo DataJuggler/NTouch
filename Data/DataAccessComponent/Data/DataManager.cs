@@ -29,6 +29,7 @@ namespace DataAccessComponent.Data
         private DataConnector dataConnector;
         private string connectionName;
         private ContactManager contactManager;
+        private ContactPreferenceManager contactpreferenceManager;
         private StateManager stateManager;
         #endregion
 
@@ -60,6 +61,7 @@ namespace DataAccessComponent.Data
 
                 // Create Child Object Managers
                 this.ContactManager = new ContactManager(this);
+                this.ContactPreferenceManager = new ContactPreferenceManager(this);
                 this.StateManager = new StateManager(this);
             }
             #endregion
@@ -89,6 +91,14 @@ namespace DataAccessComponent.Data
             {
                 get { return contactManager; }
                 set { contactManager = value; }
+            }
+            #endregion
+
+            #region ContactPreferenceManager
+            public ContactPreferenceManager ContactPreferenceManager
+            {
+                get { return contactpreferenceManager; }
+                set { contactpreferenceManager = value; }
             }
             #endregion
 

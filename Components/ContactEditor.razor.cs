@@ -13,6 +13,8 @@ using DataAccessComponent.DataGateway;
 using DataAccessComponent.Connection;
 using DataJuggler.NET8;
 using DataJuggler.NET8.Enumerations;
+using ObjectLibrary.BusinessObjects;
+using System.Xml.Serialization;
 
 #endregion
 
@@ -30,11 +32,20 @@ namespace NTouch.Components
         private string name;
         private IBlazorComponentParent parent;
         private List<IBlazorComponent> children;
+        private ValidationComponent firstNameControl;
+        private ValidationComponent lastNameControl;
+        private ValidationComponent phoneControl;
+        private ValidationComponent emailControl;
+        private ValidationComponent addressControl;
+        private ValidationComponent cityControl;        
+        private ComboBox stateComboBox;
+        private ComboBox contactPreferencesComboBox;
         private ValidationComponent zipControl;
         private CalendarComponent lastContactedDateControl;
         private CalendarComponent followUpDateControl;
+        private ValidationComponent notesControl;
         private string title;
-        private ComboBox stateComboBox;
+        
         #endregion
 
         #region Constructor
@@ -120,10 +131,45 @@ namespace NTouch.Components
             {
                 if (component is ValidationComponent)
                 {
-                    if (component.Name == "ZipControl")
+                    if (component.Name == "FirstNameControl")
+                    {
+                        // Store
+                        FirstNameControl = component as ValidationComponent;
+                    }
+                    else if (component.Name == "LastNameControl")
+                    {
+                        // Store
+                        LastNameControl = component as ValidationComponent;
+                    }
+                    else if (component.Name == "PhoneControl")
+                    {
+                        // Store
+                        PhoneControl = component as ValidationComponent;
+                    }
+                    else if (component.Name == "EmailControl")
+                    {
+                        // Store
+                        EmailControl = component as ValidationComponent;
+                    }
+                    else if (component.Name == "AddressControl")
+                    {
+                        // Store
+                        AddressControl = component as ValidationComponent;
+                    }
+                    else if (component.Name == "CityControl")
+                    {
+                        // Store
+                        CityControl = component as ValidationComponent;
+                    }
+                    else if (component.Name == "ZipControl")
                     {
                         // Store
                         ZipControl = component as ValidationComponent;
+                    }
+                     else if (component.Name == "NotesControl")
+                    {
+                        // Store
+                        NotesControl = component as ValidationComponent;
                     }
                 }
                 else if (component is CalendarComponent)
@@ -141,22 +187,37 @@ namespace NTouch.Components
                 }
                 else if (component is ComboBox)
                 {
-                    // Create a new instance of a 'Gateway' object.
-                    Gateway gateway = new Gateway(Connection.Name);
-
-                    // load the States
-                    List<ObjectLibrary.BusinessObjects.State> states = gateway.LoadStates();
-
-                    // Store
-                    StateComboBox = component as ComboBox;
-
-                    // if the value for HasStateComboBox is true
-                    if (HasStateComboBox)
+                    if (component.Name == "StateComboBox")
                     {
-                        // Load the ComboBox
-                        // StateComboBox.LoadItems(states);
+                        // Create a new instance of a 'Gateway' object.
+                        Gateway gateway = new Gateway(Connection.Name);
 
-                        StateComboBox.LoadItems(typeof(TargetFrameworkEnum));
+                        // load the States
+                        List<State> states = gateway.LoadStates();
+
+                        // Store
+                        StateComboBox = component as ComboBox;
+
+                        // if the value for HasStateComboBox is true
+                        if (HasStateComboBox)
+                        {
+                            // Load the ComboBox
+                            StateComboBox.LoadItems(states);                        
+                        }
+                    }
+                    else if (component.Name == "ContactPreferencesComboBox")
+                    {
+                        // Store
+                        ContactPreferencesComboBox = component as ComboBox;
+
+                        // if the value for HasContactPreferencesComboBox is true
+                        if (HasContactPreferencesComboBox)
+                        {
+                            // Load the choices
+                            ContactPreferencesComboBox.LoadItems(typeof(ContactMethodEnum));
+
+                            // Edit mode is different, must reselect choices
+                        }
                     }
                 }
             }
@@ -168,6 +229,11 @@ namespace NTouch.Components
             /// </summary>
             public void Save()
             {
+                if (HasParentIndexPage)
+                {
+                    // Import the Excel
+                    ParentIndexPage.ImportExcel();
+                }
             }
             #endregion
             
@@ -185,6 +251,17 @@ namespace NTouch.Components
 
         #region Properties
             
+            #region AddressControl
+            /// <summary>
+            /// This property gets or sets the value for 'AddressControl'.
+            /// </summary>
+            public ValidationComponent AddressControl
+            {
+                get { return addressControl; }
+                set { addressControl = value; }
+            }
+            #endregion
+            
             #region Children
             /// <summary>
             /// This property gets or sets the value for 'Children'.
@@ -193,6 +270,50 @@ namespace NTouch.Components
             {
                 get { return children; }
                 set { children = value; }
+            }
+            #endregion
+            
+            #region CityControl
+            /// <summary>
+            /// This property gets or sets the value for 'CityControl'.
+            /// </summary>
+            public ValidationComponent CityControl
+            {
+                get { return cityControl; }
+                set { cityControl = value; }
+            }
+            #endregion
+            
+            #region ContactPreferencesComboBox
+            /// <summary>
+            /// This property gets or sets the value for 'ContactPreferencesComboBox'.
+            /// </summary>
+            public ComboBox ContactPreferencesComboBox
+            {
+                get { return contactPreferencesComboBox; }
+                set { contactPreferencesComboBox = value; }
+            }
+            #endregion
+            
+            #region EmailControl
+            /// <summary>
+            /// This property gets or sets the value for 'EmailControl'.
+            /// </summary>
+            public ValidationComponent EmailControl
+            {
+                get { return emailControl; }
+                set { emailControl = value; }
+            }
+            #endregion
+            
+            #region FirstNameControl
+            /// <summary>
+            /// This property gets or sets the value for 'FirstNameControl'.
+            /// </summary>
+            public ValidationComponent FirstNameControl
+            {
+                get { return firstNameControl; }
+                set { firstNameControl = value; }
             }
             #endregion
             
@@ -220,6 +341,23 @@ namespace NTouch.Components
                     
                     // return value
                     return hasChildren;
+                }
+            }
+            #endregion
+            
+            #region HasContactPreferencesComboBox
+            /// <summary>
+            /// This property returns true if this object has a 'ContactPreferencesComboBox'.
+            /// </summary>
+            public bool HasContactPreferencesComboBox
+            {
+                get
+                {
+                    // initial value
+                    bool hasContactPreferencesComboBox = (this.ContactPreferencesComboBox != null);
+                    
+                    // return value
+                    return hasContactPreferencesComboBox;
                 }
             }
             #endregion
@@ -320,6 +458,17 @@ namespace NTouch.Components
             }
             #endregion
             
+            #region LastNameControl
+            /// <summary>
+            /// This property gets or sets the value for 'LastNameControl'.
+            /// </summary>
+            public ValidationComponent LastNameControl
+            {
+                get { return lastNameControl; }
+                set { lastNameControl = value; }
+            }
+            #endregion
+            
             #region Name
             /// <summary>
             /// This property gets or sets the value for 'Name'.
@@ -328,6 +477,17 @@ namespace NTouch.Components
             {
                 get { return name; }
                 set { name = value; }
+            }
+            #endregion
+            
+            #region NotesControl
+            /// <summary>
+            /// This property gets or sets the value for 'NotesControl'.
+            /// </summary>
+            public ValidationComponent NotesControl
+            {
+                get { return notesControl; }
+                set { notesControl = value; }
             }
             #endregion
             
@@ -365,6 +525,17 @@ namespace NTouch.Components
                     // return value
                     return parentIndexPage;
                 }
+            }
+            #endregion
+            
+            #region PhoneControl
+            /// <summary>
+            /// This property gets or sets the value for 'PhoneControl'.
+            /// </summary>
+            public ValidationComponent PhoneControl
+            {
+                get { return phoneControl; }
+                set { phoneControl = value; }
             }
             #endregion
             

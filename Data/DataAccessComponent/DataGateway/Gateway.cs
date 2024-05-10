@@ -85,6 +85,43 @@ namespace DataAccessComponent.DataGateway
             }
             #endregion
         
+            #region DeleteContactPreference(int id, ContactPreference tempContactPreference = null)
+            /// <summary>
+            /// This method is used to delete ContactPreference objects.
+            /// </summary>
+            /// <param name="id">Delete the ContactPreference with this id</param>
+            /// <param name="tempContactPreference">Pass in a tempContactPreference to perform a custom delete.</param>
+            public bool DeleteContactPreference(int id, ContactPreference tempContactPreference = null)
+            {
+                // initial value
+                bool deleted = false;
+        
+                // if the AppController exists
+                if (this.HasAppController)
+                {
+                    // if the tempContactPreference does not exist
+                    if (tempContactPreference == null)
+                    {
+                        // create a temp ContactPreference
+                        tempContactPreference = new ContactPreference();
+                    }
+        
+                    // if the id is set
+                    if (id > 0)
+                    {
+                        // set the primary key
+                        tempContactPreference.UpdateIdentity(id);
+                    }
+        
+                    // perform the delete
+                    deleted = this.AppController.ControllerManager.ContactPreferenceController.Delete(tempContactPreference);
+                }
+        
+                // return value
+                return deleted;
+            }
+            #endregion
+        
             #region DeleteState(int id, State tempState = null)
             /// <summary>
             /// This method is used to delete State objects.
@@ -205,6 +242,43 @@ namespace DataAccessComponent.DataGateway
             }
             #endregion
 
+            #region FindContactPreference(int id, ContactPreference tempContactPreference = null)
+            /// <summary>
+            /// This method is used to find 'ContactPreference' objects.
+            /// </summary>
+            /// <param name="id">Find the ContactPreference with this id</param>
+            /// <param name="tempContactPreference">Pass in a tempContactPreference to perform a custom find.</param>
+            public ContactPreference FindContactPreference(int id, ContactPreference tempContactPreference = null)
+            {
+                // initial value
+                ContactPreference contactPreference = null;
+
+                // if the AppController exists
+                if (this.HasAppController)
+                {
+                    // if the tempContactPreference does not exist
+                    if (tempContactPreference == null)
+                    {
+                        // create a temp ContactPreference
+                        tempContactPreference = new ContactPreference();
+                    }
+
+                    // if the id is set
+                    if (id > 0)
+                    {
+                        // set the primary key
+                        tempContactPreference.UpdateIdentity(id);
+                    }
+
+                    // perform the find
+                    contactPreference = this.AppController.ControllerManager.ContactPreferenceController.Find(tempContactPreference);
+                }
+
+                // return value
+                return contactPreference;
+            }
+            #endregion
+
             #region FindState(int id, State tempState = null)
             /// <summary>
             /// This method is used to find 'State' objects.
@@ -302,6 +376,53 @@ namespace DataAccessComponent.DataGateway
             }
             #endregion
 
+            #region LoadContactPreferences(ContactPreference tempContactPreference = null)
+            /// <summary>
+            /// This method loads a collection of 'ContactPreference' objects.
+            /// </summary>
+            public List<ContactPreference> LoadContactPreferences(ContactPreference tempContactPreference = null)
+            {
+                // initial value
+                List<ContactPreference> contactPreferences = null;
+
+                // if the AppController exists
+                if (this.HasAppController)
+                {
+                    // perform the load
+                    contactPreferences = this.AppController.ControllerManager.ContactPreferenceController.FetchAll(tempContactPreference);
+                }
+
+                // return value
+                return contactPreferences;
+            }
+            #endregion
+
+                #region LoadContactPreferencesForContactId(int contactId)
+                /// <summary>
+                /// This method is used to load 'ContactPreference' objects for the ContactId given.
+                /// </summary>
+                public List<ContactPreference> LoadContactPreferencesForContactId(int contactId)
+                {
+                    // initial value
+                    List<ContactPreference> contactPreferences = null;
+                    
+                    // Create a temp ContactPreference object
+                    ContactPreference tempContactPreference = new ContactPreference();
+                    
+                    // Set the value for LoadByContactId to true
+                    tempContactPreference.LoadByContactId = true;
+                    
+                    // Set the value for ContactId
+                    tempContactPreference.ContactId = contactId;
+                    
+                    // Perform the load
+                    contactPreferences = LoadContactPreferences(tempContactPreference);
+                    
+                    // return value
+                    return contactPreferences;
+                }
+                #endregion
+                
             #region LoadContacts(Contact tempContact = null)
             /// <summary>
             /// This method loads a collection of 'Contact' objects.
@@ -359,6 +480,28 @@ namespace DataAccessComponent.DataGateway
                 {
                     // perform the save
                     saved = this.AppController.ControllerManager.ContactController.Save(ref contact);
+                }
+
+                // return value
+                return saved;
+            }
+            #endregion
+
+            #region SaveContactPreference(ref ContactPreference contactPreference)
+            /// <summary>
+            /// This method is used to save 'ContactPreference' objects.
+            /// </summary>
+            /// <param name="contactPreference">The ContactPreference to save.</param>
+            public bool SaveContactPreference(ref ContactPreference contactPreference)
+            {
+                // initial value
+                bool saved = false;
+
+                // if the AppController exists
+                if (this.HasAppController)
+                {
+                    // perform the save
+                    saved = this.AppController.ControllerManager.ContactPreferenceController.Save(ref contactPreference);
                 }
 
                 // return value
@@ -454,4 +597,3 @@ namespace DataAccessComponent.DataGateway
     #endregion
 
 }
-

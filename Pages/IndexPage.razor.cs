@@ -96,13 +96,13 @@ namespace NTouch.Pages
                 info.LoadColumnOptions = LoadColumnOptionsEnum.LoadAllColumnsExceptExcluded;
                 info.ColumnsToLoad = 3;
                 info.Path = "C:\\Temp\\States.xlsx";
-                info.SheetName = "State";
+                info.SheetName = "StateList";
 
                 // Load the worksheet
                 Worksheet worksheet = ExcelDataLoader.LoadWorksheet(info);
 
                 // Load the States from Excel
-                List<NTouch.Objects.State> states = NTouch.Objects.State.Load(worksheet);
+                List<StateList> states = StateList.Load(worksheet);
 
                 // If the states collection exists and has one or more items
                 if (ListHelper.HasOneOrMoreItems(states))
@@ -111,15 +111,15 @@ namespace NTouch.Pages
                     Gateway gateway = new Gateway(Connection.Name);
 
                     // iterate the states
-                    foreach (NTouch.Objects.State state in states)
+                    foreach (StateList tempState in states)
                     {
                         // Create a new state
-                        ObjectLibrary.BusinessObjects.State dbState = new ObjectLibrary.BusinessObjects.State();
-                        dbState.Name = state.Name;
-                        dbState.Code = state.Code;
+                        State state = new State();
+                        state.Name = tempState.Name;
+                        state.Code = tempState.Code;
 
                         // Perform the save
-                        bool saved = gateway.SaveState(ref dbState);
+                        bool saved = gateway.SaveState(ref state);
                     }
                 }
 

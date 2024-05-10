@@ -12,8 +12,8 @@ using DataJuggler.UltimateHelper;
 namespace NTouch.Objects
 {
 
-    #region class State : IExcelerateObject
-    public class State : IExcelerateObject
+    #region class StateList : IExcelerateObject
+    public class StateList : IExcelerateObject
     {
 
         #region Private Variables
@@ -29,7 +29,7 @@ namespace NTouch.Objects
 
             #region Load(Row row)
             /// <summary>
-            /// This method loads a State object from a Row.
+            /// This method loads a StateList object from a Row.
             /// </Summary>
             /// <param name="row">The row which the row.Columns[x].ColumnValue will be used to load this object.</param>
             public void Load(Row row)
@@ -56,13 +56,13 @@ namespace NTouch.Objects
 
             #region Load(Worksheet worksheet)
             /// <summary>
-            /// This method loads a list of State objects from a Worksheet.
+            /// This method loads a list of StateList objects from a Worksheet.
             /// </Summary>
-            /// <param name="worksheet">The worksheet which the rows collection will be used to load a list of State objects.</param>
-            public static List<State> Load(Worksheet worksheet)
+            /// <param name="worksheet">The worksheet which the rows collection will be used to load a list of StateList objects.</param>
+            public static List<StateList> Load(Worksheet worksheet)
             {
                 // Initial value
-                List<State> stateList = new List<State>();
+                List<StateList> stateListList = new List<StateList>();
                 
                 // If the worksheet exists and the row's collection exists
                 if ((NullHelper.Exists(worksheet)) && (worksheet.HasRows))
@@ -73,26 +73,26 @@ namespace NTouch.Objects
                         // If the row is not a HeaderRow and row's column collection exists
                         if ((!row.IsHeaderRow) && (row.HasColumns))
                         {
-                            // Create a new instance of a State object.
-                            State state = new State();
+                            // Create a new instance of a StateList object.
+                            StateList stateList = new StateList();
                             
                             // Load this object
-                            state.Load(row);
+                            stateList.Load(row);
                             
                             // Add this object to the list
-                            stateList.Add(state);
+                            stateListList.Add(stateList);
                         }
                     }
                 }
                 
                 // return value
-                return stateList;
+                return stateListList;
             }
             #endregion
 
             #region NewRow(Row row)
             /// <summary>
-            /// This method creates the columns for the row to save a new State object.
+            /// This method creates the columns for the row to save a new StateList object.
             /// </Summary>
             /// <param name="row">The row which the Columns will be created for.</param>
             public static Row NewRow(int rowNumber)
@@ -125,7 +125,7 @@ namespace NTouch.Objects
 
             #region Save(Row row)
             /// <summary>
-            /// This method saves a State object back to a Row.
+            /// This method saves a StateList object back to a Row.
             /// </Summary>
             /// <param name="row">The row which the row.Columns[x].ColumnValue will be set to Save back to Excel.</param>
             public Row Save(Row row)

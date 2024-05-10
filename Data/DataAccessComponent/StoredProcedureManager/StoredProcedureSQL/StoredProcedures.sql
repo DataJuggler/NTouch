@@ -6,7 +6,7 @@ Go
 -- =========================================================
 -- Procure Name: Contact_Insert
 -- Author:           Data Juggler - Data Tier.Net Procedure Generator
--- Create Date:   5/2/2024
+-- Create Date:   5/9/2024
 -- Description:    Insert a new Contact
 -- =========================================================
 
@@ -76,7 +76,7 @@ Go
 -- =========================================================
 -- Procure Name: Contact_Update
 -- Author:           Data Juggler - Data Tier.Net Procedure Generator
--- Create Date:   5/2/2024
+-- Create Date:   5/9/2024
 -- Description:    Update an existing Contact
 -- =========================================================
 
@@ -158,7 +158,7 @@ Go
 -- =========================================================
 -- Procure Name: Contact_Find
 -- Author:           Data Juggler - Data Tier.Net Procedure Generator
--- Create Date:   5/2/2024
+-- Create Date:   5/9/2024
 -- Description:    Find an existing Contact
 -- =========================================================
 
@@ -215,7 +215,7 @@ Go
 -- =========================================================
 -- Procure Name: Contact_Delete
 -- Author:           Data Juggler - Data Tier.Net Procedure Generator
--- Create Date:   5/2/2024
+-- Create Date:   5/9/2024
 -- Description:    Delete an existing Contact
 -- =========================================================
 
@@ -269,7 +269,7 @@ Go
 -- =========================================================
 -- Procure Name: Contact_FetchAll
 -- Author:           Data Juggler - Data Tier.Net Procedure Generator
--- Create Date:   5/2/2024
+-- Create Date:   5/9/2024
 -- Description:    Returns all Contact objects
 -- =========================================================
 
@@ -318,9 +318,290 @@ set ANSI_NULLS ON
 set QUOTED_IDENTIFIER ON
 Go
 -- =========================================================
+-- Procure Name: ContactPreference_Insert
+-- Author:           Data Juggler - Data Tier.Net Procedure Generator
+-- Create Date:   5/9/2024
+-- Description:    Insert a new ContactPreference
+-- =========================================================
+
+-- Check if the procedure already exists
+IF EXISTS (select * from syscomments where id = object_id ('ContactPreference_Insert'))
+
+    -- Procedure Does Exist, Drop First
+    BEGIN
+
+        -- Execute Drop
+        Drop Procedure ContactPreference_Insert
+
+        -- Test if procedure was dropped
+        IF OBJECT_ID('dbo.ContactPreference_Insert') IS NOT NULL
+
+            -- Print Line Drop Failed
+            PRINT '<<< Drop Failed On Procedure ContactPreference_Insert >>>'
+
+        Else
+
+            -- Print Line Procedure Dropped
+            PRINT '<<< Drop Suceeded On Procedure ContactPreference_Insert >>>'
+
+    End
+
+GO
+
+Create PROCEDURE ContactPreference_Insert
+
+    -- Add the parameters for the stored procedure here
+    @ContactId int,
+    @ContactMethod int
+
+AS
+BEGIN
+
+    -- SET NOCOUNT ON added to prevent extra result sets from
+    -- interfering with SELECT statements.
+    SET NOCOUNT ON
+
+    -- Begin Insert Statement
+    Insert Into [ContactPreference]
+    ([ContactId],[ContactMethod])
+
+    -- Begin Values List
+    Values(@ContactId, @ContactMethod)
+
+    -- Return ID of new record
+    SELECT SCOPE_IDENTITY()
+
+END
+
+set ANSI_NULLS ON
+set QUOTED_IDENTIFIER ON
+Go
+-- =========================================================
+-- Procure Name: ContactPreference_Update
+-- Author:           Data Juggler - Data Tier.Net Procedure Generator
+-- Create Date:   5/9/2024
+-- Description:    Update an existing ContactPreference
+-- =========================================================
+
+-- Check if the procedure already exists
+IF EXISTS (select * from syscomments where id = object_id ('ContactPreference_Update'))
+
+    -- Procedure Does Exist, Drop First
+    BEGIN
+
+        -- Execute Drop
+        Drop Procedure ContactPreference_Update
+
+        -- Test if procedure was dropped
+        IF OBJECT_ID('dbo.ContactPreference_Update') IS NOT NULL
+
+            -- Print Line Drop Failed
+            PRINT '<<< Drop Failed On Procedure ContactPreference_Update >>>'
+
+        Else
+
+            -- Print Line Procedure Dropped
+            PRINT '<<< Drop Suceeded On Procedure ContactPreference_Update >>>'
+
+    End
+
+GO
+
+Create PROCEDURE ContactPreference_Update
+
+    -- Add the parameters for the stored procedure here
+    @ContactId int,
+    @ContactMethod int,
+    @Id int
+
+AS
+BEGIN
+
+    -- SET NOCOUNT ON added to prevent extra result sets from
+    -- interfering with SELECT statements.
+    SET NOCOUNT ON
+
+    -- Begin Update Statement
+    Update [ContactPreference]
+
+    -- Update Each field
+    Set [ContactId] = @ContactId,
+    [ContactMethod] = @ContactMethod
+
+    -- Update Matching Record
+    Where [Id] = @Id
+
+END
+
+set ANSI_NULLS ON
+set QUOTED_IDENTIFIER ON
+Go
+-- =========================================================
+-- Procure Name: ContactPreference_Find
+-- Author:           Data Juggler - Data Tier.Net Procedure Generator
+-- Create Date:   5/9/2024
+-- Description:    Find an existing ContactPreference
+-- =========================================================
+
+-- Check if the procedure already exists
+IF EXISTS (select * from syscomments where id = object_id ('ContactPreference_Find'))
+
+    -- Procedure Does Exist, Drop First
+    BEGIN
+
+        -- Execute Drop
+        Drop Procedure ContactPreference_Find
+
+        -- Test if procedure was dropped
+        IF OBJECT_ID('dbo.ContactPreference_Find') IS NOT NULL
+
+            -- Print Line Drop Failed
+            PRINT '<<< Drop Failed On Procedure ContactPreference_Find >>>'
+
+        Else
+
+            -- Print Line Procedure Dropped
+            PRINT '<<< Drop Suceeded On Procedure ContactPreference_Find >>>'
+
+    End
+
+GO
+
+Create PROCEDURE ContactPreference_Find
+
+    -- Primary Key Paramater
+    @Id int
+
+AS
+BEGIN
+
+    -- SET NOCOUNT ON added to prevent extra result sets from
+    -- interfering with SELECT statements.
+    SET NOCOUNT ON
+
+    -- Begin Select Statement
+    Select [ContactId],[ContactMethod],[Id]
+
+    -- From tableName
+    From [ContactPreference]
+
+    -- Find Matching Record
+    Where [Id] = @Id
+
+END
+
+set ANSI_NULLS ON
+set QUOTED_IDENTIFIER ON
+Go
+-- =========================================================
+-- Procure Name: ContactPreference_Delete
+-- Author:           Data Juggler - Data Tier.Net Procedure Generator
+-- Create Date:   5/9/2024
+-- Description:    Delete an existing ContactPreference
+-- =========================================================
+
+-- Check if the procedure already exists
+IF EXISTS (select * from syscomments where id = object_id ('ContactPreference_Delete'))
+
+    -- Procedure Does Exist, Drop First
+    BEGIN
+
+        -- Execute Drop
+        Drop Procedure ContactPreference_Delete
+
+        -- Test if procedure was dropped
+        IF OBJECT_ID('dbo.ContactPreference_Delete') IS NOT NULL
+
+            -- Print Line Drop Failed
+            PRINT '<<< Drop Failed On Procedure ContactPreference_Delete >>>'
+
+        Else
+
+            -- Print Line Procedure Dropped
+            PRINT '<<< Drop Suceeded On Procedure ContactPreference_Delete >>>'
+
+    End
+
+GO
+
+Create PROCEDURE ContactPreference_Delete
+
+    -- Primary Key Paramater
+    @Id int
+
+AS
+BEGIN
+
+    -- SET NOCOUNT ON added to prevent extra result sets from
+    -- interfering with SELECT statements.
+    SET NOCOUNT ON
+
+    -- Begin Delete Statement
+    Delete From [ContactPreference]
+
+    -- Delete Matching Record
+    Where [Id] = @Id
+
+END
+
+set ANSI_NULLS ON
+set QUOTED_IDENTIFIER ON
+Go
+-- =========================================================
+-- Procure Name: ContactPreference_FetchAll
+-- Author:           Data Juggler - Data Tier.Net Procedure Generator
+-- Create Date:   5/9/2024
+-- Description:    Returns all ContactPreference objects
+-- =========================================================
+
+-- Check if the procedure already exists
+IF EXISTS (select * from syscomments where id = object_id ('ContactPreference_FetchAll'))
+
+    -- Procedure Does Exist, Drop First
+    BEGIN
+
+        -- Execute Drop
+        Drop Procedure ContactPreference_FetchAll
+
+        -- Test if procedure was dropped
+        IF OBJECT_ID('dbo.ContactPreference_FetchAll') IS NOT NULL
+
+            -- Print Line Drop Failed
+            PRINT '<<< Drop Failed On Procedure ContactPreference_FetchAll >>>'
+
+        Else
+
+            -- Print Line Procedure Dropped
+            PRINT '<<< Drop Suceeded On Procedure ContactPreference_FetchAll >>>'
+
+    End
+
+GO
+
+Create PROCEDURE ContactPreference_FetchAll
+
+AS
+BEGIN
+
+    -- SET NOCOUNT ON added to prevent extra result sets from
+    -- interfering with SELECT statements.
+    SET NOCOUNT ON
+
+    -- Begin Select Statement
+    Select [ContactId],[ContactMethod],[Id]
+
+    -- From tableName
+    From [ContactPreference]
+
+END
+
+set ANSI_NULLS ON
+set QUOTED_IDENTIFIER ON
+Go
+-- =========================================================
 -- Procure Name: State_Insert
 -- Author:           Data Juggler - Data Tier.Net Procedure Generator
--- Create Date:   5/2/2024
+-- Create Date:   5/9/2024
 -- Description:    Insert a new State
 -- =========================================================
 
@@ -379,7 +660,7 @@ Go
 -- =========================================================
 -- Procure Name: State_Update
 -- Author:           Data Juggler - Data Tier.Net Procedure Generator
--- Create Date:   5/2/2024
+-- Create Date:   5/9/2024
 -- Description:    Update an existing State
 -- =========================================================
 
@@ -439,7 +720,7 @@ Go
 -- =========================================================
 -- Procure Name: State_Find
 -- Author:           Data Juggler - Data Tier.Net Procedure Generator
--- Create Date:   5/2/2024
+-- Create Date:   5/9/2024
 -- Description:    Find an existing State
 -- =========================================================
 
@@ -496,7 +777,7 @@ Go
 -- =========================================================
 -- Procure Name: State_Delete
 -- Author:           Data Juggler - Data Tier.Net Procedure Generator
--- Create Date:   5/2/2024
+-- Create Date:   5/9/2024
 -- Description:    Delete an existing State
 -- =========================================================
 
@@ -550,7 +831,7 @@ Go
 -- =========================================================
 -- Procure Name: State_FetchAll
 -- Author:           Data Juggler - Data Tier.Net Procedure Generator
--- Create Date:   5/2/2024
+-- Create Date:   5/9/2024
 -- Description:    Returns all State objects
 -- =========================================================
 
