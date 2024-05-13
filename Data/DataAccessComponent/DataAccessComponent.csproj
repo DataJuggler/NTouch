@@ -13,15 +13,15 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <NoWarn>1701;1702;IDE0017;IDE0059;IDE0074;IDE0090;</NoWarn>
+    <NoWarn>1701;1702;IDE0017;IDE0059;IDE0074;IDE0090;IDE0028;</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <NoWarn>1701;1702;IDE0017;IDE0059;IDE0074;IDE0090;</NoWarn>
+    <NoWarn>1701;1702;IDE0017;IDE0059;IDE0074;IDE0090;IDE0028;</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DataJuggler.UltimateHelper" Version="8.0.6" />
+    <PackageReference Include="DataJuggler.UltimateHelper" Version="8.0.8" />
   </ItemGroup>
 
   <ItemGroup>

@@ -444,6 +444,27 @@ namespace DataAccessComponent.DataGateway
             }
             #endregion
 
+            #region LoadContactViews(ContactView tempContactView = null)
+            /// <summary>
+            /// This method loads a collection of 'ContactView' objects.
+            /// </summary>
+            public List<ContactView> LoadContactViews(ContactView tempContactView = null)
+            {
+                // initial value
+                List<ContactView> contactViews = null;
+
+                // if the AppController exists
+                if (this.HasAppController)
+                {
+                    // perform the load
+                    contactViews = this.AppController.ControllerManager.ContactViewController.FetchAll(tempContactView);
+                }
+
+                // return value
+                return contactViews;
+            }
+            #endregion
+
             #region LoadStates(State tempState = null)
             /// <summary>
             /// This method loads a collection of 'State' objects.
@@ -597,3 +618,4 @@ namespace DataAccessComponent.DataGateway
     #endregion
 
 }
+

@@ -19,6 +19,7 @@ using System.Xml.Serialization;
 using DataJuggler.Blazor.FileUpload;
 using Microsoft.AspNetCore.Components.Forms;
 using System.IO;
+using System.Diagnostics;
 
 #endregion
 
@@ -75,10 +76,208 @@ namespace NTouch.Components
                 if (HasParentIndexPage)
                 {
                     // Set the Index Page
-                    ParentIndexPage.ScreenType = ScreenTypeEnum.IndexPage;
+                    ParentIndexPage.ScreenType = ScreenTypeEnum.ContactList;
 
                     // Update the UI
                     ParentIndexPage.Refresh();
+                }
+            }
+            #endregion
+            
+            #region ConvertContactPreferencesToItems(List<ContactPreference> contactPreferences, List<Item> items)
+            /// <summary>
+            /// returns a list of Contact Preferences To Items
+            /// </summary>
+            public static List<Item> ConvertContactPreferencesToItems(List<ContactPreference> contactPreferences, List<Item> items)
+            {
+                // initial value
+                List<Item> selectedItems = new List<Item>();
+
+                // If the items collection exists and has one or more items
+                if (ListHelper.HasOneOrMoreItems(items))
+                {
+                    // Iterate the collection of ContactPreference objects
+                    foreach (ContactPreference contactPreference in contactPreferences)
+                    {
+                        // attempt to find this item
+                        int contactMethodId = (int) contactPreference.ContactMethod;
+                        Item selectedItem = ItemHelper.FindItemById(items, contactMethodId);
+
+                        // If the selectedItem object exists
+                        if (NullHelper.Exists(selectedItem))
+                        {
+                            // Select this item
+                            selectedItem.ItemChecked = true;
+
+                            // Add this item
+                            selectedItems.Add(selectedItem);
+                        }
+                    }
+                }
+                
+                // return value
+                return selectedItems;
+            }
+            #endregion
+            
+            #region DisplaySelectedContact()
+            /// <summary>
+            /// Display Selected Contact
+            /// </summary>
+            public void DisplaySelectedContact()
+            {
+                // initial values
+                string firstName = "";
+                string lastName = "";
+                string phoneNumber = "";
+                string email = "";
+                string address = "";
+                string city = "";
+                string stateName = "";
+                string zip = "";
+                string notes = "";
+
+                // Create a new instance of a 'Gateway' object.
+                Gateway gateway = new Gateway(Connection.Name);
+
+                // if the SelectedContact exists
+                if (HasSelectedContact)
+                {
+                    // Set the Title
+                    Title = "Edit Contact";
+
+                    // Load the contact preferences
+                    List<ContactPreference> contactPreferences = gateway.LoadContactPreferencesForContactId(SelectedContact.Id);
+
+                    // If the contactPreferences collection exists and has one or more items
+                    if (ListHelper.HasOneOrMoreItems(contactPreferences))
+                    {
+                        // if the value for HasContactPreferencesComboBox is true and the ComboBox has Items
+                        if ((HasContactPreferencesComboBox) && (ContactPreferencesComboBox.HasItems))
+                        {
+                            // Load the Items used by the ComboBox
+                            List<Item> items = ItemHelper.LoadItems(typeof(ContactMethodEnum));
+
+                            // Get the SelectedItems
+                            List<Item> selectedItems = ConvertContactPreferencesToItems(contactPreferences, items);
+
+                            // If the selectedItems collection exists and has one or more items
+                            if (ListHelper.HasOneOrMoreItems(selectedItems))
+                            {
+                                // Set the selected items
+                                ContactPreferencesComboBox.SetSelectedItems(selectedItems);
+                            }
+                        }
+                    }
+
+                    // Set the values
+                    firstName = SelectedContact.FirstName;
+                    lastName = SelectedContact.LastName;
+                    phoneNumber = SelectedContact.PhoneNumber;
+                    email = SelectedContact.EmailAddress;
+                    address = SelectedContact.Address;
+                    city = SelectedContact.City;
+                    zip = SelectedContact.ZipCode;
+                    notes = SelectedContact.Notes;
+
+                    // if the StateId is set
+                    if (SelectedContact.StateId > 0)
+                    {
+                        // find the State
+                        State state = gateway.FindState(SelectedContact.StateId);
+
+                        // If the state object exists
+                        if (NullHelper.Exists(state))
+                        {
+                            // Set the stateName
+                            stateName = state.Name;
+                        }
+                    }
+                }
+
+                // if the value for HasFirstNameControl is true
+                if (HasFirstNameControl)
+                {
+                    // Display firstName
+                    FirstNameControl.SetTextValue(firstName);
+                }
+
+                // if the value for HasLastNameControl is true
+                if (HasLastNameControl)
+                {
+                    // Display LastName
+                    LastNameControl.SetTextValue(lastName);
+                }
+
+                // if the value for HasPhoneControl is true
+                if (HasPhoneControl)
+                {
+                    // Display Phone
+                    PhoneControl.SetTextValue(phoneNumber);
+                }
+
+                // if the value for HasEmailControl is true
+                if (HasEmailControl)
+                {
+                    // Display Email
+                    EmailControl.SetTextValue(email);
+                }
+
+                // if the value for HasAddressControl is true
+                if (HasAddressControl)
+                {
+                    // Display Address
+                    AddressControl.SetTextValue(address);
+                }
+
+                // if the value for HasCityControl is true
+                if (HasCityControl)
+                {
+                    // Display City
+                    CityControl.SetTextValue(city);
+                }
+
+                // if the value for HasStateComboBox is true
+                if (HasStateComboBox)
+                {
+                    // Set the selected text
+                    StateComboBox.SetSelectedItem(stateName);
+                }
+                
+                // if the value for HasZipControl is true
+                if (HasZipControl)
+                {
+                    // Display Zip
+                    ZipControl.SetTextValue(zip);
+                }
+
+                // if the value for HasNotesControl is true
+                if (HasNotesControl)
+                {
+                    // Display Notes
+                    NotesControl.SetTextValue(notes);
+                }
+
+                // if the value for HasLastContactedDateControl is true
+                if (HasLastContactedDateControl)
+                {
+                    // if a real date
+                    if (SelectedContact.LastContactDate.Year > 1900)
+                    {
+                        // Set the SelectedDate
+                        LastContactedDateControl.SetSelectedDate(SelectedContact.LastContactDate);
+                    }
+                }
+
+                // if the value for HasFollowUpDateControl is true
+                if (HasFollowUpDateControl)
+                {
+                    // if a real date
+                    if (SelectedContact.FollowUpDate.Year > 1900)
+                    {
+                        // Set the SelectedDate
+                        FollowUpDateControl.SetSelectedDate(SelectedContact.FollowUpDate);
+                    }
                 }
             }
             #endregion
@@ -94,6 +293,29 @@ namespace NTouch.Components
             }
             #endregion
 
+            #region FormatPhoneNumber(string number)
+            /// <summary>
+            /// returns the Phone Number
+            /// </summary>
+            public string FormatPhoneNumber(string number)
+            {
+                // initial value               
+                string phone = number;
+
+                // for now, just enter 9 digits and this works as long as I do it
+                string numbersOnly = NumericHelper.GetNumbersOnly(number);
+
+                // if 9 digits
+                if (numbersOnly.Length >= 9)
+                {
+                    phone = "(" + numbersOnly.Substring(0, 3) + ") " + numbersOnly.Substring(3, 3) + "-" + numbersOnly.Substring(6);
+                }
+                    
+                // return value
+                return phone;
+            }
+            #endregion
+            
             #region OnFileUploaded(UploadedFileInfo file)
             /// <summary>
             /// This method On File Uploaded
@@ -213,7 +435,7 @@ namespace NTouch.Components
                         // Store
                         ZipControl = component as ValidationComponent;
                     }
-                     else if (component.Name == "NotesControl")
+                    else if (component.Name == "NotesControl")
                     {
                         // Store
                         NotesControl = component as ValidationComponent;
@@ -265,6 +487,13 @@ namespace NTouch.Components
 
                             // Edit mode is different, must reselect choices
                         }
+
+                        // if the value for HasSelectedContact is true
+                        if ((HasSelectedContact) && (ScreenType == ScreenTypeEnum.EditContact))
+                        {
+                            // Display the SelectedContact
+                            DisplaySelectedContact();
+                        }
                     }
                 }
             }
@@ -276,21 +505,134 @@ namespace NTouch.Components
             /// </summary>
             public void Save()
             {
-                // Create a new instance of a 'Contact' object.
-                Contact contact = new Contact();
+                // if the value for HasSelectedContact is true
+                if (HasSelectedContact)
+                {
+                    // Create a new instance of a 'Gateway' object.
+                    Gateway gateway = new Gateway(Connection.Name);
 
-                // set each property
-                contact.FirstName = FirstNameControl.Text;
-                contact.LastName = LastNameControl.Text;
-                contact.PhoneNumber = PhoneControl.Text;
-                contact.EmailAddress = EmailControl.Text;
-                contact.Address = AddressControl.Text;
-                contact.City = CityControl.Text;
-                contact.StateId = StateComboBox.SelectedItem.Id;
-                contact.ZipCode = ZipControl.Text;
-                contact.LastContactDate = LastContactedDateControl.SelectedDate;
-                contact.FollowUpDate = FollowUpDateControl.SelectedDate;
-                contact.CreatedDate = DateTime.Now;
+                    // is this a new record
+                    bool isNew = SelectedContact.IsNew;
+                    int savedContactPreferences = 0;
+
+                    // Create a new instance of a 'Contact' object.
+                    Contact contact = SelectedContact;
+
+                    // set each property
+                    contact.FirstName = FirstNameControl.Text;
+                    contact.LastName = LastNameControl.Text;
+                    contact.PhoneNumber = FormatPhoneNumber(PhoneControl.Text);
+                    contact.EmailAddress = EmailControl.Text;
+                    contact.Address = AddressControl.Text;
+                    contact.City = CityControl.Text;
+
+                    // If the value for the property StateComboBox.HasSelectedText is true
+                    if (StateComboBox.HasSelectedText)
+                    {
+                        // Get the StateName
+                        string stateName = StateComboBox.SelectedText;
+
+                        // If the stateName string exists
+                        if (TextHelper.Exists(stateName))
+                        {
+                            // Find the state by name
+                            State state = gateway.FindStateByName(stateName);
+
+                            // If the state object exists
+                            if (NullHelper.Exists(state))
+                            {
+                                // Set the StateId
+                                contact.StateId = state.Id;
+                            }
+                        }
+                    }
+
+                    contact.ZipCode = ZipControl.Text;
+                    contact.LastContactDate = LastContactedDateControl.SelectedDate;
+                    contact.FollowUpDate = FollowUpDateControl.SelectedDate;
+                    contact.CreatedDate = DateTime.Now;
+                    contact.ImagePath = SelectedContactImagePath;
+                    contact.Notes = NotesControl.Text;
+
+                    // perform the save
+                    bool saved = gateway.SaveContact(ref contact);
+
+                    // if the value for saved is true
+                    if (saved)
+                    {
+                        // if the value for HasContactPreferencesComboBox is true
+                        if (HasContactPreferencesComboBox)
+                        {
+                            // Get the selected items
+                            List<Item> selectedItems = ContactPreferencesComboBox.SelectedItems;
+
+                            // if this is an Edit
+                            if (ScreenType == ScreenTypeEnum.EditContact)
+                            {
+                                // Delete the existing ContactPreferences before Saving
+                                bool deleted = gateway.DeleteContactPreferenceByContactId(contact.Id);
+                            }
+
+                            // if the value for HasParentIndexPage is true
+                            if (HasParentIndexPage)
+                            {
+                                // If the selectedItems collection exists and has one or more items
+                                if (ListHelper.HasOneOrMoreItems(selectedItems))
+                                {
+                                    // Iterate the collection of Item objects
+                                    foreach (Item item in selectedItems)
+                                    {
+                                        // if selected
+                                        if (item.ItemChecked)
+                                        {
+                                            // Create a new instance of a 'ContactPreference' object.
+                                            ContactPreference contactPreference = new ContactPreference();
+
+                                            // set the ContactId
+                                            contactPreference.ContactId = contact.Id;
+
+                                            // Set the ContactMethod
+                                            contactPreference.ContactMethod = (ContactMethodEnum) item.Id;
+
+                                            // save
+                                            saved = gateway.SaveContactPreference(ref contactPreference);
+
+                                            // if the value for saved is true
+                                            if (saved)
+                                            {
+                                                // Increment the value for savedContactPreferences
+                                                savedContactPreferences++;
+                                            }
+                                        }
+                                    }
+
+                                    // if the StatusLabel exists
+                                    if (ParentIndexPage.HasStatusLabel)
+                                    {
+                                        ParentIndexPage.StatusLabel.SetTextValue(savedContactPreferences.ToString() + " saved.");
+                                    }
+                                }
+
+                                // Set the screen
+                                ParentIndexPage.ScreenType = ScreenTypeEnum.ContactList;
+
+                                // Update the page
+                                ParentIndexPage.Refresh();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        // Get the last exception
+                        Exception error = gateway.GetLastException();
+
+                        // if the StatusLabel exists
+                        if (ParentIndexPage.HasStatusLabel)
+                        {
+                            ParentIndexPage.StatusLabel.SetTextValue("Error.");
+                        }
+                    }
+                }
             }
             #endregion
             
@@ -316,6 +658,31 @@ namespace NTouch.Components
             {
                 get { return addressControl; }
                 set { addressControl = value; }
+            }
+            #endregion
+            
+            #region ButtonText
+            /// <summary>
+            /// This read only property returns the value of ButtonText. It is either Upload or Change
+            /// </summary>
+            public string ButtonText
+            {
+                
+                get
+                {
+                    // initial value
+                    string buttonText = "Upload";
+                    
+                    // if there is an already an image path
+                    if (TextHelper.Exists(SelectedContactImagePath))
+                    {
+                        // Switch to Change
+                        buttonText = "Change";
+                    }
+                    
+                    // return value
+                    return buttonText;
+                }
             }
             #endregion
             
@@ -385,6 +752,23 @@ namespace NTouch.Components
             }
             #endregion
             
+            #region HasAddressControl
+            /// <summary>
+            /// This property returns true if this object has an 'AddressControl'.
+            /// </summary>
+            public bool HasAddressControl
+            {
+                get
+                {
+                    // initial value
+                    bool hasAddressControl = (this.AddressControl != null);
+                    
+                    // return value
+                    return hasAddressControl;
+                }
+            }
+            #endregion
+            
             #region HasChildren
             /// <summary>
             /// This property returns true if this object has a 'Children'.
@@ -398,6 +782,23 @@ namespace NTouch.Components
                     
                     // return value
                     return hasChildren;
+                }
+            }
+            #endregion
+            
+            #region HasCityControl
+            /// <summary>
+            /// This property returns true if this object has a 'CityControl'.
+            /// </summary>
+            public bool HasCityControl
+            {
+                get
+                {
+                    // initial value
+                    bool hasCityControl = (this.CityControl != null);
+                    
+                    // return value
+                    return hasCityControl;
                 }
             }
             #endregion
@@ -419,6 +820,57 @@ namespace NTouch.Components
             }
             #endregion
             
+            #region HasEmailControl
+            /// <summary>
+            /// This property returns true if this object has an 'EmailControl'.
+            /// </summary>
+            public bool HasEmailControl
+            {
+                get
+                {
+                    // initial value
+                    bool hasEmailControl = (this.EmailControl != null);
+                    
+                    // return value
+                    return hasEmailControl;
+                }
+            }
+            #endregion
+            
+            #region HasFirstNameControl
+            /// <summary>
+            /// This property returns true if this object has a 'FirstNameControl'.
+            /// </summary>
+            public bool HasFirstNameControl
+            {
+                get
+                {
+                    // initial value
+                    bool hasFirstNameControl = (this.FirstNameControl != null);
+                    
+                    // return value
+                    return hasFirstNameControl;
+                }
+            }
+            #endregion
+            
+            #region HasFollowUpDateControl
+            /// <summary>
+            /// This property returns true if this object has a 'FollowUpDateControl'.
+            /// </summary>
+            public bool HasFollowUpDateControl
+            {
+                get
+                {
+                    // initial value
+                    bool hasFollowUpDateControl = (this.FollowUpDateControl != null);
+                    
+                    // return value
+                    return hasFollowUpDateControl;
+                }
+            }
+            #endregion
+            
             #region HasLastContactedDateControl
             /// <summary>
             /// This property returns true if this object has a 'LastContactedDateControl'.
@@ -432,6 +884,40 @@ namespace NTouch.Components
                     
                     // return value
                     return hasLastContactedDateControl;
+                }
+            }
+            #endregion
+            
+            #region HasLastNameControl
+            /// <summary>
+            /// This property returns true if this object has a 'LastNameControl'.
+            /// </summary>
+            public bool HasLastNameControl
+            {
+                get
+                {
+                    // initial value
+                    bool hasLastNameControl = (this.LastNameControl != null);
+                    
+                    // return value
+                    return hasLastNameControl;
+                }
+            }
+            #endregion
+            
+            #region HasNotesControl
+            /// <summary>
+            /// This property returns true if this object has a 'NotesControl'.
+            /// </summary>
+            public bool HasNotesControl
+            {
+                get
+                {
+                    // initial value
+                    bool hasNotesControl = (this.NotesControl != null);
+                    
+                    // return value
+                    return hasNotesControl;
                 }
             }
             #endregion
@@ -466,6 +952,23 @@ namespace NTouch.Components
                     
                     // return value
                     return hasParentIndexPage;
+                }
+            }
+            #endregion
+            
+            #region HasPhoneControl
+            /// <summary>
+            /// This property returns true if this object has a 'PhoneControl'.
+            /// </summary>
+            public bool HasPhoneControl
+            {
+                get
+                {
+                    // initial value
+                    bool hasPhoneControl = (this.PhoneControl != null);
+                    
+                    // return value
+                    return hasPhoneControl;
                 }
             }
             #endregion
@@ -619,6 +1122,31 @@ namespace NTouch.Components
             {
                 get { return phoneControl; }
                 set { phoneControl = value; }
+            }
+            #endregion
+            
+            #region ScreenType
+            /// <summary>
+            /// This read only property returns the value of ScreenType from the object ParentIndexPage.
+            /// </summary>
+            public ScreenTypeEnum ScreenType
+            {
+                
+                get
+                {
+                    // initial value
+                    ScreenTypeEnum screenType = ScreenTypeEnum.ContactList;
+                    
+                    // if ParentIndexPage exists
+                    if (HasParentIndexPage)
+                    {
+                        // set the return value
+                        screenType = ParentIndexPage.ScreenType;
+                    }
+                    
+                    // return value
+                    return screenType;
+                }
             }
             #endregion
             

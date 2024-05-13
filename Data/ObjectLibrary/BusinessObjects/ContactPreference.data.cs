@@ -17,7 +17,7 @@ namespace ObjectLibrary.BusinessObjects
 
         #region Private Variables
         private int contactId;
-        private int contactMethod;
+        private ContactMethodEnum contactMethod;
         private int id;
         #endregion
 
@@ -53,8 +53,8 @@ namespace ObjectLibrary.BusinessObjects
             }
             #endregion
 
-            #region int ContactMethod
-            public int ContactMethod
+            #region ContactMethodEnum ContactMethod
+            public ContactMethodEnum ContactMethod
             {
                 get
                 {

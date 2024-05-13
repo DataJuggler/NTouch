@@ -6,89 +6,91 @@
 @using DataJuggler.UltimateHelper
 
 <Styled @bind-Classname=@UploadButtonStyle>
-    background-image: url('../Images/BlueButton.png');
+    background-image: url('../Images/blackbutton.png');
     background-size: 100% 100%;
-    width: 180px;
+    width: 120px;
     height: 40px;
     cursor: pointer;
     background-color: transparent;
     border: none;
     position: relative;
-    top: 20px;
+    top: 0px;
     left: 0px;
     color: white;
 </Styled>
 
-<h3>@Title</h3>
+<h3 class="right16percent">@Title</h3>
 
-<ValidationComponent Name="FirstNameControl" Parent="this" Caption="First Name:" ClassName="displayinlineblock"
-    SendAllTextToParent="true"
-    Column1Width="100" LabelClassName="down3 right2" Width="240"></ValidationComponent>
-<ValidationComponent Name="LastNameControl" Parent="this" Caption="Last Name:" ClassName="displayinlineblock"
-    Column1Width="100" LabelClassName="down3 right2" Width="240"></ValidationComponent>
-<ValidationComponent Name="PhoneControl" Parent="this" Caption="Phone:" ClassName="displayinlineblock"
-    Column1Width="100" LabelClassName="down3 right2"  Width="240"></ValidationComponent>
-<ValidationComponent Name="EmailControl" Parent="this" Caption="Email:" Column1Width="100" 
-    Column2Width="220" ClassName="displayinlineblock" LabelClassName="down3 right2" 
-    TextBoxWidth="200" Width="360"></ValidationComponent>
-<ValidationComponent Name="AddressControl" Parent="this" Caption="Address:" ClassName="displayinlineblock"
-    Column1Width="100" Column2Width="220" LabelClassName="down3 right2" 
-    TextBoxWidth="200" Width="360"></ValidationComponent>
-<ValidationComponent Name="CityControl" Parent="this" Caption="City:" ClassName="displayinlineblock"
-    Column1Width="100" Column2Width="220" LabelClassName="down3 right2" 
-    TextBoxWidth="200" Width="360"></ValidationComponent>
-<ComboBox Name="StateComboBox" Theme=ThemeEnum.Blue Unit="px" HeightUnit="px" Height="32" ZIndex="80"
-    LabelText="State:" Width="224" Parent="this" ButtonHeight=25 ButtonWidth=24 ControlHeight="32"
-    DropdownClassName="container2 border1gray textdonotwrap" TextBoxLeft="0" ButtonTop=-5 ButtonLeft=-26
-    ListItemWidth="180" ListZIndex=80 ListItemTop=24
-    Column2Width="128" Position="relative" Top="0" LabelClassName="down4 right2" TextBoxWidth="124">
-</ComboBox>
-<ValidationComponent Name="ZipControl" Parent="this" Caption="Zip:" ClassName="displayinlineblock"
-    Column1Width="100" Column2Width="220" LabelClassName="down3 right2" ZIndex="0" Top=2
-    TextBoxWidth="124" Width="360"></ValidationComponent>
-<CalendarComponent Name="LastContactedDateControl" Unit="px" HeightUnit="px" Height="146" Position="relative" 
-    ButtonHeight=25 ButtonWidth=24 CalendarTop="-112" CalendarLeft="64" Caption="Last Contacted:"
-    Parent="this" ButtonTop="-4" Width="224" Column2Width="128" ControlHeight="32"
-    Top="0" LabelClassName="down4 right2" TextBoxWidth="124">
-</CalendarComponent>
-<CalendarComponent Name="FollowUpDateControl" Unit="px" HeightUnit="px" Height="146" Position="relative"
-    ButtonHeight=25 ButtonWidth=24 CalendarTop="-116" CalendarLeft="64" Caption="Follow Up Date:" 
-    Parent="this" ButtonTop="-4" Width="224" Column2Width="128" ControlHeight="32" 
-    Top="0" LabelClassName="down4 right2" TextBoxWidth="124">
-</CalendarComponent>
-<ValidationComponent Name="NotesControl" Caption="Notes:" ClassName="displayinlineblock" Top=4
-    Multiline="true" Column1Width="100" Column2Width="220" LabelClassName="up88 right2"
-    Height="96" TextBoxWidth="200" Width="360"></ValidationComponent>
-<div class="rightcolumn">
-    <ComboBox Name="ContactPreferencesComboBox" Theme=ThemeEnum.Blue Unit="px" HeightUnit="px" Height="32"
-            LabelText="Contact Methods:" Width="224" Parent="this" ButtonHeight=25 ButtonWidth=24
-            Left="0" Top="-400" ListItemHeight="2.4" ZIndex=201 ControlHeight=32
-            CheckedListClassName="container border1gray textdonotwrap" TextBoxLeft="1" ButtonTop=-5 ButtonLeft=-8
-            Column2Width="128" Position="relative"  LabelClassName="down4 right2" TextBoxWidth="124"
-            CheckListMode=true CheckedListUnit="vw" CheckedListHeightUnit="vh" CheckedListheight="4"             
-            CheckedListItemLeft="2" CheckedListItemTop=1 ListItemBackgroundColor=Color.White
-            CheckBoxXPosition="-3.2" CheckBoxYPosition=".4" CheckBoxTextXPosition="-3" CheckBoxTextYPosition="0"
-            CheckedListWidth=8 CheckedListTop="2" CheckedListLeft="72" ListItemWidth=4>
+<div class="right16percent">
+    <ValidationComponent Name="FirstNameControl" Parent="this" Caption="First Name:" ClassName="displayinlineblock"
+        SendAllTextToParent="true"
+        Column1Width="100" LabelClassName="down3 right2" Width="240"></ValidationComponent>
+    <ValidationComponent Name="LastNameControl" Parent="this" Caption="Last Name:" ClassName="displayinlineblock"
+        Column1Width="100" LabelClassName="down3 right2" Width="240"></ValidationComponent>
+    <ValidationComponent Name="PhoneControl" Parent="this" Caption="Phone:" ClassName="displayinlineblock"
+        Column1Width="100" LabelClassName="down3 right2"  Width="240"></ValidationComponent>
+    <ValidationComponent Name="EmailControl" Parent="this" Caption="Email:" Column1Width="100" 
+        Column2Width="220" ClassName="displayinlineblock" LabelClassName="down3 right2" 
+        TextBoxWidth="200" Width="360"></ValidationComponent>
+    <ValidationComponent Name="AddressControl" Parent="this" Caption="Address:" ClassName="displayinlineblock"
+        Column1Width="100" Column2Width="220" LabelClassName="down3 right2" 
+        TextBoxWidth="200" Width="360"></ValidationComponent>
+    <ValidationComponent Name="CityControl" Parent="this" Caption="City:" ClassName="displayinlineblock"
+        Column1Width="100" Column2Width="220" LabelClassName="down3 right2" 
+        TextBoxWidth="200" Width="360"></ValidationComponent>
+    <ComboBox Name="StateComboBox" Theme=ThemeEnum.Blue Unit="px" HeightUnit="px" Height="32" ZIndex="80"
+        LabelText="State:" Width="224" Parent="this" ButtonHeight=25 ButtonWidth=24 ControlHeight="32"
+        DropdownClassName="container2 border1gray textdonotwrap" TextBoxLeft="0" ButtonTop=-5 ButtonLeft=-26
+        ListItemWidth="180" ListZIndex=80 ListItemTop=24
+        Column2Width="128" Position="relative" Top="0" LabelClassName="down4 right2" TextBoxWidth="124">
     </ComboBox>
-    <div class="up400">
-        <div class="fontsize10 down8">Image:</div><br />
-        <FileUpload CustomSuccessMessage="Your file uploaded successfully." Parent="this"
-                    OnReset="@OnReset" ShowStatus="false"
-                    PartialGuidLength="12" FilterByExtension="true"
-                    ShowCustomButton="true" OnChange="OnFileUploaded" Visible="false"
-                    CustomButtonClassName="@UploadButtonStyle" AllowedExtensions=".jpg,.png"
-                    ShowResetButton="false" AppendPartialGuid="true" ButtonText="Upload"
-                    CustomExtensionMessage="Only .png and .jpg extensions are allowed." MultipleFiles="false"
-                    InputFileClassName="customfileupload" Status="Refresh" ResetButtonText=""
-                    FileTooLargeMessage="File must be below 20 meg.">
-        </FileUpload>
-        @if ((HasSelectedContact) && (TextHelper.Exists(SelectedContact.ImagePath)))
-        {
-            <img src="@SelectedContactImagePath" class="up8" height="256" width="256" />
-        }
-    </div>    
+    <ValidationComponent Name="ZipControl" Parent="this" Caption="Zip:" ClassName="displayinlineblock"
+        Column1Width="100" Column2Width="220" LabelClassName="down3 right2" ZIndex="0" Top=2
+        TextBoxWidth="124" Width="360"></ValidationComponent>
+    <CalendarComponent Name="LastContactedDateControl" Unit="px" HeightUnit="px" Height="146" Position="relative" 
+        ButtonHeight=25 ButtonWidth=24 CalendarTop="-112" CalendarLeft="64" Caption="Last Contacted:"
+        Parent="this" ButtonTop="-4" Width="224" Column2Width="128" ControlHeight="32"
+        Top="0" LabelClassName="down4 right2" TextBoxWidth="124">
+    </CalendarComponent>
+    <CalendarComponent Name="FollowUpDateControl" Unit="px" HeightUnit="px" Height="146" Position="relative"
+        ButtonHeight=25 ButtonWidth=24 CalendarTop="-116" CalendarLeft="64" Caption="Follow Up Date:" 
+        Parent="this" ButtonTop="-4" Width="224" Column2Width="128" ControlHeight="32" 
+        Top="0" LabelClassName="down4 right2" TextBoxWidth="124">
+    </CalendarComponent>
+    <ValidationComponent Name="NotesControl" Caption="Notes:" ClassName="displayinlineblock" Top=4
+        Multiline="true" Column1Width="100" Column2Width="220" LabelClassName="up88 right2" Parent=this
+        Height="96" TextBoxWidth="200" Width="360"></ValidationComponent>
+    <div class="rightcolumn">
+        <ComboBox Name="ContactPreferencesComboBox" Theme=ThemeEnum.Blue Unit="px" HeightUnit="px" Height="32"
+                LabelText="Contact Methods:" Width="224" Parent="this" ButtonHeight=25 ButtonWidth=24
+                Left="0" Top="-400" ListItemHeight="2.4" ZIndex=201 ControlHeight=32
+                CheckedListClassName="container border1gray textdonotwrap" TextBoxLeft="1" ButtonTop=-5 ButtonLeft=-8
+                Column2Width="128" Position="relative"  LabelClassName="down4 right2" TextBoxWidth="124"
+                CheckListMode=true CheckedListUnit="vw" CheckedListHeightUnit="vh" CheckedListheight="4"             
+                CheckedListItemLeft="2" CheckedListItemTop=1 ListItemBackgroundColor=Color.White
+                CheckBoxXPosition="-3.2" CheckBoxYPosition=".4" CheckBoxTextXPosition="-3" CheckBoxTextYPosition="0"
+                CheckedListWidth=8 CheckedListTop="2" CheckedListLeft="72" ListItemWidth=4>
+        </ComboBox>
+        <div class="up400">
+            <div class="fontsize12 down8">Image:</div><br />
+            <FileUpload CustomSuccessMessage="Your file uploaded successfully." Parent="this"
+                        OnReset="@OnReset" ShowStatus="false"
+                        PartialGuidLength="12" FilterByExtension="true"
+                        ShowCustomButton="true" OnChange="OnFileUploaded" Visible="false"
+                        CustomButtonClassName="@UploadButtonStyle" AllowedExtensions=".jpg,.png"
+                        ShowResetButton="false" AppendPartialGuid="true" ButtonText="@ButtonText"
+                        CustomExtensionMessage="Only .png and .jpg extensions are allowed." MultipleFiles="false"
+                        InputFileClassName="customfileupload" Status="Refresh" ResetButtonText=""
+                        FileTooLargeMessage="File must be below 20 meg.">
+            </FileUpload>
+            @if ((HasSelectedContact) && (TextHelper.Exists(SelectedContact.ImagePath)))
+            {
+                <img src="@SelectedContactImagePath" class="down8" height="256" width="256" />
+            }
+        </div>    
+    </div>
 </div>
 <div class="buttoncontainer">
-    <button class="bluebutton" @onclick=Save>Save</button>
-    <button class="bluebutton" @onclick=Cancel>Cancel</button>
+    <button class="blackbutton" @onclick=Save>Save</button>
+    <button class="blackbutton" @onclick=Cancel>Cancel</button>
 </div>

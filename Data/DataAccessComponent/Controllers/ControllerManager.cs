@@ -27,6 +27,7 @@ namespace DataAccessComponent.Controllers
         private ApplicationController appController;
         private ContactController contactController;
         private ContactPreferenceController contactpreferenceController;
+        private ContactViewController contactviewController;
         private StateController stateController;
         #endregion
 
@@ -56,6 +57,7 @@ namespace DataAccessComponent.Controllers
                 // Create Child Controllers
                 this.ContactController = new ContactController(this.ErrorProcessor, this.AppController);
                 this.ContactPreferenceController = new ContactPreferenceController(this.ErrorProcessor, this.AppController);
+                this.ContactViewController = new ContactViewController(this.ErrorProcessor, this.AppController);
                 this.StateController = new StateController(this.ErrorProcessor, this.AppController);
             }
             #endregion
@@ -93,6 +95,14 @@ namespace DataAccessComponent.Controllers
             {
                 get { return contactpreferenceController; }
                 set { contactpreferenceController = value; }
+            }
+            #endregion
+
+            #region ContactViewController
+            public ContactViewController ContactViewController
+            {
+                get { return contactviewController; }
+                set { contactviewController = value; }
             }
             #endregion
 

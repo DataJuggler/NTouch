@@ -16,6 +16,9 @@ using DataJuggler.UltimateHelper;
 using NTouch.Objects;
 using DataAccessComponent.DataGateway;
 using DataJuggler.NET8.Enumerations;
+using DataJuggler.Cryptography;
+using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
+using OfficeOpenXml.Style;
 
 #endregion
 
@@ -35,14 +38,11 @@ namespace NTouch.Pages
         private IBlazorComponentParent parent;
         private string title;
         private ContactEditor contactEditor;
+        private Grid contactsGrid;
         private Label statusLabel;
         private ScreenTypeEnum screenType;
-        
-        // Test Only
-        private CheckedListBox listBox;
-
-        private ValidationComponent firstNameControl;
-        private ValidationComponent LastNameControl;
+        private List<ContactView> contactsList;
+        private int contactIdToSelect;
         #endregion
 
         #region Constructor
@@ -67,11 +67,323 @@ namespace NTouch.Pages
             /// </summary>
             public void AddContact()
             {
+                // erase
+                ContactIdToSelect = 0;
+
                 // Set the ScreenType
-                ScreenType = ScreenTypeEnum.EditContact;
+                ScreenType = ScreenTypeEnum.AddContact;
+
+                // if the value for HasContactEditor is true
+                if (HasContactEditor)
+                {
+                    // Change the Title
+                    ContactEditor.Title = "Add Contact";
+                }
 
                 // Update the UI
                 Refresh();
+            }
+            #endregion
+            
+            #region CreateRowsForContactsGrid()
+            /// <summary>
+            /// returns a list of Rows For Contacts Grid
+            /// </summary>
+            public List<Row> CreateRowsForContactsGrid()
+            {
+                // initial value
+                List<Row> rows = new List<Row>();
+
+                // If the ContactsList collection exists and has one or more items
+                if (ListHelper.HasOneOrMoreItems(ContactsList))
+                {
+                    // recreate, in case this is called twice due to a refresh
+                    ContactsGrid.Columns = new List<Column>();
+                    ContactsGrid.Rows = new List<Row>();
+
+                    // Create Column and set properties
+                    Column column = new Column();
+                    column.Caption = "First";
+                    column.ColumnName = "FirstName";
+                    column.Index = 0;
+                    column.ColumnNumber = 1;                        
+                    column.ColumnText = column.Caption;
+                    column.Width = 48;
+                    column.Height = 16;                    
+                    column.ClassName = "displayinlineblock textdonotwrap width48 colorwhite textalignleft right16 down4 fontsize12";  
+
+                    // Add this column
+                    ContactsGrid.Columns.Add(column);
+
+                    // Create Column and set properties
+                    Column column2 = new Column();
+                    column2.Caption = "Last";
+                    column2.ColumnName = "LastName";
+                    column2.Index = 1;
+                    column2.ColumnNumber = 2;                        
+                    column2.ColumnText = column2.Caption;
+                    column2.Width = 40;
+                    column2.Height = 16;
+                    column2.ClassName = "displayinlineblock textdonotwrap width48 colorwhite textalignleft down4 right24 fontsize12";  
+
+                    // Add Column 2 to the header row
+                    ContactsGrid.Columns.Add(column2);
+
+                    // Create Column and set properties
+                    Column column3 = new Column();
+                    column3.Caption = "Phone #";
+                    column3.ColumnName = "PhoneNumber";
+                    column3.Index = 2;
+                    column3.ColumnNumber = 3;                        
+                    column3.ColumnText = column3.Caption;
+                    column3.Width = 96;
+                    column3.Height = 16;
+                    column3.ClassName = "displayinlineblock textdonotwrap width96 colorwhite textalignleft down4 right20 fontsize12";  
+
+                    // Add this column
+                    ContactsGrid.Columns.Add(column3);
+
+                    // Create Column and set properties
+                    Column column4 = new Column();
+                    column4.Caption = "Email";
+                    column4.ColumnName = "EmailAddress";
+                    column4.Index = 3;
+                    column4.ColumnNumber = 4;                        
+                    column4.ColumnText = column4.Caption;
+                    column4.Width = 132;
+                    column4.Height = 16;
+                    column4.ClassName = "displayinlineblock textdonotwrap width132 colorwhite textalignleft down4 right14 fontsize12";
+
+                    // Add this column
+                    ContactsGrid.Columns.Add(column4);
+
+                    // Create Column and set properties
+                    Column column5 = new Column();
+                    column5.Caption = "Address";
+                    column5.ColumnName = "ShortAddress";
+                    column5.Index = 4;
+                    column5.ColumnNumber = 5;                        
+                    column5.ColumnText = column5.Caption;
+                    column5.Width = 120;
+                    column5.Height = 16;
+                    column5.ClassName = "displayinlineblock textdonotwrap width120 colorwhite textalignleft down4 right16 fontsize12";
+
+                    // Add this column
+                    ContactsGrid.Columns.Add(column5);
+
+                    // Create Column and set properties
+                    Column column6 = new Column();
+                    column6.Caption = "City";
+                    column6.ColumnName = "City";
+                    column6.Index = 5;
+                    column6.ColumnNumber = 6;                        
+                    column6.ColumnText = column6.Caption;
+                    column6.Width = 88;
+                    column6.Height = 16;
+                    column6.ClassName = "displayinlineblock textdonotwrap width88 colorwhite textalignleft down4 right8 fontsize12";
+
+                    // Add this column
+                    ContactsGrid.Columns.Add(column6);
+
+                    // Create Column and set properties
+                    Column column7 = new Column();
+                    column7.Caption = "State";
+                    column7.ColumnName = "StateName";
+                    column7.Index = 6;
+                    column7.ColumnNumber = 7;                        
+                    column7.ColumnText = column7.Caption;
+                    column7.Width = 48;
+                    column7.Height = 16;
+                    column7.ClassName = "displayinlineblock textdonotwrap width48 colorwhite textalignleft down4 right8 fontsize12";
+
+                    // Add this column
+                    ContactsGrid.Columns.Add(column7);
+
+                    // Create Column and set properties
+                    Column column8 = new Column();
+                    column8.Caption = "Last Contact";
+                    column8.ColumnName = "LastContactedDate";
+                    column8.Index = 7;
+                    column8.ColumnNumber = 8;
+                    column8.ColumnText = column8.Caption;
+                    column8.Width = 80;
+                    column8.Height = 16;
+                    column8.ClassName = "displayinlineblock textdonotwrap width80 colorwhite textalignleft down4 right8 fontsize12";
+
+                     // Add this column
+                    ContactsGrid.Columns.Add(column8);
+
+                    // Create Column and set properties
+                    Column column9 = new Column();
+                    column9.Caption = "Follow Up";
+                    column9.ColumnName = "FollowUpDate";
+                    column9.Index = 8;
+                    column9.ColumnNumber = 9;
+                    column9.ColumnText = column9.Caption;
+                    column9.Width = 80;
+                    column9.Height = 16;
+                    column9.ClassName = "displayinlineblock textdonotwrap width80 colorwhite textalignleft down4 right8 fontsize12";
+
+                    // Add this column
+                    ContactsGrid.Columns.Add(column9);
+
+                    // Iterate the collection of IndustryLosingStreakView objects
+                    foreach (ContactView contact in ContactsList)
+                    {
+                        // Create a row
+                        Row row = new Row();                        
+                        row.ExternalId = contact.Id;
+                        row.ExternalIdDescription = "A Contact Was Opened";
+                        row.ClassName = "textdonotwrap width448 height16 marginbottom0 down8";
+
+                        // Create Column and set properties
+                        column = new Column();                        
+                        column.ColumnName = "FirstName";
+                        column.Index = 0;
+                        column.ColumnNumber = 1;                        
+                        column.ColumnText = contact.FirstName;
+                        column.Width = 48;
+                        column.Height = 16;                        
+                        column.ClassName = "displayinlineblock textdonotwrap width48 colorwhite textalignleft down4 right16 fontsize12 cursorpointer";  
+
+                        // Set the Row
+                        column.Row = row;
+
+                        // Add this column
+                        row.Columns.Add(column);
+
+                        // Create Column and set properties
+                        column2 = new Column();
+                        column2.ColumnName = "LastName";
+                        column2.Index = 1;
+                        column2.ColumnNumber = 2;                        
+                        column2.ColumnText = contact.LastName;
+                        column2.Width = 48;
+                        column2.Height = 16;
+                        column2.ClassName = "displayinlineblock textdonotwrap width48 colorwhite textaligncenter down4 right12 fontsize12";  
+
+                        // Add Column 2 to the header row
+                        row.Columns.Add(column2);
+
+                        // Create Column and set properties
+                        column3 = new Column();
+                        column3.ColumnName = "PhoneNumber";
+                        column3.Index = 2;
+                        column3.ColumnNumber = 3;                        
+                        column3.ColumnText = contact.PhoneNumber;
+                        column3.Width = 96;
+                        column3.Height = 16;
+                        column3.ClassName = "displayinlineblock textdonotwrap width96 colorwhite textalignleft down4 right18 fontsize12";  
+
+                        // Add this column
+                        row.Columns.Add(column3);
+
+                        // Create Column and set properties
+                        column4 = new Column();
+                        column4.ColumnName = "Email";
+                        column4.Index = 3;
+                        column4.ColumnNumber = 4;                        
+                        column4.ColumnText = contact.ShortEmail;
+                        column4.Width = 132;
+                        column4.Height = 16;
+                        column4.ClassName = "displayinlineblock textdonotwrap width132 colorwhite textalignleft down4 right16 fontsize12";
+
+                        // Add this column
+                        row.Columns.Add(column4);
+
+                        // Create Column and set properties
+                        column5 = new Column();
+                        column5.ColumnName = "ShortAddress";
+                        column5.Index = 3;
+                        column5.ColumnNumber = 4;                        
+                        column5.ColumnText = contact.Shortaddress;
+                        column5.Width = 120;
+                        column5.Height = 16;
+                        column5.ClassName = "displayinlineblock textdonotwrap width120 colorwhite textalignleft down4 right16 fontsize12";
+
+                        // Add this column
+                        row.Columns.Add(column5);
+
+                        // Create Column and set properties
+                        column6 = new Column();
+                        column6.ColumnName = "City";
+                        column6.Index = 5;
+                        column6.ColumnNumber = 6;                        
+                        column6.ColumnText = contact.City;
+                        column6.Width = 88;
+                        column6.Height = 16;
+                        column6.ClassName = "displayinlineblock textdonotwrap width88 colorwhite textalignleft down4 right8 fontsize12";
+
+                        // Add this column
+                        row.Columns.Add(column6);
+
+                        // Create Column and set properties
+                        column7 = new Column();
+                        column7.ColumnName = "StateCode";
+                        column7.Index = 6;
+                        column7.ColumnNumber = 7;                        
+                        column7.ColumnText = contact.StateCode;
+                        column7.Width = 48;
+                        column7.Height = 16;
+                        column7.ClassName = "displayinlineblock textdonotwrap width48 colorwhite textalignleft down4 right8 fontsize12";
+
+                        // Add this column
+                        row.Columns.Add(column7);
+
+                        // Create Column and set properties
+                        column8 = new Column();
+                        column8.ColumnName = "LastContactedDate";
+                        column8.Index = 7;
+                        column8.ColumnNumber = 8;
+
+                        // if an actual date
+                        if (contact.LastContactDate.Year > 1900)
+                        {
+                            column8.ColumnText = contact.LastContactDate.ToShortDateString();
+                        }
+                        else
+                        {
+                            // Empty
+                            column8.ColumnText = "";
+                        }
+                        column8.Width = 80;
+                        column8.Height = 16;
+                        column8.ClassName = "displayinlineblock textdonotwrap width80 colorwhite textalignleft down4 right8 fontsize12";
+
+                        // Add this column
+                        row.Columns.Add(column8);
+
+                        // Create Column and set properties
+                        column9 = new Column();
+                        column9.ColumnName = "FollowUpDate";
+                        column9.Index = 8;
+                        column9.ColumnNumber = 9;
+
+                        // if an actual date
+                        if (contact.FollowUpDate.Year > 1900)
+                        {
+                            column9.ColumnText = contact.FollowUpDate.ToShortDateString();
+                        }
+                        else
+                        {
+                            // Empty
+                            column9.ColumnText = "";
+                        }
+
+                        column9.Width = 80;
+                        column9.Height = 16;
+                        column9.ClassName = "displayinlineblock textdonotwrap width80 colorwhite textalignleft down4 right8 fontsize12";
+
+                        // Add this column
+                        row.Columns.Add(column9);
+
+                        // Add this row
+                        rows.Add(row);
+                    }
+                }
+
+                // return value
+                return rows;
             }
             #endregion
             
@@ -129,13 +441,58 @@ namespace NTouch.Pages
             }
             #endregion
             
+            #region OnAfterRenderAsync(bool firstRender)
+            /// <summary>
+            /// This method is used to verify a user
+            /// </summary>
+            /// <param name="firstRender"></param>
+            /// <returns></returns>
+            protected async override Task OnAfterRenderAsync(bool firstRender)
+            {  
+                // if there is a ContactIdToSelect
+                if ((ContactIdToSelect > 0) && (ScreenType == ScreenTypeEnum.EditContact))
+                {
+                    // Create a new instance of a 'Gateway' object.
+                    Gateway gateway = new Gateway(Connection.Name);
+
+                    // if the value for HasContactEditor is true
+                    if (HasContactEditor)
+                    {
+                        // if the SelectedContact exists
+                        if ((!ContactEditor.HasSelectedContact) || (ContactEditor.SelectedContact.Id != ContactIdToSelect))
+                        {
+                            // Set the SelectedContact
+                            ContactEditor.SelectedContact = gateway.FindContact(ContactIdToSelect);
+                        }
+
+                        // Display the selected contact
+                        ContactEditor.DisplaySelectedContact();
+                    }
+                }
+            }
+            #endregion
+
             #region ReceiveData(Message message)
             /// <summary>
             /// method Receive Data
             /// </summary>
             public void ReceiveData(Message message)
             {
-                
+                // If the message object exists
+                if (NullHelper.Exists(message))
+                {
+                    // Set the id
+                    int contactId = message.Id;
+
+                    // Enter Edit Mode
+                    ScreenType = ScreenTypeEnum.EditContact;
+
+                    // Must select the contact when the ContactEditor is registered
+                    ContactIdToSelect = contactId;
+
+                    // Update the UI
+                    Refresh();
+                }
             }
             #endregion
             
@@ -163,29 +520,57 @@ namespace NTouch.Pages
                 {
                     // Store
                     StatusLabel = component as Label;
-                }
-                else if (component is CheckedListBox)
-                {
-                    ListBox = component as CheckedListBox;
-
-                    // if the value for HasListBox is true
-                    if (HasListBox)
-                    {  
-                        // Load the Items for this enum
-                        List<Item> items = ItemHelper.LoadItems(typeof(TargetFrameworkEnum));
-                        
-                        // Set the items on the list box
-                        ListBox.SetItems(items);
-                    }
-                }
+                }                
                 else if (component is ContactEditor)
                 {
+                    // store
                     ContactEditor = component as ContactEditor;
 
+                    // if the value for HasContactEditor is true
                     if (HasContactEditor)
                     {
-                        // Create a new Contact
-                        ContactEditor.SelectedContact = new Contact();
+                        // if a ContactId was set
+                        if (ContactIdToSelect > 0)
+                        {
+                            // Create a new instance of a 'Gateway' object.
+                            Gateway gateway = new Gateway(Connection.Name);
+
+                            // Find the selected contact
+                            ContactEditor.SelectedContact = gateway.FindContact(ContactIdToSelect);
+
+                            // Display this contact
+                            ContactEditor.DisplaySelectedContact();
+                        }
+                        else
+                        {
+                            // Create a new Contact
+                            ContactEditor.SelectedContact = new Contact();
+                        }
+                    }
+                }
+                // if is the component is a grid
+                else if (component is Grid)
+                {
+                    // Store
+                    ContactsGrid = component as Grid;
+
+                    // Create an instance of the Gateway
+                    Gateway gateway = new Gateway(Connection.Name);
+
+                    // Load the Contacts
+                    ContactsList = gateway.LoadContactViews();
+
+                    // if the value for HasContactsGrid is true and has ContactList
+                    if ((HasContactsGrid) && (HasContactsList))
+                    {
+                        // Reorder the ContactsList
+                        ContactsList = ContactsList.OrderBy(x => x.LastName).ThenBy(x => x.FirstName).ToList();
+
+                        // Create the Rows for the Contacts Grid
+                        ContactsGrid.Rows = CreateRowsForContactsGrid();
+
+                        // Refresh the Grid
+                        ContactsGrid.Refresh();
                     }
                 }
             }
@@ -217,6 +602,39 @@ namespace NTouch.Pages
             }
             #endregion
             
+            #region ContactIdToSelect
+            /// <summary>
+            /// This property gets or sets the value for 'ContactIdToSelect'.
+            /// </summary>
+            public int ContactIdToSelect
+            {
+                get { return contactIdToSelect; }
+                set { contactIdToSelect = value; }
+            }
+            #endregion
+            
+            #region ContactsGrid
+            /// <summary>
+            /// This property gets or sets the value for 'ContactsGrid'.
+            /// </summary>
+            public Grid ContactsGrid
+            {
+                get { return contactsGrid; }
+                set { contactsGrid = value; }
+            }
+            #endregion
+            
+            #region ContactsList
+            /// <summary>
+            /// This property gets or sets the value for 'ContactsList'.
+            /// </summary>
+            public List<ContactView> ContactsList
+            {
+                get { return contactsList; }
+                set { contactsList = value; }
+            }
+            #endregion
+            
             #region HasContactEditor
             /// <summary>
             /// This property returns true if this object has a 'ContactEditor'.
@@ -234,19 +652,36 @@ namespace NTouch.Pages
             }
             #endregion
             
-            #region HasListBox
+            #region HasContactsGrid
             /// <summary>
-            /// This property returns true if this object has a 'ListBox'.
+            /// This property returns true if this object has a 'ContactsGrid'.
             /// </summary>
-            public bool HasListBox
+            public bool HasContactsGrid
             {
                 get
                 {
                     // initial value
-                    bool hasListBox = (this.ListBox != null);
+                    bool hasContactsGrid = (this.ContactsGrid != null);
                     
                     // return value
-                    return hasListBox;
+                    return hasContactsGrid;
+                }
+            }
+            #endregion
+            
+            #region HasContactsList
+            /// <summary>
+            /// This property returns true if this object has a 'ContactsList'.
+            /// </summary>
+            public bool HasContactsList
+            {
+                get
+                {
+                    // initial value
+                    bool hasContactsList = (this.ContactsList != null);
+                    
+                    // return value
+                    return hasContactsList;
                 }
             }
             #endregion
@@ -299,17 +734,6 @@ namespace NTouch.Pages
                     // return value
                     return hasStatusLabel;
                 }
-            }
-            #endregion
-            
-            #region ListBox
-            /// <summary>
-            /// This property gets or sets the value for 'ListBox'.
-            /// </summary>
-            public CheckedListBox ListBox
-            {
-                get { return listBox; }
-                set { listBox = value; }
             }
             #endregion
             

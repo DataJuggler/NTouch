@@ -6,7 +6,7 @@ Go
 -- =========================================================
 -- Procure Name: Contact_Insert
 -- Author:           Data Juggler - Data Tier.Net Procedure Generator
--- Create Date:   5/10/2024
+-- Create Date:   5/12/2024
 -- Description:    Insert a new Contact
 -- =========================================================
 
@@ -76,7 +76,7 @@ Go
 -- =========================================================
 -- Procure Name: Contact_Update
 -- Author:           Data Juggler - Data Tier.Net Procedure Generator
--- Create Date:   5/10/2024
+-- Create Date:   5/12/2024
 -- Description:    Update an existing Contact
 -- =========================================================
 
@@ -158,7 +158,7 @@ Go
 -- =========================================================
 -- Procure Name: Contact_Find
 -- Author:           Data Juggler - Data Tier.Net Procedure Generator
--- Create Date:   5/10/2024
+-- Create Date:   5/12/2024
 -- Description:    Find an existing Contact
 -- =========================================================
 
@@ -215,7 +215,7 @@ Go
 -- =========================================================
 -- Procure Name: Contact_Delete
 -- Author:           Data Juggler - Data Tier.Net Procedure Generator
--- Create Date:   5/10/2024
+-- Create Date:   5/12/2024
 -- Description:    Delete an existing Contact
 -- =========================================================
 
@@ -269,7 +269,7 @@ Go
 -- =========================================================
 -- Procure Name: Contact_FetchAll
 -- Author:           Data Juggler - Data Tier.Net Procedure Generator
--- Create Date:   5/10/2024
+-- Create Date:   5/12/2024
 -- Description:    Returns all Contact objects
 -- =========================================================
 
@@ -320,7 +320,7 @@ Go
 -- =========================================================
 -- Procure Name: ContactPreference_Insert
 -- Author:           Data Juggler - Data Tier.Net Procedure Generator
--- Create Date:   5/10/2024
+-- Create Date:   5/12/2024
 -- Description:    Insert a new ContactPreference
 -- =========================================================
 
@@ -379,7 +379,7 @@ Go
 -- =========================================================
 -- Procure Name: ContactPreference_Update
 -- Author:           Data Juggler - Data Tier.Net Procedure Generator
--- Create Date:   5/10/2024
+-- Create Date:   5/12/2024
 -- Description:    Update an existing ContactPreference
 -- =========================================================
 
@@ -439,7 +439,7 @@ Go
 -- =========================================================
 -- Procure Name: ContactPreference_Find
 -- Author:           Data Juggler - Data Tier.Net Procedure Generator
--- Create Date:   5/10/2024
+-- Create Date:   5/12/2024
 -- Description:    Find an existing ContactPreference
 -- =========================================================
 
@@ -496,7 +496,7 @@ Go
 -- =========================================================
 -- Procure Name: ContactPreference_Delete
 -- Author:           Data Juggler - Data Tier.Net Procedure Generator
--- Create Date:   5/10/2024
+-- Create Date:   5/12/2024
 -- Description:    Delete an existing ContactPreference
 -- =========================================================
 
@@ -550,7 +550,7 @@ Go
 -- =========================================================
 -- Procure Name: ContactPreference_FetchAll
 -- Author:           Data Juggler - Data Tier.Net Procedure Generator
--- Create Date:   5/10/2024
+-- Create Date:   5/12/2024
 -- Description:    Returns all ContactPreference objects
 -- =========================================================
 
@@ -599,9 +599,60 @@ set ANSI_NULLS ON
 set QUOTED_IDENTIFIER ON
 Go
 -- =========================================================
+-- Procure Name: ContactView_FetchAll
+-- Author:           Data Juggler - Data Tier.Net Procedure Generator
+-- Create Date:   5/12/2024
+-- Description:    Returns all ContactView objects
+-- =========================================================
+
+-- Check if the procedure already exists
+IF EXISTS (select * from syscomments where id = object_id ('ContactView_FetchAll'))
+
+    -- Procedure Does Exist, Drop First
+    BEGIN
+
+        -- Execute Drop
+        Drop Procedure ContactView_FetchAll
+
+        -- Test if procedure was dropped
+        IF OBJECT_ID('dbo.ContactView_FetchAll') IS NOT NULL
+
+            -- Print Line Drop Failed
+            PRINT '<<< Drop Failed On Procedure ContactView_FetchAll >>>'
+
+        Else
+
+            -- Print Line Procedure Dropped
+            PRINT '<<< Drop Suceeded On Procedure ContactView_FetchAll >>>'
+
+    End
+
+GO
+
+Create PROCEDURE ContactView_FetchAll
+
+AS
+BEGIN
+
+    -- SET NOCOUNT ON added to prevent extra result sets from
+    -- interfering with SELECT statements.
+    SET NOCOUNT ON
+
+    -- Begin Select Statement
+    Select [Address],[City],[EmailAddress],[FirstName],[FollowUpDate],[Id],[ImagePath],[LastContactDate],[LastName],[PhoneNumber],[StateCode],[StateId],[StateName],[ZipCode]
+
+    -- From tableName
+    From [ContactView]
+
+END
+
+set ANSI_NULLS ON
+set QUOTED_IDENTIFIER ON
+Go
+-- =========================================================
 -- Procure Name: State_Insert
 -- Author:           Data Juggler - Data Tier.Net Procedure Generator
--- Create Date:   5/10/2024
+-- Create Date:   5/12/2024
 -- Description:    Insert a new State
 -- =========================================================
 
@@ -660,7 +711,7 @@ Go
 -- =========================================================
 -- Procure Name: State_Update
 -- Author:           Data Juggler - Data Tier.Net Procedure Generator
--- Create Date:   5/10/2024
+-- Create Date:   5/12/2024
 -- Description:    Update an existing State
 -- =========================================================
 
@@ -720,7 +771,7 @@ Go
 -- =========================================================
 -- Procure Name: State_Find
 -- Author:           Data Juggler - Data Tier.Net Procedure Generator
--- Create Date:   5/10/2024
+-- Create Date:   5/12/2024
 -- Description:    Find an existing State
 -- =========================================================
 
@@ -777,7 +828,7 @@ Go
 -- =========================================================
 -- Procure Name: State_Delete
 -- Author:           Data Juggler - Data Tier.Net Procedure Generator
--- Create Date:   5/10/2024
+-- Create Date:   5/12/2024
 -- Description:    Delete an existing State
 -- =========================================================
 
@@ -831,7 +882,7 @@ Go
 -- =========================================================
 -- Procure Name: State_FetchAll
 -- Author:           Data Juggler - Data Tier.Net Procedure Generator
--- Create Date:   5/10/2024
+-- Create Date:   5/12/2024
 -- Description:    Returns all State objects
 -- =========================================================
 
@@ -885,7 +936,7 @@ Go
 -- =========================================================
 -- Procure Name: ContactPreference_FetchAllForContactId
 -- Author:           Data Juggler - Data Tier.Net Procedure Generator
--- Create Date:   5/10/2024
+-- Create Date:   5/12/2024
 -- Description:    Returns all ContactPreference objects for the ContactId given.
 -- =========================================================
 

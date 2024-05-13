@@ -1,8 +1,8 @@
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
-.bluebutton
+.blackbutton
 {
-    background-image: url('../Images/BlueButton.png');
+    background-image: url('../Images/blackbutton.png');
     background-size: 100% 100%;    
     width: 120px;
     height: 40px;
@@ -15,9 +15,9 @@
     color: white;
     
 }
-.bluebutton2
+.blackbutton2
 {
-    background-image: url('../Images/BlueButton.png');
+    background-image: url('../Images/blackbutton.png');
     background-size: 100% 100%;    
     width: 180px;
     height: 40px;
@@ -26,7 +26,7 @@
     border: none;
     position: relative;
     top: 0px;
-    left: 0px;
+    left: 16vw;
     color: white;
 }
 .border1
@@ -85,11 +85,70 @@
     visibility: hidden;
     display: none;    
 }
+.fixedsidebar
+{
+    background-image: url('../Images/SideBarWithLogo.png');
+    width: 14%;
+    height: 100vh;   
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 15;
+    background-size: 100% 100%;
+    overflow: hidden;
+    border-right: 1px solid black;    
+    font-family: Calibri;
+    font-size: 14px;        
+}
+.grid5
+{
+    background-image: url('../images/GridBodyDark.png');
+    background-repeat: no-repeat;
+    background-color: darkgray;
+    background-size: 100% 100%;
+    width: 800px;
+    max-width: 800px;
+    min-width: 800px;
+    height: 360px; 
+    max-height: 360px;    
+    min-width: 36px;
+    overflow-x: hidden;    
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;    
+    line-height: 1.1vh;
+    position: relative;
+    top: 16px;
+    left: 16vw;
+}
+.gridheader5
+{
+    background-image: url('../images/GridHeaderDark.png');
+    background-repeat: no-repeat;
+    background-color: darkgray;
+    background-size: 100% 100%;
+    width: 800px;
+    max-width: 800px;
+    min-width: 800px;
+    height: 32px; 
+    max-height: 32px;    
+    min-height: 32px;
+    vertical-align: top;
+    overflow: hidden;    
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;    
+    line-height: 1.6vh;
+    position: relative;
+    top: 24px !important;
+    left: 16vw;
+}
+.right16percent
+{
+    position: relative;
+    left: 16vw;
+}
 .rightcolumn
 {
     float: right;
     position: relative;
-    right: 0;
+    right: 20vw;
     width: 40vw;
     height: 20vh;
 }

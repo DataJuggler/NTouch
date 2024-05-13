@@ -2,8 +2,10 @@
 
 #region using statements
 
+using DataJuggler.UltimateHelper;
 using ObjectLibrary.Enumerations;
 using System;
+using System.Security.Cryptography;
 
 #endregion
 
@@ -11,16 +13,16 @@ using System;
 namespace ObjectLibrary.BusinessObjects
 {
 
-    #region class Contact
+    #region class ContactView
     [Serializable]
-    public partial class Contact
+    public partial class ContactView
     {
 
         #region Private Variables
         #endregion
 
         #region Constructor
-        public Contact()
+        public ContactView()
         {
 
         }
@@ -29,20 +31,20 @@ namespace ObjectLibrary.BusinessObjects
         #region Methods
 
             #region Clone()
-            public Contact Clone()
+            public ContactView Clone()
             {
                 // Create New Object
-                Contact newContact = (Contact) this.MemberwiseClone();
+                ContactView newContactView = (ContactView) this.MemberwiseClone();
 
                 // Return Cloned Object
-                return newContact;
+                return newContactView;
             }
             #endregion
 
         #endregion
 
         #region Properties
-
+            
             #region Shortaddress
             /// <summary>
             /// This read only property returns the value of Shortaddress from the object Address.
@@ -56,10 +58,10 @@ namespace ObjectLibrary.BusinessObjects
                     string shortaddress = Address;
                     
                     // if Address exists
-                    if ((Address != null) && (Address.Length > 20))
+                    if ((Address != null) && (Address.Length > 18))
                     {
                         // set the return value
-                        shortaddress = Address.Substring(0, 20);
+                        shortaddress = Address.Substring(0, 18);
                     }
                     
                     // return value
@@ -67,7 +69,7 @@ namespace ObjectLibrary.BusinessObjects
                 }
             }
             #endregion
-            
+
         #endregion
 
     }

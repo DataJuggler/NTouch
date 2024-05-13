@@ -25,6 +25,40 @@ namespace DataAccessComponent.Data.Writers
 
         #region Static Methods
 
+            #region CreateDeleteContactPreferenceStoredProcedure(ContactPreference contactPreference)
+            /// <summary>
+            /// This method creates an instance of an
+            /// 'DeleteContactPreference'StoredProcedure' object and
+            /// creates the sql parameter[] array needed
+            /// to execute the procedure 'ContactPreference_Delete'.
+            /// </summary>
+            /// <param name="contactPreference">The 'ContactPreference' to Delete.</param>
+            /// <returns>An instance of a 'DeleteContactPreferenceStoredProcedure' object.</returns>
+            public static new DeleteContactPreferenceStoredProcedure CreateDeleteContactPreferenceStoredProcedure(ContactPreference contactPreference)
+            {
+                // Initial Value
+                DeleteContactPreferenceStoredProcedure deleteContactPreferenceStoredProcedure = new DeleteContactPreferenceStoredProcedure();
+
+                // if contactPreference.DeleteByContactId is true
+                if (contactPreference.DeleteByContactId)
+                {
+                        // Change the procedure name
+                        deleteContactPreferenceStoredProcedure.ProcedureName = "ContactPreference_DeleteByContactId";
+                        
+                        // Create the @ContactId parameter
+                        deleteContactPreferenceStoredProcedure.Parameters = SqlParameterHelper.CreateSqlParameters("@ContactId", contactPreference.ContactId);
+                }
+                else
+                {
+                    // Now Create Parameters For The DeleteProc
+                    deleteContactPreferenceStoredProcedure.Parameters = CreatePrimaryKeyParameter(contactPreference);
+                }
+
+                // return value
+                return deleteContactPreferenceStoredProcedure;
+            }
+            #endregion
+            
             #region CreateFetchAllContactPreferencesStoredProcedure(ContactPreference contactPreference)
             /// <summary>
             /// This method creates an instance of a

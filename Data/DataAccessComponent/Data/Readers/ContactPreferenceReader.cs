@@ -44,7 +44,7 @@ namespace DataAccessComponent.Data.Readers
                 {
                     // Load Each field
                     contactPreference.ContactId = DataHelper.ParseInteger(dataRow.ItemArray[contactIdfield], 0);
-                    contactPreference.ContactMethod = DataHelper.ParseInteger(dataRow.ItemArray[contactMethodfield], 0);
+                    contactPreference.ContactMethod = (ContactMethodEnum) DataHelper.ParseInteger(dataRow.ItemArray[contactMethodfield], 0);
                     contactPreference.UpdateIdentity(DataHelper.ParseInteger(dataRow.ItemArray[idfield], 0));
                 }
                 catch

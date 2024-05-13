@@ -6,27 +6,24 @@
 
 <PageTitle>Index</PageTitle>
 
-<h1>@Title</h1>
+<h1 class="right16percent">@Title</h1>
 
 <div class="height24"></div>
 <br />
 
-@if (ScreenType == ScreenTypeEnum.EditContact)
+@if ((ScreenType == ScreenTypeEnum.AddContact) || (ScreenType == ScreenTypeEnum.EditContact))
 {
     <ContactEditor Parent="this"></ContactEditor>
-    @* <CheckedListBox Parent="this" HeightUnit="px" Height="80"
-        Width=120 ListItemWidth=120 ListItemLeft=12 CheckBoxTextXPosition="-1" CheckBoxTextYPosition="-1"
-        ListItemTop="0" ListBackgroundColor="Color.Orange" Top="0" CheckBoxXPosition="-4" CheckBoxYPosition=1
-        Left=0  ListItemClassName="" ListItemHeight="16" ClassName="container border1">
-    </CheckedListBox> *@
 }
-else
+else if (ScreenType == ScreenTypeEnum.ContactList)
 {
-    <button class="bluebutton2" @onclick=AddContact>Add Contact</button>
+    <button class="blackbutton2" @onclick=AddContact>Add Contact</button>
+    <Grid Name="ContactsGrid" ClassName="grid5" Unit="px" Width="880"
+        HeightUnit="px" Height=640 ShowHeader="false" HeaderText="Tests" Parent="this"
+        Left="0" HeaderClassName="gridheader5" ShowColumnHeaders=true Top=24
+        FontSize = "12" EnableClick=true ></Grid>
 }
 
+@* <button class="blackbutton2" @onclick=@ImportExcel>Import Excel</button> *@
 
-
-@* <button class="bluebutton2" @onclick=@ImportExcel>Import Excel</button>
-
-<Label Name="StatusLabel" Parent="this"></Label>  *@
+<Label Name="StatusLabel" Parent="this"></Label>

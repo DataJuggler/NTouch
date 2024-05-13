@@ -13,8 +13,9 @@ namespace ObjectLibrary.Enumerations
     /// </summary>
     public enum ScreenTypeEnum : int
     {
-        IndexPage = 0,
-        EditContact = 1
+        ContactList = 0,
+        AddContact = 1,
+        EditContact = 2        
     }
     #endregion
 
