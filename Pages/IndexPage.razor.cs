@@ -108,9 +108,9 @@ namespace NTouch.Pages
                     column.Index = 0;
                     column.ColumnNumber = 1;                        
                     column.ColumnText = column.Caption;
-                    column.Width = 48;
+                    column.Width = 64;
                     column.Height = 16;                    
-                    column.ClassName = "displayinlineblock textdonotwrap width48 colorwhite textalignleft right16 down4 fontsize12";  
+                    column.ClassName = "displayinlineblock textdonotwrap width64 colorwhite textalignleft right16 down4 fontsize12";  
 
                     // Add this column
                     ContactsGrid.Columns.Add(column);
@@ -122,9 +122,9 @@ namespace NTouch.Pages
                     column2.Index = 1;
                     column2.ColumnNumber = 2;                        
                     column2.ColumnText = column2.Caption;
-                    column2.Width = 40;
+                    column2.Width = 64;
                     column2.Height = 16;
-                    column2.ClassName = "displayinlineblock textdonotwrap width48 colorwhite textalignleft down4 right24 fontsize12";  
+                    column2.ClassName = "displayinlineblock textdonotwrap width64 colorwhite textalignleft down4 right16 fontsize12";  
 
                     // Add Column 2 to the header row
                     ContactsGrid.Columns.Add(column2);
@@ -194,7 +194,7 @@ namespace NTouch.Pages
                     column7.ColumnText = column7.Caption;
                     column7.Width = 48;
                     column7.Height = 16;
-                    column7.ClassName = "displayinlineblock textdonotwrap width48 colorwhite textalignleft down4 right8 fontsize12";
+                    column7.ClassName = "displayinlineblock textdonotwrap width48 colorwhite textalignleft down4 right2 fontsize12";
 
                     // Add this column
                     ContactsGrid.Columns.Add(column7);
@@ -208,7 +208,7 @@ namespace NTouch.Pages
                     column8.ColumnText = column8.Caption;
                     column8.Width = 80;
                     column8.Height = 16;
-                    column8.ClassName = "displayinlineblock textdonotwrap width80 colorwhite textalignleft down4 right8 fontsize12";
+                    column8.ClassName = "displayinlineblock textdonotwrap width80 colorwhite textalignleft down4 right4 fontsize12";
 
                      // Add this column
                     ContactsGrid.Columns.Add(column8);
@@ -222,7 +222,7 @@ namespace NTouch.Pages
                     column9.ColumnText = column9.Caption;
                     column9.Width = 80;
                     column9.Height = 16;
-                    column9.ClassName = "displayinlineblock textdonotwrap width80 colorwhite textalignleft down4 right8 fontsize12";
+                    column9.ClassName = "displayinlineblock textdonotwrap width80 colorwhite textalignleft down4 right4 fontsize12";
 
                     // Add this column
                     ContactsGrid.Columns.Add(column9);
@@ -242,9 +242,9 @@ namespace NTouch.Pages
                         column.Index = 0;
                         column.ColumnNumber = 1;                        
                         column.ColumnText = contact.FirstName;
-                        column.Width = 48;
+                        column.Width = 64;
                         column.Height = 16;                        
-                        column.ClassName = "displayinlineblock textdonotwrap width48 colorwhite textalignleft down4 right16 fontsize12 cursorpointer";  
+                        column.ClassName = "displayinlineblock textdonotwrap width64 colorwhite textalignleft down4 right16 fontsize12 cursorpointer";  
 
                         // Set the Row
                         column.Row = row;
@@ -258,9 +258,9 @@ namespace NTouch.Pages
                         column2.Index = 1;
                         column2.ColumnNumber = 2;                        
                         column2.ColumnText = contact.LastName;
-                        column2.Width = 48;
+                        column2.Width = 64;
                         column2.Height = 16;
-                        column2.ClassName = "displayinlineblock textdonotwrap width48 colorwhite textaligncenter down4 right12 fontsize12";  
+                        column2.ClassName = "displayinlineblock textdonotwrap width64 colorwhite textalignleft down4 right16 fontsize12";  
 
                         // Add Column 2 to the header row
                         row.Columns.Add(column2);
