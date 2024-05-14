@@ -86,7 +86,7 @@ namespace DataAccessComponent.Connection
                 catch (Exception error)
                 {
                     // If ErrorProcessor exists
-                    if (HasErrorProcessor)
+                    if (this.ErrorProcessor != null)
                     {
                         // Log this error
                         this.ErrorProcessor.LogError(methodName, objectName, error);
@@ -109,46 +109,29 @@ namespace DataAccessComponent.Connection
 
         #region Properties
 
-            #region ErrorProcessor
-            /// <summary>
-            /// This property handles how errors will be "logged"
-            /// within this application.
-            /// </summary>
-            public ErrorHandler ErrorProcessor
-            {
-                get { return errorProcessor; }
-                set { errorProcessor = value; }
-            }
-            #endregion
+        #region ErrorProcessor
+        /// <summary>
+        /// This property handles how errors will be "logged"
+        /// within this application.
+        /// </summary>
+        public ErrorHandler ErrorProcessor
+        {
+            get { return errorProcessor; }
+            set { errorProcessor = value; }
+        }
+        #endregion
 
-            #region HasErrorProcessor
-            /// <summary>
-            /// This property returns true if this object has an 'ErrorProcessor'.
-            /// </summary>
-            public bool HasErrorProcessor
-            {
-                get
-                {
-                    // initial value
-                    bool hasErrorProcessor = (this.ErrorProcessor != null);
-                    
-                    // return value
-                    return hasErrorProcessor;
-                }
-            }
-            #endregion
-            
-            #region ParentController
-            /// <summary>
-            /// This property is a reference to the parent that created this object.
-            /// The need for this object is to be able to call the 
-            /// </summary>
-            public ApplicationController ParentController
-            {
-                get { return parentController; }
-                set { parentController = value; }
-            }
-            #endregion
+        #region ParentController
+        /// <summary>
+        /// This property is a reference to the parent that created this object.
+        /// The need for this object is to be able to call the 
+        /// </summary>
+        public ApplicationController ParentController
+        {
+            get { return parentController; }
+            set { parentController = value; }
+        }
+        #endregion
 
         #endregion
 

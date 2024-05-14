@@ -42,32 +42,6 @@ namespace ObjectLibrary.BusinessObjects
         #endregion
 
         #region Properties
-
-            #region Shortaddress
-            /// <summary>
-            /// This read only property returns the value of Shortaddress from the object Address.
-            /// </summary>
-            public string Shortaddress
-            {
-                
-                get
-                {
-                    // initial value
-                    string shortaddress = Address;
-                    
-                    // if Address exists
-                    if ((Address != null) && (Address.Length > 20))
-                    {
-                        // set the return value
-                        shortaddress = Address.Substring(0, 20);
-                    }
-                    
-                    // return value
-                    return shortaddress;
-                }
-            }
-            #endregion
-            
         #endregion
 
     }

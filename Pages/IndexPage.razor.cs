@@ -56,6 +56,9 @@ namespace NTouch.Pages
 
             // Set the title
             Title = "Manage Contacts";
+
+            // Default
+            ScreenType = ScreenTypeEnum.ContactList;
         }
         #endregion
         
@@ -296,7 +299,7 @@ namespace NTouch.Pages
                         column5.ColumnName = "ShortAddress";
                         column5.Index = 3;
                         column5.ColumnNumber = 4;                        
-                        column5.ColumnText = contact.Shortaddress;
+                        column5.ColumnText = contact.ShortAddress;
                         column5.Width = 120;
                         column5.Height = 16;
                         column5.ClassName = "displayinlineblock textdonotwrap width120 colorwhite textalignleft down4 right16 fontsize12";
@@ -408,8 +411,10 @@ namespace NTouch.Pages
                 WorksheetInfo info = new WorksheetInfo();
                 info.LoadColumnOptions = LoadColumnOptionsEnum.LoadAllColumnsExceptExcluded;
                 info.ColumnsToLoad = 3;
-                info.Path = "C:\\Temp\\States.xlsx";
                 info.SheetName = "StateList";
+
+                // Change to whereever you have the project saved
+                info.Path = "C:\\Projects\\GitHub\\NTouch\\Excel\\States.xlsx";
 
                 // Load the worksheet
                 Worksheet worksheet = ExcelDataLoader.LoadWorksheet(info);

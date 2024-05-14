@@ -37,38 +37,28 @@ namespace ObjectLibrary.BusinessObjects
                 // Return Cloned Object
                 return newContactPreference;
             }
-        #endregion
-
-            #region ToString()
-            /// <summary>
-            /// method returns the ToString() of the ContactMethod
-            /// </summary>
-            public override string ToString()
-            {
-                return ContactMethod.ToString();
-            }
             #endregion
-            
+
         #endregion
 
         #region Properties
 
-        #region DeleteByContactId
-        /// <summary>
-        /// This property gets or sets the value for 'DeleteByContactId'.
-        /// </summary>
-        public bool DeleteByContactId
-        {
-            get { return deleteByContactId; }
-            set { deleteByContactId = value; }
-        }
-        #endregion
+            #region DeleteByContactId
+            /// <summary>
+            /// This property gets or sets the value for 'DeleteByContactId'.
+            /// </summary>
+            public bool DeleteByContactId
+            {
+                get { return deleteByContactId; }
+                set { deleteByContactId = value; }
+            }
+            #endregion
 
-        #region LoadByContactId
-        /// <summary>
-        /// This property gets or sets the value for 'LoadByContactId'.
-        /// </summary>
-        public bool LoadByContactId
+            #region LoadByContactId
+            /// <summary>
+            /// This property gets or sets the value for 'LoadByContactId'.
+            /// </summary>
+            public bool LoadByContactId
             {
                 get { return loadByContactId; }
                 set { loadByContactId = value; }

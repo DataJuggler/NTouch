@@ -39,31 +39,6 @@ namespace ObjectLibrary.BusinessObjects
 
         #region Properties
 
-            #region ShortEmail
-            /// <summary>
-            /// This read only property returns the value of ShortEmail from the object EmailAddress.
-            /// </summary>
-            public string ShortEmail
-            {
-                
-                get
-                {
-                    // initial value
-                    string shortEmail = EmailAddress;
-                    
-                    // if EmailAddress exists
-                    if ((EmailAddress != null) && (EmailAddress.Length > 19))
-                    {
-                        // set the return value
-                        shortEmail = EmailAddress.Substring(0, 19);
-                    }
-                    
-                    // return value
-                    return shortEmail;
-                }
-            }
-            #endregion
-            
             #region string Address
             public string Address
             {

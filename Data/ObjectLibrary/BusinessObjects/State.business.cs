@@ -44,7 +44,7 @@ namespace ObjectLibrary.BusinessObjects
             /// </summary>
             public override string ToString()
             {
-                // override
+                // return the State name
                 return Name;
             }
             #endregion

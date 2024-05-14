@@ -5,7 +5,6 @@
 using DataJuggler.UltimateHelper;
 using ObjectLibrary.Enumerations;
 using System;
-using System.Security.Cryptography;
 
 #endregion
 
@@ -44,32 +43,64 @@ namespace ObjectLibrary.BusinessObjects
         #endregion
 
         #region Properties
-            
-            #region Shortaddress
+
+            #region ShortAddress
             /// <summary>
-            /// This read only property returns the value of Shortaddress from the object Address.
+            /// This read only property returns the value of ShortAddress from the object Address.
             /// </summary>
-            public string Shortaddress
+            public string ShortAddress
             {
                 
                 get
                 {
                     // initial value
-                    string shortaddress = Address;
-                    
-                    // if Address exists
-                    if ((Address != null) && (Address.Length > 18))
+                    string shortAddress = Address;
+
+                    // If the shortAddress string exists
+                    if (TextHelper.Exists(shortAddress))
                     {
-                        // set the return value
-                        shortaddress = Address.Substring(0, 18);
+                        if (Address.Length > 19)
+                        {
+                            // Get a short Address
+                            shortAddress = Address.Substring(0, 19);
+                        }
                     }
                     
                     // return value
-                    return shortaddress;
+                    return shortAddress;
                 }
             }
             #endregion
+            
+            #region ShortEmail
+            /// <summary>
+            /// This read only property returns the value of ShortEmail from the object Email.
+            /// </summary>
+            public string ShortEmail
+            {
+                
+                get
+                {
+                    // initial value
+                    string shortEmail = EmailAddress;
 
+                    // If the EmailAddress string exists
+                    if (TextHelper.Exists(EmailAddress))
+                    {
+                        // if > 19
+                        if (EmailAddress.Length > 19)
+                        {
+                            // Set a short email
+                            shortEmail = EmailAddress.Substring(0, 19);
+                        }
+                    }
+                    
+                    // return value
+                    return shortEmail;
+                }
+            }
+            #endregion
+            
         #endregion
 
     }

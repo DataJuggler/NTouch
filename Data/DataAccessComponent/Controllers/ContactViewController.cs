@@ -104,7 +104,7 @@ namespace DataAccessComponent.Controllers
                 catch (Exception error)
                 {
                     // If ErrorProcessor exists
-                    if (HasErrorProcessor)
+                    if (this.ErrorProcessor != null)
                     {
                         // Log the current error
                         this.ErrorProcessor.LogError(methodName, objectName, error);
@@ -136,23 +136,6 @@ namespace DataAccessComponent.Controllers
             }
             #endregion
 
-            #region HasErrorProcessor
-            /// <summary>
-            /// This property returns true if this object has an 'ErrorProcessor'.
-            /// </summary>
-            public bool HasErrorProcessor
-            {
-                get
-                {
-                    // initial value
-                    bool hasErrorProcessor = (this.ErrorProcessor != null);
-                    
-                    // return value
-                    return hasErrorProcessor;
-                }
-            }
-            #endregion
-            
         #endregion
 
     }
