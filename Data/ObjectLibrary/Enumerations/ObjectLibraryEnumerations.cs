@@ -32,5 +32,4 @@ namespace ObjectLibrary.Enumerations
     }
     #endregion
 
-
 }

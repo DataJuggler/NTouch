@@ -2,9 +2,9 @@
 
 #region using statements
 
-using DataJuggler.UltimateHelper;
 using ObjectLibrary.Enumerations;
 using System;
+using DataJuggler.UltimateHelper;
 
 #endregion
 
@@ -49,8 +49,7 @@ namespace ObjectLibrary.BusinessObjects
             /// This read only property returns the value of ShortAddress from the object Address.
             /// </summary>
             public string ShortAddress
-            {
-                
+            {    
                 get
                 {
                     // initial value
@@ -65,20 +64,19 @@ namespace ObjectLibrary.BusinessObjects
                             shortAddress = Address.Substring(0, 19);
                         }
                     }
-                    
+            
                     // return value
                     return shortAddress;
                 }
             }
             #endregion
-            
+
             #region ShortEmail
             /// <summary>
             /// This read only property returns the value of ShortEmail from the object Email.
             /// </summary>
             public string ShortEmail
             {
-                
                 get
                 {
                     // initial value
@@ -94,13 +92,13 @@ namespace ObjectLibrary.BusinessObjects
                             shortEmail = EmailAddress.Substring(0, 19);
                         }
                     }
-                    
+         
                     // return value
                     return shortEmail;
                 }
             }
             #endregion
-            
+
         #endregion
 
     }

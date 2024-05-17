@@ -437,7 +437,7 @@ namespace NTouch.Pages
                         state.Code = tempState.Code;
 
                         // Perform the save
-                        bool saved = gateway.SaveState(ref state);                        
+                        bool saved = gateway.SaveState(ref state);
                     }
                 }
 

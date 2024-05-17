@@ -670,4 +670,3 @@ namespace DataAccessComponent.DataGateway
     #endregion
 
 }
-
