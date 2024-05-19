@@ -23,8 +23,7 @@
 
 <div class="right16percent">
     <ValidationComponent Name="FirstNameControl" Parent="this" Caption="First Name:" ClassName="displayinlineblock"
-        SendAllTextToParent="true"
-        Column1Width="100" LabelClassName="down3 right2" Width="240"></ValidationComponent>
+        SendAllTextToParent="true" Column1Width="100" LabelClassName="down3 right2" Width="240"></ValidationComponent>
     <ValidationComponent Name="LastNameControl" Parent="this" Caption="Last Name:" ClassName="displayinlineblock"
         Column1Width="100" LabelClassName="down3 right2" Width="240"></ValidationComponent>
     <ValidationComponent Name="PhoneControl" Parent="this" Caption="Phone:" ClassName="displayinlineblock"
@@ -93,4 +92,5 @@
 <div class="buttoncontainer">
     <button class="blackbutton" @onclick=Save>Save</button>
     <button class="blackbutton" @onclick=Cancel>Cancel</button>
+    <button class="blackbuttonwide" @onclick=ViewSecret>View Secret</button>
 </div>

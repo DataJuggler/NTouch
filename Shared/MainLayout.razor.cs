@@ -23,6 +23,7 @@ namespace NTouch.Shared
         #region Private Variables
         private List<IBlazorComponent> children;
         private IndexPage indexPage;
+        private string sessionId;
         #endregion
 
         #region Constructor
@@ -137,6 +138,23 @@ namespace NTouch.Shared
             }
             #endregion
             
+            #region HasSessionId
+            /// <summary>
+            /// This property returns true if the 'SessionId' exists.
+            /// </summary>
+            public bool HasSessionId
+            {
+                get
+                {
+                    // initial value
+                    bool hasSessionId = (!String.IsNullOrEmpty(this.SessionId));
+                    
+                    // return value
+                    return hasSessionId;
+                }
+            }
+            #endregion
+            
             #region IndexPage
             /// <summary>
             /// This property gets or sets the value for 'IndexPage'.
@@ -145,6 +163,17 @@ namespace NTouch.Shared
             {
                 get { return indexPage; }
                 set { indexPage = value; }
+            }
+            #endregion
+            
+            #region SessionId
+            /// <summary>
+            /// This property gets or sets the value for 'SessionId'.
+            /// </summary>
+            public string SessionId
+            {
+                get { return sessionId; }
+                set { sessionId = value; }
             }
             #endregion
             

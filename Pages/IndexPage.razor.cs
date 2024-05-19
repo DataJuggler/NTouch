@@ -41,6 +41,7 @@ namespace NTouch.Pages
         private Grid contactsGrid;
         private Label statusLabel;
         private ScreenTypeEnum screenType;
+        private SecretComponent secretControl;
         private List<ContactView> contactsList;
         private int contactIdToSelect;
         #endregion
@@ -448,7 +449,7 @@ namespace NTouch.Pages
             
             #region OnAfterRenderAsync(bool firstRender)
             /// <summary>
-            /// This method is used to verify a user
+            /// This method is used to load a Contact that was just opened
             /// </summary>
             /// <param name="firstRender"></param>
             /// <returns></returns>
@@ -463,7 +464,7 @@ namespace NTouch.Pages
                     // if the value for HasContactEditor is true
                     if (HasContactEditor)
                     {
-                        // if the SelectedContact exists
+                        // if the ContactEditor does not have a Selected Object, or if the Selected Contact doesn't match
                         if ((!ContactEditor.HasSelectedContact) || (ContactEditor.SelectedContact.Id != ContactIdToSelect))
                         {
                             // Set the SelectedContact
@@ -489,8 +490,18 @@ namespace NTouch.Pages
                     // Set the id
                     int contactId = message.Id;
 
+                    // testing only
+                    string description = message.Text;
+
                     // Enter Edit Mode
                     ScreenType = ScreenTypeEnum.EditContact;
+
+                    // if the value for HasMainLayout is true
+                    if (HasMainLayout)
+                    {
+                        // Set the Session Id
+                        MainLayout.SessionId = Guid.NewGuid().ToString().Substring(12);
+                    }
 
                     // Must select the contact when the ContactEditor is registered
                     ContactIdToSelect = contactId;
@@ -566,7 +577,7 @@ namespace NTouch.Pages
                     ContactsList = gateway.LoadContactViews();
 
                     // if the value for HasContactsGrid is true and has ContactList
-                    if ((HasContactsGrid) && (HasContactsList))
+                    if ((HasContactsGrid) && (ListHelper.HasOneOrMoreItems(ContactsList)))
                     {
                         // Reorder the ContactsList
                         ContactsList = ContactsList.OrderBy(x => x.LastName).ThenBy(x => x.FirstName).ToList();
@@ -577,6 +588,29 @@ namespace NTouch.Pages
                         // Refresh the Grid
                         ContactsGrid.Refresh();
                     }
+                    else
+                    {
+                        // Get the last error
+                        Exception error = gateway.GetLastException();
+
+                        // If the error object exists
+                        if (NullHelper.Exists(error))
+                        {
+                            // if the value for HasStatusLabel is true
+                            if (HasStatusLabel)
+                            {
+                                StatusLabel.SetTextValue(error.ToString());
+                            }
+                        }
+                    }
+                }
+                else if (component is SecretComponent)
+                {
+                    // Store
+                    SecretControl = component as SecretComponent;
+
+                    // Update the UI with the Secret
+                    SecretControl.Refresh();
                 }
             }
             #endregion
@@ -725,6 +759,23 @@ namespace NTouch.Pages
             }
             #endregion
             
+            #region HasSecretControl
+            /// <summary>
+            /// This property returns true if this object has a 'SecretControl'.
+            /// </summary>
+            public bool HasSecretControl
+            {
+                get
+                {
+                    // initial value
+                    bool hasSecretControl = (this.SecretControl != null);
+                    
+                    // return value
+                    return hasSecretControl;
+                }
+            }
+            #endregion
+            
             #region HasStatusLabel
             /// <summary>
             /// This property returns true if this object has a 'StatusLabel'.
@@ -809,6 +860,42 @@ namespace NTouch.Pages
             {
                 get { return screenType; }
                 set { screenType = value; }
+            }
+            #endregion
+            
+            #region SecretControl
+            /// <summary>
+            /// This property gets or sets the value for 'SecretControl'.
+            /// </summary>
+            public SecretComponent SecretControl
+            {
+                get { return secretControl; }
+                set { secretControl = value; }
+            }
+            #endregion
+            
+            #region SessionId
+            /// <summary>
+            /// This read only property returns the value of SessionId from the object MainLayout.
+            /// </summary>
+            public string SessionId
+            {
+                
+                get
+                {
+                    // initial value
+                    string sessionId = "";
+                    
+                    // if MainLayout exists
+                    if (HasMainLayout)
+                    {
+                        // set the return value
+                        sessionId = MainLayout.SessionId;
+                    }
+                    
+                    // return value
+                    return sessionId;
+                }
             }
             #endregion
             

@@ -44,7 +44,7 @@ namespace ObjectLibrary.BusinessObjects
             /// </summary>
             public override string ToString()
             {
-                // return the name of the state
+                // return the State name when ToString is called.
                 return Name;
             }
             #endregion
@@ -53,11 +53,11 @@ namespace ObjectLibrary.BusinessObjects
 
         #region Properties
 
-            #region FindByName
-            /// <summary>
-            /// This property gets or sets the value for 'FindByName'.
-            /// </summary>
-            public bool FindByName
+        #region FindByName
+        /// <summary>
+        /// This property gets or sets the value for 'FindByName'.
+        /// </summary>
+        public bool FindByName
             {
                 get { return findByName; }
                 set { findByName = value; }

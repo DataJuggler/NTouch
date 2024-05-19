@@ -29,6 +29,20 @@
     left: 16vw;
     color: white;
 }
+.blackbuttonwide
+{
+    background-image: url('../Images/blackbutton.png');
+    background-size: 100% 100%;    
+    width: 160px;
+    height: 40px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    color: white;    
+}
 .border1
 {
     border-width: 1px;

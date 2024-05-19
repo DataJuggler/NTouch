@@ -42,13 +42,13 @@ namespace NTouch.Components
         private ValidationComponent phoneControl;
         private ValidationComponent emailControl;
         private ValidationComponent addressControl;
-        private ValidationComponent cityControl;        
-        private ComboBox stateComboBox;
-        private ComboBox contactPreferencesComboBox;
-        private ValidationComponent zipControl;
-        private CalendarComponent lastContactedDateControl;
-        private CalendarComponent followUpDateControl;
+        private ValidationComponent cityControl;     
         private ValidationComponent notesControl;
+        private ValidationComponent zipControl;
+        private ComboBox stateComboBox;
+        private ComboBox contactPreferencesComboBox;        
+        private CalendarComponent lastContactedDateControl;
+        private CalendarComponent followUpDateControl;        
         private string title;
         private Contact selectedContact;
         private string uploadButtonStyle;
@@ -484,8 +484,6 @@ namespace NTouch.Components
                         {
                             // Load the choices
                             ContactPreferencesComboBox.LoadItems(typeof(ContactMethodEnum));
-
-                            // Edit mode is different, must reselect choices
                         }
 
                         // if the value for HasSelectedContact is true
@@ -643,6 +641,24 @@ namespace NTouch.Components
             public void Cancel(object sender, EventArgs e)
             {
                 
+            }
+            #endregion
+            
+            #region ViewSecret()
+            /// <summary>
+            /// View Secret
+            /// </summary>
+            public void ViewSecret()
+            {
+                // if the value for HasParentIndexPage is true
+                if (HasParentIndexPage)
+                {
+                    // Switch to View Secret mode
+                    ParentIndexPage.ScreenType = ScreenTypeEnum.ViewSecret;
+
+                    // Update the UI
+                    ParentIndexPage.Refresh();
+                }
             }
             #endregion
             

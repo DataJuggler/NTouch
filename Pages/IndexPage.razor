@@ -15,6 +15,10 @@
 {
     <ContactEditor Parent="this"></ContactEditor>
 }
+else if (ScreenType == ScreenTypeEnum.ViewSecret)
+{
+    <SecretComponent Name="SecrentControl" Parent="this"></SecretComponent>
+}
 else if (ScreenType == ScreenTypeEnum.ContactList)
 {
     <button class="blackbutton2" @onclick=AddContact>Add Contact</button>
