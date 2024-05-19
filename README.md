@@ -8,7 +8,7 @@ DataJuggler.Blazor.Components. You will need SQL Server and Visual Studio 2022 t
 New Video:
 
 First Ever Opensource Saturday - Sunday Edition
-https://youtu.be/kohGlLIBMR0
+https://youtu.be/uxa1xR6xpzk
 
 # DataJuggler.Blazor.Components Updates
 
