@@ -17,7 +17,8 @@ namespace ObjectLibrary.Enumerations
         AddContact = 1,
         EditContact = 2,
         ContactList = 3,
-        ViewSecret = 4
+        ViewSecret = 4,
+        TestInfoBox = 5
     }
     #endregion
 

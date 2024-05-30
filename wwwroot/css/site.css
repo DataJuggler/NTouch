@@ -28,18 +28,34 @@
     top: 0px;
     left: 16vw;
     color: white;
+    vertical-align: middle;
 }
-.blackbuttonwide
+.blackbutton3
 {
     background-image: url('../Images/blackbutton.png');
     background-size: 100% 100%;    
-    width: 160px;
+    width: 200px;
     height: 40px;
     cursor: pointer;
     background-color: transparent;
     border: none;
     position: relative;
     top: 0px;
+    left: 16vw;
+    color: white;
+    vertical-align: middle;
+}
+.blackbuttonwide
+{
+    background-image: url('../Images/blackbutton.png');
+    background-size: 100% 100%;    
+    width: 240px;
+    height: 40px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    position: relative;
+    top: -80px;
     left: 0px;
     color: white;    
 }

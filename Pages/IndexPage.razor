@@ -3,6 +3,7 @@
 @using NTouch.Components
 @using ObjectLibrary.Enumerations
 @using System.Drawing
+@using DataJuggler.Blazor.Components.Enumerations
 
 <PageTitle>Index</PageTitle>
 
@@ -21,13 +22,29 @@ else if (ScreenType == ScreenTypeEnum.ViewSecret)
 }
 else if (ScreenType == ScreenTypeEnum.ContactList)
 {
-    <button class="blackbutton2" @onclick=AddContact>Add Contact</button>
+    <button class="displayinline blackbutton2" @onclick=AddContact>Add Contact</button>
+    <button class="blackbutton3" @onclick=@ShowInformationBox>Info Box Sample</button>
     <Grid Name="ContactsGrid" ClassName="grid5" Unit="px" Width="880"
         HeightUnit="px" Height=640 ShowHeader="false" HeaderText="Tests" Parent="this"
         Left="0" HeaderClassName="gridheader5 textdonotwrap" ShowColumnHeaders=true Top=24
-        FontSize = "12" EnableClick=true ></Grid>
+    FontSize = "12" EnableClick=true ></Grid>
+    
+}
+else if (ScreenType == ScreenTypeEnum.TestInfoBox)
+{
+    <button class="blackbutton3" @onclick=@ReturnToContactList>Back</button>
+
+    <InformationBox Parent="this" Title="Summary" Height="204" Width="340"
+        Column1Width="180" Column2Width="152" Column1Left="0" Gap="8"
+        Left="256" Theme="@ThemeEnum.Blue" BorderColor="Color.Gray" HeaderHeight="32"
+        HeaderTextVerticalOffset="3" Name="Summary">
+    </InformationBox>
+
+    
 }
 
 @* <button class="blackbutton2" @onclick=@ImportExcel>Import Excel</button> *@
+
+
 
 <Label ClassName="right16percent" Name="StatusLabel" Parent="this"></Label>

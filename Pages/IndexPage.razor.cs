@@ -3,6 +3,7 @@
 #region using statements
 
 using DataJuggler.Blazor.Components;
+using DataJuggler.Blazor.Components.Enumerations;
 using DataJuggler.Blazor.Components.Interfaces;
 using DataJuggler.Blazor.Components.Util;
 using Microsoft.AspNetCore.Components;
@@ -15,10 +16,6 @@ using DataJuggler.Excelerate;
 using DataJuggler.UltimateHelper;
 using NTouch.Objects;
 using DataAccessComponent.DataGateway;
-using DataJuggler.NET8.Enumerations;
-using DataJuggler.Cryptography;
-using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
-using OfficeOpenXml.Style;
 
 #endregion
 
@@ -44,6 +41,7 @@ namespace NTouch.Pages
         private SecretComponent secretControl;
         private List<ContactView> contactsList;
         private int contactIdToSelect;
+        private InformationBox infoBox;
         #endregion
 
         #region Constructor
@@ -391,6 +389,91 @@ namespace NTouch.Pages
             }
             #endregion
             
+            #region CreateSampleInfoBoxItems()
+            /// <summary>
+            /// returns a list of Sample Info Box Items
+            /// </summary>
+            public List<Item> CreateSampleInfoBoxItems()
+            {
+                // initial value
+                List<Item> items = new List<Item>();
+
+                // Create a new instance of an 'Item' object.
+                Item item = new Item();
+                item.Caption = "Acceptable Pressure Test?";
+                item.Text = "Yes";
+                
+                // image
+                item.IncludeImage = true;
+                item.ImageAlignment = ImageAlignmentEnum.ImageOnLeftOfText;
+                item.ImageWidth = 16;
+                item.ImageHeight = 16;
+                item.ImageUrl = "../Images/GreenCircle.png";
+                
+                // Add this item
+                items.Add(item);
+
+                // Create a new instance of an 'Item' object.
+                item = new Item();
+                item.Caption = "PSI Loss to Leak?";
+                item.Text = "30.1 psi";
+                
+                // Add this item
+                items.Add(item);
+
+                // Create a new instance of an 'Item' object.
+                item = new Item();
+                item.Caption = "Total Test Time";
+                item.Text = "8 Hours 0 Minutes";
+                
+                // Add this item
+                items.Add(item);
+
+                // Create a new instance of an 'Item' object.
+                item = new Item();
+                item.Caption = "Min Test Duration Met?";
+                item.Text = "Yes";
+                
+                // Add this item
+                items.Add(item);
+
+                // Create a new instance of an 'Item' object.
+                item = new Item();
+                item.Caption = "Min Test Pressure Met?";
+                item.Text = "Yes";
+                
+                // Add this item
+                items.Add(item);
+
+                // Create a new instance of an 'Item' object.
+                item = new Item();
+                item.Caption = "MAOP Verified By Test";
+                item.Text = "452 psi";
+                
+                // Add this item
+                items.Add(item);
+
+                // Create a new instance of an 'Item' object.
+                item = new Item();
+                item.Caption = "Desired MAOP";
+                item.Text = "400 psi";
+                
+                // Add this item
+                items.Add(item);
+
+                // Create a new instance of an 'Item' object.
+                item = new Item();
+                item.Caption = "Test Within Pressure Bounds?";
+                item.Text = "Yes";
+                
+                // Add this item
+                items.Add(item);
+
+                // return value
+                return items;
+            }
+            #endregion
+            
             #region FindChildByName(string name)
             /// <summary>
             /// method Find Child By Name
@@ -447,6 +530,31 @@ namespace NTouch.Pages
             }
             #endregion
             
+            #region LoadAndDisplaySelectedContact()
+            /// <summary>
+            /// Load And Display Selected Contact
+            /// </summary>
+            public void LoadAndDisplaySelectedContact()
+            {
+                // Create a new instance of a 'Gateway' object.
+                Gateway gateway = new Gateway(Connection.Name);
+
+                // if the value for HasContactEditor is true
+                if (HasContactEditor)
+                {
+                    // if the ContactEditor does not have a Selected Object, or if the Selected Contact doesn't match
+                    if ((!ContactEditor.HasSelectedContact) || (ContactEditor.SelectedContact.Id != ContactIdToSelect))
+                    {
+                        // Set the SelectedContact
+                        ContactEditor.SelectedContact = gateway.FindContact(ContactIdToSelect);
+                    }
+
+                    // Display the selected contact
+                    ContactEditor.DisplaySelectedContact();
+                }
+            }
+            #endregion
+            
             #region OnAfterRenderAsync(bool firstRender)
             /// <summary>
             /// This method is used to load a Contact that was just opened
@@ -458,22 +566,11 @@ namespace NTouch.Pages
                 // if there is a ContactIdToSelect
                 if ((ContactIdToSelect > 0) && (ScreenType == ScreenTypeEnum.EditContact))
                 {
-                    // Create a new instance of a 'Gateway' object.
-                    Gateway gateway = new Gateway(Connection.Name);
+                    // force return back
+                    await Task.Yield();
 
-                    // if the value for HasContactEditor is true
-                    if (HasContactEditor)
-                    {
-                        // if the ContactEditor does not have a Selected Object, or if the Selected Contact doesn't match
-                        if ((!ContactEditor.HasSelectedContact) || (ContactEditor.SelectedContact.Id != ContactIdToSelect))
-                        {
-                            // Set the SelectedContact
-                            ContactEditor.SelectedContact = gateway.FindContact(ContactIdToSelect);
-                        }
-
-                        // Display the selected contact
-                        ContactEditor.DisplaySelectedContact();
-                    }
+                    // Load and display the selected contact
+                    LoadAndDisplaySelectedContact();
                 }
             }
             #endregion
@@ -612,6 +709,52 @@ namespace NTouch.Pages
                     // Update the UI with the Secret
                     SecretControl.Refresh();
                 }
+                else if (component is InformationBox)
+                {
+                    // Store
+                    InfoBox = component as InformationBox;
+
+                    // test only
+                    List<Item> items = CreateSampleInfoBoxItems();
+
+                    // if the value for HasInfoBox is true
+                    if (HasInfoBox)
+                    {
+                        // Set the Items
+                        InfoBox.SetItems(items);
+
+                        // Update the UI
+                        InfoBox.Refresh();
+                    }
+                }
+            }
+            #endregion
+            
+            #region ReturnToContactList()
+            /// <summary>
+            /// Return To Contact List
+            /// </summary>
+            public void ReturnToContactList()
+            {
+                // Update
+                ScreenType = ScreenTypeEnum.ContactList;
+
+                // Reload
+                Refresh();
+            }
+            #endregion
+            
+            #region ShowInformationBox()
+            /// <summary>
+            /// Show Information Box
+            /// </summary>
+            public void ShowInformationBox()
+            {
+                // Show Sample
+                ScreenType = ScreenTypeEnum.TestInfoBox;
+
+                // Update
+                Refresh();
             }
             #endregion
             
@@ -725,6 +868,23 @@ namespace NTouch.Pages
             }
             #endregion
             
+            #region HasInfoBox
+            /// <summary>
+            /// This property returns true if this object has an 'InfoBox'.
+            /// </summary>
+            public bool HasInfoBox
+            {
+                get
+                {
+                    // initial value
+                    bool hasInfoBox = (this.InfoBox != null);
+                    
+                    // return value
+                    return hasInfoBox;
+                }
+            }
+            #endregion
+            
             #region HasMainLayout
             /// <summary>
             /// This property returns true if this object has a 'MainLayout'.
@@ -790,6 +950,17 @@ namespace NTouch.Pages
                     // return value
                     return hasStatusLabel;
                 }
+            }
+            #endregion
+            
+            #region InfoBox
+            /// <summary>
+            /// This property gets or sets the value for 'InfoBox'.
+            /// </summary>
+            public InformationBox InfoBox
+            {
+                get { return infoBox; }
+                set { infoBox = value; }
             }
             #endregion
             
