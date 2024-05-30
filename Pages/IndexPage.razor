@@ -33,18 +33,12 @@ else if (ScreenType == ScreenTypeEnum.ContactList)
 else if (ScreenType == ScreenTypeEnum.TestInfoBox)
 {
     <button class="blackbutton3" @onclick=@ReturnToContactList>Back</button>
-
     <InformationBox Parent="this" Title="Summary" Height="204" Width="340"
         Column1Width="180" Column2Width="152" Column1Left="0" Gap="8"
         Left="256" Theme="@ThemeEnum.Blue" BorderColor="Color.Gray" HeaderHeight="32"
         HeaderTextVerticalOffset="3" Name="Summary">
     </InformationBox>
-
-    
 }
 
 @* <button class="blackbutton2" @onclick=@ImportExcel>Import Excel</button> *@
-
-
-
 <Label ClassName="right16percent" Name="StatusLabel" Parent="this"></Label>
