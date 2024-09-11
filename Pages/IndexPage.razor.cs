@@ -712,19 +712,26 @@ namespace NTouch.Pages
                 else if (component is InformationBox)
                 {
                     // Store
-                    InfoBox = component as InformationBox;
+                    InformationBox tempBox = component as InformationBox;
 
-                    // test only
-                    List<Item> items = CreateSampleInfoBoxItems();
-
-                    // if the value for HasInfoBox is true
-                    if (HasInfoBox)
+                    // if this is the Summary
+                    if (tempBox.Name == "Summary")
                     {
-                        // Set the Items
-                        InfoBox.SetItems(items);
+                        // Set the tempBox
+                        InfoBox = tempBox;
 
-                        // Update the UI
-                        InfoBox.Refresh();
+                        // test only
+                        List<Item> items = CreateSampleInfoBoxItems();
+
+                        // if the value for HasInfoBox is true
+                        if (HasInfoBox)
+                        {
+                            // Set the Items
+                            InfoBox.SetItems(items);
+
+                            // Update the UI
+                            InfoBox.Refresh();
+                        }
                     }
                 }
             }
