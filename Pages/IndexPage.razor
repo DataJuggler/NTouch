@@ -34,13 +34,19 @@ else if (ScreenType == ScreenTypeEnum.TestInfoBox)
 {
     <button class="blackbutton3" @onclick=@ReturnToContactList>Back</button>
     <InformationBox Name="Summary" Parent="this" Title="Summary" Height="212" Width="340"        
-        Column1Width="220" Column2Width="152" Column1Left="16" Gap="8"
+        Column1Width="212" Column2Width="152" Column1Left="8" Gap="8"
         Left="228" Theme="@ThemeEnum.Blue" BorderColor="Color.Gray" HeaderHeight="32"
-        HeaderTextVerticalOffset="3" ListItemTop="8">
+        HeaderTextVerticalOffset="3" ListItemTop="4">
     </InformationBox>
-    <InformationBox Name="TestSchedule" Parent="this" Title="Test Schedule" Height="212" Width="340"                
+    <InformationBox Name="TestSchedule" Parent="this" Title="Test Schedule" Height="212" 
+        Width="340"                
         Left="256" Theme="@ThemeEnum.Blue" BorderColor="Color.Gray" HeaderHeight="32"
         HeaderTextVerticalOffset="3">
+        <BodyContent>
+            <TimeComponent Parent="this" Column1Width="80" TextBoxWidth="32">
+
+            </TimeComponent>
+        </BodyContent>
     </InformationBox>
 }
 

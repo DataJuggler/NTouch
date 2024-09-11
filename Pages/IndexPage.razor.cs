@@ -42,6 +42,7 @@ namespace NTouch.Pages
         private List<ContactView> contactsList;
         private int contactIdToSelect;
         private InformationBox infoBox;
+        private TimeComponent timeComponent;
         #endregion
 
         #region Constructor
@@ -734,6 +735,13 @@ namespace NTouch.Pages
                         }
                     }
                 }
+                else if (component is TimeComponent)
+                {
+                    // Cast as a TimeComponent
+                    TimeComponent = component as TimeComponent;
+
+                    
+                }
             }
             #endregion
             
@@ -1085,6 +1093,17 @@ namespace NTouch.Pages
             {
                 get { return statusLabel; }
                 set { statusLabel = value; }
+            }
+            #endregion
+            
+            #region TimeComponent
+            /// <summary>
+            /// This property gets or sets the value for 'TimeComponent'.
+            /// </summary>
+            public TimeComponent TimeComponent
+            {
+                get { return timeComponent; }
+                set { timeComponent = value; }
             }
             #endregion
             
