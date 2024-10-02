@@ -486,6 +486,21 @@ namespace NTouch.Pages
             }
             #endregion
             
+            #region GetTime()
+            /// <summary>
+            /// Get Time
+            /// </summary>
+            public void GetTime()
+            {
+                if ((HasTimeComponent) && (TimeComponent.HasHoursTextBox) && (TimeComponent.HasMinutesTextBox))
+                {
+                    string hour = TimeComponent.HoursTextBox.Text;
+
+                    string minute = TimeComponent.MinutesTextBox.Text;
+                }
+            }
+            #endregion
+            
             #region ImportExcel()
             /// <summary>
             /// Import Excel
@@ -740,7 +755,21 @@ namespace NTouch.Pages
                     // Cast as a TimeComponent
                     TimeComponent = component as TimeComponent;
 
-                    
+                    if (HasTimeComponent)
+                    {
+                        // If the value for the property TimeComponent.HasHoursTextBox is true
+                        if (TimeComponent.HasHoursTextBox)
+                        {
+                            
+                        }
+
+                        // If the value for the property TimeComponent.HasMinutesTextBox is true
+                        if (TimeComponent.HasMinutesTextBox)
+                        {
+                            // Update the ClassName
+                            TimeComponent.MinutesTextBox.SetClassName("right64", true);
+                        }
+                    }
                 }
             }
             #endregion
@@ -964,6 +993,23 @@ namespace NTouch.Pages
                     
                     // return value
                     return hasStatusLabel;
+                }
+            }
+            #endregion
+            
+            #region HasTimeComponent
+            /// <summary>
+            /// This property returns true if this object has a 'TimeComponent'.
+            /// </summary>
+            public bool HasTimeComponent
+            {
+                get
+                {
+                    // initial value
+                    bool hasTimeComponent = (this.TimeComponent != null);
+                    
+                    // return value
+                    return hasTimeComponent;
                 }
             }
             #endregion

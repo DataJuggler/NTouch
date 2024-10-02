@@ -22,46 +22,47 @@
 <h3 class="right16percent">@Title</h3>
 
 <div class="right16percent">
-    <ValidationComponent Name="FirstNameControl" Parent="this" Caption="First Name:" ClassName="displayinlineblock"
-        SendAllTextToParent="true" Column1Width="100" LabelClassName="down3 right2" Width="240"></ValidationComponent>
-    <ValidationComponent Name="LastNameControl" Parent="this" Caption="Last Name:" ClassName="displayinlineblock"
-        Column1Width="100" LabelClassName="down3 right2" Width="240"></ValidationComponent>
-    <ValidationComponent Name="PhoneControl" Parent="this" Caption="Phone:" ClassName="displayinlineblock"
-        Column1Width="100" LabelClassName="down3 right2"  Width="240"></ValidationComponent>
-    <ValidationComponent Name="EmailControl" Parent="this" Caption="Email:" Column1Width="100" 
+    <TextBoxComponent Name="FirstNameControl" Parent="this" Caption="First Name:" ClassName="displayinlineblock"
+        SendAllTextToParent="true" Column1Width="100" LabelClassName="down3 right2" Width="240"></TextBoxComponent>
+    <TextBoxComponent Name="LastNameControl" Parent="this" Caption="Last Name:" ClassName="displayinlineblock"
+        Column1Width="100" LabelClassName="down3 right2" Width="240"></TextBoxComponent>
+    <TextBoxComponent Name="PhoneControl" Parent="this" Caption="Phone:" ClassName="displayinlineblock"
+        Column1Width="100" LabelClassName="down3 right2"  Width="240"></TextBoxComponent>
+    <TextBoxComponent Name="EmailControl" Parent="this" Caption="Email:" Column1Width="100" 
         Column2Width="220" ClassName="displayinlineblock" LabelClassName="down3 right2" 
-        TextBoxWidth="200" Width="360"></ValidationComponent>
-    <ValidationComponent Name="AddressControl" Parent="this" Caption="Address:" ClassName="displayinlineblock"
+        TextBoxWidth="200" Width="360"></TextBoxComponent>
+    <TextBoxComponent Name="AddressControl" Parent="this" Caption="Address:" ClassName="displayinlineblock"
         Column1Width="100" Column2Width="220" LabelClassName="down3 right2" 
-        TextBoxWidth="200" Width="360"></ValidationComponent>
-    <ValidationComponent Name="CityControl" Parent="this" Caption="City:" ClassName="displayinlineblock"
+        TextBoxWidth="200" Width="360"></TextBoxComponent>
+    <TextBoxComponent Name="CityControl" Parent="this" Caption="City:" ClassName="displayinlineblock"
         Column1Width="100" Column2Width="220" LabelClassName="down3 right2" 
-        TextBoxWidth="200" Width="360"></ValidationComponent>
-    <ComboBox Name="StateComboBox" Theme=ThemeEnum.Blue Unit="px" HeightUnit="px" Height="32" ZIndex="80"
+        TextBoxWidth="200" Width="360"></TextBoxComponent>
+    <ComboBox Name="StateComboBox" Theme=ThemeEnum.BlueGold Unit="px" HeightUnit="px" Height="32" ZIndex="80"
         LabelText="State:" Width="224" Parent="this" ButtonHeight=25 ButtonWidth=24 ControlHeight="32"
         DropdownClassName="container2 border1gray textdonotwrap" TextBoxLeft="0" ButtonTop=0 ButtonLeft=0
         ListItemWidth="180" ListZIndex=80 ListItemTop=24
         Column2Width="128" Position="relative" Top="0" LabelClassName="down4 right2" TextBoxWidth="124">
     </ComboBox>
-    <ValidationComponent Name="ZipControl" Parent="this" Caption="Zip:" ClassName="displayinlineblock"
+    <TextBoxComponent Name="ZipControl" Parent="this" Caption="Zip:" ClassName="displayinlineblock"
         Column1Width="100" Column2Width="220" LabelClassName="down3 right2" ZIndex="0" Top=2
-        TextBoxWidth="124" Width="360"></ValidationComponent>
+        TextBoxWidth="124" Width="360"></TextBoxComponent>
     <CalendarComponent Name="LastContactedDateControl" Unit="px" HeightUnit="px" Height="146"
         Position="relative" ButtonHeight=25 ButtonWidth=24 CalendarTop="-112" CalendarLeft="64" 
         Caption="Last Contacted:" Parent="this" ButtonTop = "0" Width="224" Column2Width="128" 
-        ControlHeight="32" TextBoxHeight="24" ButtonLeft="0"
+        ControlHeight="32" TextBoxHeight="24" ButtonLeft="0" Theme="ThemeEnum.BlueGold"
         Top="0" LabelClassName="down4 right2" TextBoxWidth="124">
     </CalendarComponent>
-    <CalendarComponent Name="FollowUpDateControl" Unit="px" HeightUnit="px" Height="146" Position="relative"
+    <CalendarComponent Name="FollowUpDateControl" Unit="px" HeightUnit="px" Height="146" 
+        Position="relative" Theme="ThemeEnum.BlueGold"
         ButtonHeight=25 ButtonWidth=24 CalendarTop="-116" CalendarLeft="64" Caption="Follow Up Date:" 
-        Parent="this" ButtonTop = "0" Width="224" Column2Width="128" ControlHeight="32" 
+        Parent="this" ButtonTop = "0" Width="224" Column2Width="128" ControlHeight="32"
         Top="0" LabelClassName="down4 right2" TextBoxHeight="24" TextBoxWidth="124">
     </CalendarComponent>
-    <ValidationComponent Name="NotesControl" Caption="Notes:" ClassName="displayinlineblock" Top=4
+    <TextBoxComponent Name="NotesControl" Caption="Notes:" ClassName="displayinlineblock" Top=4
         Multiline="true" Column1Width="100" Column2Width="220" LabelClassName="up88 right2" Parent=this
-        Height="96" TextBoxWidth="200" Width="360"></ValidationComponent>
+        Height="96" TextBoxWidth="200" Width="360"></TextBoxComponent>
     <div class="rightcolumn">
-        <ComboBox Name="ContactPreferencesComboBox" Theme=ThemeEnum.Blue Unit="px"
+        <ComboBox Name="ContactPreferencesComboBox" Theme=ThemeEnum.BlueGold Unit="px"
                 HeightUnit="px" Height="32" LabelText="Contact Methods:" Width="224" 
                 Parent="this" ButtonHeight=25 ButtonWidth=24 Left="0" Top="-400" 
                 ListItemHeight="2.4" ZIndex=201 ControlHeight=32
@@ -70,7 +71,7 @@
                 LabelClassName="down4 right2" TextBoxWidth="124"
                 CheckListMode=true CheckedListUnit="vw" CheckedListHeightUnit="vh" CheckedListheight="4"             
                 CheckedListItemLeft="2" CheckedListItemTop=1 ListItemBackgroundColor=Color.White
-                CheckBoxXPosition="-3.2" CheckBoxYPosition=".4" CheckBoxTextXPosition="-3" CheckBoxTextYPosition="0"
+                CheckBoxXPosition="-2.4" CheckBoxYPosition=".4" CheckBoxTextXPosition="-.8" CheckBoxTextYPosition="0"
                 CheckedListWidth=8 CheckedListTop="2" CheckedListLeft="72" ListItemWidth=4>
         </ComboBox>
         <div class="up400">

@@ -37,14 +37,14 @@ namespace NTouch.Components
         private string name;
         private IBlazorComponentParent parent;
         private List<IBlazorComponent> children;
-        private ValidationComponent firstNameControl;
-        private ValidationComponent lastNameControl;
-        private ValidationComponent phoneControl;
-        private ValidationComponent emailControl;
-        private ValidationComponent addressControl;
-        private ValidationComponent cityControl;     
-        private ValidationComponent notesControl;
-        private ValidationComponent zipControl;
+        private TextBoxComponent firstNameControl;
+        private TextBoxComponent lastNameControl;
+        private TextBoxComponent phoneControl;
+        private TextBoxComponent emailControl;
+        private TextBoxComponent addressControl;
+        private TextBoxComponent cityControl;     
+        private TextBoxComponent notesControl;
+        private TextBoxComponent zipControl;
         private ComboBox stateComboBox;
         private ComboBox contactPreferencesComboBox;        
         private CalendarComponent lastContactedDateControl;
@@ -398,47 +398,47 @@ namespace NTouch.Components
             /// </summary>
             public void Register(IBlazorComponent component)
             {
-                if (component is ValidationComponent)
+                if (component is TextBoxComponent)
                 {
                     if (component.Name == "FirstNameControl")
                     {
                         // Store
-                        FirstNameControl = component as ValidationComponent;
+                        FirstNameControl = component as TextBoxComponent;
                     }
                     else if (component.Name == "LastNameControl")
                     {
                         // Store
-                        LastNameControl = component as ValidationComponent;
+                        LastNameControl = component as TextBoxComponent;
                     }
                     else if (component.Name == "PhoneControl")
                     {
                         // Store
-                        PhoneControl = component as ValidationComponent;
+                        PhoneControl = component as TextBoxComponent;
                     }
                     else if (component.Name == "EmailControl")
                     {
                         // Store
-                        EmailControl = component as ValidationComponent;
+                        EmailControl = component as TextBoxComponent;
                     }
                     else if (component.Name == "AddressControl")
                     {
                         // Store
-                        AddressControl = component as ValidationComponent;
+                        AddressControl = component as TextBoxComponent;
                     }
                     else if (component.Name == "CityControl")
                     {
                         // Store
-                        CityControl = component as ValidationComponent;
+                        CityControl = component as TextBoxComponent;
                     }
                     else if (component.Name == "ZipControl")
                     {
                         // Store
-                        ZipControl = component as ValidationComponent;
+                        ZipControl = component as TextBoxComponent;
                     }
                     else if (component.Name == "NotesControl")
                     {
                         // Store
-                        NotesControl = component as ValidationComponent;
+                        NotesControl = component as TextBoxComponent;
                     }
                 }
                 else if (component is CalendarComponent)
@@ -670,7 +670,7 @@ namespace NTouch.Components
             /// <summary>
             /// This property gets or sets the value for 'AddressControl'.
             /// </summary>
-            public ValidationComponent AddressControl
+            public TextBoxComponent AddressControl
             {
                 get { return addressControl; }
                 set { addressControl = value; }
@@ -717,7 +717,7 @@ namespace NTouch.Components
             /// <summary>
             /// This property gets or sets the value for 'CityControl'.
             /// </summary>
-            public ValidationComponent CityControl
+            public TextBoxComponent CityControl
             {
                 get { return cityControl; }
                 set { cityControl = value; }
@@ -739,7 +739,7 @@ namespace NTouch.Components
             /// <summary>
             /// This property gets or sets the value for 'EmailControl'.
             /// </summary>
-            public ValidationComponent EmailControl
+            public TextBoxComponent EmailControl
             {
                 get { return emailControl; }
                 set { emailControl = value; }
@@ -750,7 +750,7 @@ namespace NTouch.Components
             /// <summary>
             /// This property gets or sets the value for 'FirstNameControl'.
             /// </summary>
-            public ValidationComponent FirstNameControl
+            public TextBoxComponent FirstNameControl
             {
                 get { return firstNameControl; }
                 set { firstNameControl = value; }
@@ -1055,7 +1055,7 @@ namespace NTouch.Components
             /// <summary>
             /// This property gets or sets the value for 'LastNameControl'.
             /// </summary>
-            public ValidationComponent LastNameControl
+            public TextBoxComponent LastNameControl
             {
                 get { return lastNameControl; }
                 set { lastNameControl = value; }
@@ -1077,7 +1077,7 @@ namespace NTouch.Components
             /// <summary>
             /// This property gets or sets the value for 'NotesControl'.
             /// </summary>
-            public ValidationComponent NotesControl
+            public TextBoxComponent NotesControl
             {
                 get { return notesControl; }
                 set { notesControl = value; }
@@ -1134,7 +1134,7 @@ namespace NTouch.Components
             /// <summary>
             /// This property gets or sets the value for 'PhoneControl'.
             /// </summary>
-            public ValidationComponent PhoneControl
+            public TextBoxComponent PhoneControl
             {
                 get { return phoneControl; }
                 set { phoneControl = value; }
@@ -1264,7 +1264,7 @@ namespace NTouch.Components
             /// <summary>
             /// This property gets or sets the value for 'ZipControl'.
             /// </summary>
-            public ValidationComponent ZipControl
+            public TextBoxComponent ZipControl
             {
                 get { return zipControl; }
                 set { zipControl = value; }

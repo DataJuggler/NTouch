@@ -24,7 +24,7 @@ namespace NTouch.Components
         #region Private Variables
         private List<IBlazorComponent> children;
         private string name;
-        private ValidationComponent secretControl;
+        private TextBoxComponent secretControl;
         private IBlazorComponentParent parent;
         #endregion
         
@@ -111,11 +111,11 @@ namespace NTouch.Components
             /// </summary>
             public void Register(IBlazorComponent component)
             {
-                // If this component is a ValidationComponent
-                if (component is ValidationComponent)
+                // If this component is a TextBoxComponent
+                if (component is TextBoxComponent)
                 {
                     // store
-                    SecretControl = component as ValidationComponent;
+                    SecretControl = component as TextBoxComponent;
 
                     // Display the Session Id
                     if (HasSecretControl)
@@ -274,7 +274,7 @@ namespace NTouch.Components
             /// <summary>
             /// This property gets or sets the value for 'SecretControl'.
             /// </summary>
-            public ValidationComponent SecretControl
+            public TextBoxComponent SecretControl
             {
                 get { return secretControl; }
                 set { secretControl = value; }
