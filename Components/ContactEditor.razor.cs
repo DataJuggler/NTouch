@@ -49,6 +49,7 @@ namespace NTouch.Components
         private ComboBox contactPreferencesComboBox;        
         private CalendarComponent lastContactedDateControl;
         private CalendarComponent followUpDateControl;
+        private CalendarComponent birthDateControl;
         private string title;
         private Contact selectedContact;
         private string uploadButtonStyle;
@@ -279,6 +280,17 @@ namespace NTouch.Components
                         FollowUpDateControl.SetSelectedDate(SelectedContact.FollowUpDate);
                     }
                 }
+
+                // if the value for HasBirthDateControl is true
+                if (HasBirthDateControl)
+                {
+                    // if a real date
+                    if (SelectedContact.FollowUpDate.Year > 1900)
+                    {
+                        // Set the SelectedDate
+                        BirthDateControl.SetSelectedDate(SelectedContact.BirthDate);
+                    }
+                }
             }
             #endregion
             
@@ -453,6 +465,11 @@ namespace NTouch.Components
                         // Store
                         FollowUpDateControl = component as CalendarComponent;
                     }
+                    else if (component.Name == "BirthDateControl")
+                    {
+                        // Store
+                        BirthDateControl = component as CalendarComponent;
+                    }
                 }
                 else if (component is ComboBox)
                 {
@@ -548,6 +565,14 @@ namespace NTouch.Components
                     contact.ZipCode = ZipControl.Text;
                     contact.LastContactDate = LastContactedDateControl.SelectedDate;
                     contact.FollowUpDate = FollowUpDateControl.SelectedDate;
+
+                    // if the value for HasBirthDateControl is true
+                    if (HasBirthDateControl)
+                    {
+                        // Store
+                        contact.BirthDate = BirthDateControl.SelectedDate;
+                    }
+
                     contact.CreatedDate = DateTime.Now;
                     contact.ImagePath = SelectedContactImagePath;
                     contact.Notes = NotesControl.Text;
@@ -677,6 +702,17 @@ namespace NTouch.Components
             }
             #endregion
             
+            #region BirthDateControl
+            /// <summary>
+            /// This property gets or sets the value for 'BirthDateControl'.
+            /// </summary>            
+            public CalendarComponent BirthDateControl
+            {
+                get { return birthDateControl; }
+                set { birthDateControl = value; }
+            }
+            #endregion
+            
             #region ButtonText
             /// <summary>
             /// This read only property returns the value of ButtonText. It is either Upload or Change
@@ -781,6 +817,23 @@ namespace NTouch.Components
                     
                     // return value
                     return hasAddressControl;
+                }
+            }
+            #endregion
+            
+            #region HasBirthDateControl
+            /// <summary>
+            /// This property returns true if this object has a 'BirthDateControl'.
+            /// </summary>
+            public bool HasBirthDateControl
+            {
+                get
+                {
+                    // initial value
+                    bool hasBirthDateControl = (this.BirthDateControl != null);
+                    
+                    // return value
+                    return hasBirthDateControl;
                 }
             }
             #endregion
