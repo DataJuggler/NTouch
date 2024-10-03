@@ -37,24 +37,26 @@ namespace DataAccessComponent.Data.Readers
 
                 // Create field Integers
                 int addressfield = 0;
-                int cityfield = 1;
-                int createdDatefield = 2;
-                int emailAddressfield = 3;
-                int firstNamefield = 4;
-                int followUpDatefield = 5;
-                int idfield = 6;
-                int imagePathfield = 7;
-                int lastContactDatefield = 8;
-                int lastNamefield = 9;
-                int notesfield = 10;
-                int phoneNumberfield = 11;
-                int stateIdfield = 12;
-                int zipCodefield = 13;
+                int birthDatefield = 1;
+                int cityfield = 2;
+                int createdDatefield = 3;
+                int emailAddressfield = 4;
+                int firstNamefield = 5;
+                int followUpDatefield = 6;
+                int idfield = 7;
+                int imagePathfield = 8;
+                int lastContactDatefield = 9;
+                int lastNamefield = 10;
+                int notesfield = 11;
+                int phoneNumberfield = 12;
+                int stateIdfield = 13;
+                int zipCodefield = 14;
 
                 try
                 {
                     // Load Each field
                     contact.Address = DataHelper.ParseString(dataRow.ItemArray[addressfield]);
+                    contact.BirthDate = DataHelper.ParseDate(dataRow.ItemArray[birthDatefield]);
                     contact.City = DataHelper.ParseString(dataRow.ItemArray[cityfield]);
                     contact.CreatedDate = DataHelper.ParseDate(dataRow.ItemArray[createdDatefield]);
                     contact.EmailAddress = DataHelper.ParseString(dataRow.ItemArray[emailAddressfield]);

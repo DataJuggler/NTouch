@@ -122,6 +122,32 @@ namespace DataAccessComponent.DataGateway
             }
             #endregion
         
+                #region DeleteContactPreferenceByContactId(int contactId)
+                /// <summary>
+                /// This method is used to delete 'ContactPreference' objects for the ContactId given.
+                /// </summary>
+                public bool DeleteContactPreferenceByContactId(int contactId)
+                {
+                    // initial value
+                    bool deleted = false;
+                    
+                    // Create a temp ContactPreference object
+                    ContactPreference tempContactPreference = new ContactPreference();
+                    
+                    // Set the value for DeleteByContactId to true
+                    tempContactPreference.DeleteByContactId = true;
+                    
+                    // Set the value for ContactId
+                    tempContactPreference.ContactId = contactId;
+                    
+                    // Perform the delete
+                    deleted = DeleteContactPreference(0, tempContactPreference);
+                    
+                    // return value
+                    return deleted;
+                }
+                #endregion
+                
             #region DeleteState(int id, State tempState = null)
             /// <summary>
             /// This method is used to delete State objects.
@@ -316,6 +342,32 @@ namespace DataAccessComponent.DataGateway
             }
             #endregion
 
+                #region FindStateByName(string name)
+                /// <summary>
+                /// This method is used to find 'State' objects for the Name given.
+                /// </summary>
+                public State FindStateByName(string name)
+                {
+                    // initial value
+                    State state = null;
+                    
+                    // Create a temp State object
+                    State tempState = new State();
+                    
+                    // Set the value for FindByName to true
+                    tempState.FindByName = true;
+                    
+                    // Set the value for Name
+                    tempState.Name = name;
+                    
+                    // Perform the find
+                    state = FindState(0, tempState);
+                    
+                    // return value
+                    return state;
+                }
+                #endregion
+                
             #region GetDataConnector()
             /// <summary>
             /// This method (safely) returns the Data Connector from the
@@ -397,6 +449,32 @@ namespace DataAccessComponent.DataGateway
             }
             #endregion
 
+                #region LoadContactPreferencesForContactId(int contactId)
+                /// <summary>
+                /// This method is used to load 'ContactPreference' objects for the ContactId given.
+                /// </summary>
+                public List<ContactPreference> LoadContactPreferencesForContactId(int contactId)
+                {
+                    // initial value
+                    List<ContactPreference> contactPreferences = null;
+                    
+                    // Create a temp ContactPreference object
+                    ContactPreference tempContactPreference = new ContactPreference();
+                    
+                    // Set the value for LoadByContactId to true
+                    tempContactPreference.LoadByContactId = true;
+                    
+                    // Set the value for ContactId
+                    tempContactPreference.ContactId = contactId;
+                    
+                    // Perform the load
+                    contactPreferences = LoadContactPreferences(tempContactPreference);
+                    
+                    // return value
+                    return contactPreferences;
+                }
+                #endregion
+                
             #region LoadContacts(Contact tempContact = null)
             /// <summary>
             /// This method loads a collection of 'Contact' objects.
@@ -592,4 +670,3 @@ namespace DataAccessComponent.DataGateway
     #endregion
 
 }
-

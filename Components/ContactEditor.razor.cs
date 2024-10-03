@@ -48,7 +48,7 @@ namespace NTouch.Components
         private ComboBox stateComboBox;
         private ComboBox contactPreferencesComboBox;        
         private CalendarComponent lastContactedDateControl;
-        private CalendarComponent followUpDateControl;        
+        private CalendarComponent followUpDateControl;
         private string title;
         private Contact selectedContact;
         private string uploadButtonStyle;

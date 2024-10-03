@@ -117,7 +117,7 @@ namespace DataAccessComponent.Data.Writers
             internal static SqlParameter[] CreateInsertParameters(Contact contact)
             {
                 // Initial Values
-                SqlParameter[] parameters = new SqlParameter[13];
+                SqlParameter[] parameters = new SqlParameter[14];
                 SqlParameter param = null;
 
                 // verify contactexists
@@ -129,11 +129,28 @@ namespace DataAccessComponent.Data.Writers
                     // set parameters[0]
                     parameters[0] = param;
 
+                    // Create [BirthDate] Parameter
+                    param = new SqlParameter("@BirthDate", SqlDbType.DateTime);
+
+                    // If contact.BirthDate does not exist.
+                    if (contact.BirthDate.Year < 1900)
+                    {
+                        // Set the value to 1/1/1900
+                        param.Value = new DateTime(1900, 1, 1);
+                    }
+                    else
+                    {
+                        // Set the parameter value
+                        param.Value = contact.BirthDate;
+                    }
+                    // set parameters[1]
+                    parameters[1] = param;
+
                     // Create [City] parameter
                     param = new SqlParameter("@City", contact.City);
 
-                    // set parameters[1]
-                    parameters[1] = param;
+                    // set parameters[2]
+                    parameters[2] = param;
 
                     // Create [CreatedDate] Parameter
                     param = new SqlParameter("@CreatedDate", SqlDbType.DateTime);
@@ -149,20 +166,20 @@ namespace DataAccessComponent.Data.Writers
                         // Set the parameter value
                         param.Value = contact.CreatedDate;
                     }
-                    // set parameters[2]
-                    parameters[2] = param;
+                    // set parameters[3]
+                    parameters[3] = param;
 
                     // Create [EmailAddress] parameter
                     param = new SqlParameter("@EmailAddress", contact.EmailAddress);
 
-                    // set parameters[3]
-                    parameters[3] = param;
+                    // set parameters[4]
+                    parameters[4] = param;
 
                     // Create [FirstName] parameter
                     param = new SqlParameter("@FirstName", contact.FirstName);
 
-                    // set parameters[4]
-                    parameters[4] = param;
+                    // set parameters[5]
+                    parameters[5] = param;
 
                     // Create [FollowUpDate] Parameter
                     param = new SqlParameter("@FollowUpDate", SqlDbType.DateTime);
@@ -178,14 +195,14 @@ namespace DataAccessComponent.Data.Writers
                         // Set the parameter value
                         param.Value = contact.FollowUpDate;
                     }
-                    // set parameters[5]
-                    parameters[5] = param;
+                    // set parameters[6]
+                    parameters[6] = param;
 
                     // Create [ImagePath] parameter
                     param = new SqlParameter("@ImagePath", contact.ImagePath);
 
-                    // set parameters[6]
-                    parameters[6] = param;
+                    // set parameters[7]
+                    parameters[7] = param;
 
                     // Create [LastContactDate] Parameter
                     param = new SqlParameter("@LastContactDate", SqlDbType.DateTime);
@@ -201,38 +218,38 @@ namespace DataAccessComponent.Data.Writers
                         // Set the parameter value
                         param.Value = contact.LastContactDate;
                     }
-                    // set parameters[7]
-                    parameters[7] = param;
+                    // set parameters[8]
+                    parameters[8] = param;
 
                     // Create [LastName] parameter
                     param = new SqlParameter("@LastName", contact.LastName);
 
-                    // set parameters[8]
-                    parameters[8] = param;
+                    // set parameters[9]
+                    parameters[9] = param;
 
                     // Create [Notes] parameter
                     param = new SqlParameter("@Notes", contact.Notes);
 
-                    // set parameters[9]
-                    parameters[9] = param;
+                    // set parameters[10]
+                    parameters[10] = param;
 
                     // Create [PhoneNumber] parameter
                     param = new SqlParameter("@PhoneNumber", contact.PhoneNumber);
 
-                    // set parameters[10]
-                    parameters[10] = param;
+                    // set parameters[11]
+                    parameters[11] = param;
 
                     // Create [StateId] parameter
                     param = new SqlParameter("@StateId", contact.StateId);
 
-                    // set parameters[11]
-                    parameters[11] = param;
+                    // set parameters[12]
+                    parameters[12] = param;
 
                     // Create [ZipCode] parameter
                     param = new SqlParameter("@ZipCode", contact.ZipCode);
 
-                    // set parameters[12]
-                    parameters[12] = param;
+                    // set parameters[13]
+                    parameters[13] = param;
                 }
 
                 // return value
@@ -279,7 +296,7 @@ namespace DataAccessComponent.Data.Writers
             internal static SqlParameter[] CreateUpdateParameters(Contact contact)
             {
                 // Initial Values
-                SqlParameter[] parameters = new SqlParameter[14];
+                SqlParameter[] parameters = new SqlParameter[15];
                 SqlParameter param = null;
 
                 // verify contactexists
@@ -291,11 +308,30 @@ namespace DataAccessComponent.Data.Writers
                     // set parameters[0]
                     parameters[0] = param;
 
-                    // Create parameter for [City]
-                    param = new SqlParameter("@City", contact.City);
+                    // Create parameter for [BirthDate]
+                    // Create [BirthDate] Parameter
+                    param = new SqlParameter("@BirthDate", SqlDbType.DateTime);
+
+                    // If contact.BirthDate does not exist.
+                    if (contact.BirthDate.Year < 1900)
+                    {
+                        // Set the value to 1/1/1900
+                        param.Value = new DateTime(1900, 1, 1);
+                    }
+                    else
+                    {
+                        // Set the parameter value
+                        param.Value = contact.BirthDate;
+                    }
 
                     // set parameters[1]
                     parameters[1] = param;
+
+                    // Create parameter for [City]
+                    param = new SqlParameter("@City", contact.City);
+
+                    // set parameters[2]
+                    parameters[2] = param;
 
                     // Create parameter for [CreatedDate]
                     // Create [CreatedDate] Parameter
@@ -313,20 +349,20 @@ namespace DataAccessComponent.Data.Writers
                         param.Value = contact.CreatedDate;
                     }
 
-                    // set parameters[2]
-                    parameters[2] = param;
+                    // set parameters[3]
+                    parameters[3] = param;
 
                     // Create parameter for [EmailAddress]
                     param = new SqlParameter("@EmailAddress", contact.EmailAddress);
 
-                    // set parameters[3]
-                    parameters[3] = param;
+                    // set parameters[4]
+                    parameters[4] = param;
 
                     // Create parameter for [FirstName]
                     param = new SqlParameter("@FirstName", contact.FirstName);
 
-                    // set parameters[4]
-                    parameters[4] = param;
+                    // set parameters[5]
+                    parameters[5] = param;
 
                     // Create parameter for [FollowUpDate]
                     // Create [FollowUpDate] Parameter
@@ -344,14 +380,14 @@ namespace DataAccessComponent.Data.Writers
                         param.Value = contact.FollowUpDate;
                     }
 
-                    // set parameters[5]
-                    parameters[5] = param;
+                    // set parameters[6]
+                    parameters[6] = param;
 
                     // Create parameter for [ImagePath]
                     param = new SqlParameter("@ImagePath", contact.ImagePath);
 
-                    // set parameters[6]
-                    parameters[6] = param;
+                    // set parameters[7]
+                    parameters[7] = param;
 
                     // Create parameter for [LastContactDate]
                     // Create [LastContactDate] Parameter
@@ -369,42 +405,42 @@ namespace DataAccessComponent.Data.Writers
                         param.Value = contact.LastContactDate;
                     }
 
-                    // set parameters[7]
-                    parameters[7] = param;
+                    // set parameters[8]
+                    parameters[8] = param;
 
                     // Create parameter for [LastName]
                     param = new SqlParameter("@LastName", contact.LastName);
 
-                    // set parameters[8]
-                    parameters[8] = param;
+                    // set parameters[9]
+                    parameters[9] = param;
 
                     // Create parameter for [Notes]
                     param = new SqlParameter("@Notes", contact.Notes);
 
-                    // set parameters[9]
-                    parameters[9] = param;
+                    // set parameters[10]
+                    parameters[10] = param;
 
                     // Create parameter for [PhoneNumber]
                     param = new SqlParameter("@PhoneNumber", contact.PhoneNumber);
 
-                    // set parameters[10]
-                    parameters[10] = param;
+                    // set parameters[11]
+                    parameters[11] = param;
 
                     // Create parameter for [StateId]
                     param = new SqlParameter("@StateId", contact.StateId);
 
-                    // set parameters[11]
-                    parameters[11] = param;
+                    // set parameters[12]
+                    parameters[12] = param;
 
                     // Create parameter for [ZipCode]
                     param = new SqlParameter("@ZipCode", contact.ZipCode);
 
-                    // set parameters[12]
-                    parameters[12] = param;
+                    // set parameters[13]
+                    parameters[13] = param;
 
                     // Create parameter for [Id]
                     param = new SqlParameter("@Id", contact.Id);
-                    parameters[13] = param;
+                    parameters[14] = param;
                 }
 
                 // return value

@@ -17,6 +17,7 @@ namespace ObjectLibrary.BusinessObjects
 
         #region Private Variables
         private string address;
+        private DateTime birthDate;
         private string city;
         private DateTime createdDate;
         private string emailAddress;
@@ -60,6 +61,20 @@ namespace ObjectLibrary.BusinessObjects
                 set
                 {
                     address = value;
+                }
+            }
+            #endregion
+
+            #region DateTime BirthDate
+            public DateTime BirthDate
+            {
+                get
+                {
+                    return birthDate;
+                }
+                set
+                {
+                    birthDate = value;
                 }
             }
             #endregion
