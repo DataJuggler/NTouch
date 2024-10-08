@@ -1,5 +1,12 @@
 # NTouch
 
+# Update 10.4.2024: A new video was published
+
+DataJuggler.Blazor.Components Grand Update
+https://youtu.be/ybihE8udW-w
+
+This project has been updated with a new release of DataJuggler.Blazor.Components.
+
 NTouch is a simple contact management website and database. This project is a demo for NuGet package 
 DataJuggler.Blazor.Components. You will need SQL Server and Visual Studio 2022 to run it.
 
