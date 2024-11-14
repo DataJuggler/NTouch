@@ -645,7 +645,7 @@ BEGIN
     SET NOCOUNT ON
 
     -- Begin Select Statement
-    Select [Address],[BirthDate],[City],[EmailAddress],[FirstName],[FollowUpDate],[Id],[ImagePath],[LastContactDate],[LastName],[PhoneNumber],[StateCode],[StateId],[StateName],[ZipCode]
+    Select [Address],[BirthDate],[City],[CreatedDate],[EmailAddress],[FirstName],[FollowUpDate],[Id],[ImagePath],[LastContactDate],[LastName],[Notes],[PhoneNumber],[StateCode],[StateId],[StateName],[Subscriber],[ZipCode]
 
     -- From tableName
     From [ContactView]

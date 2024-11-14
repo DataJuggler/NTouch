@@ -39,18 +39,21 @@ namespace DataAccessComponent.Data.Readers
                 int addressfield = 0;
                 int birthDatefield = 1;
                 int cityfield = 2;
-                int emailAddressfield = 3;
-                int firstNamefield = 4;
-                int followUpDatefield = 5;
-                int idfield = 6;
-                int imagePathfield = 7;
-                int lastContactDatefield = 8;
-                int lastNamefield = 9;
-                int phoneNumberfield = 10;
-                int stateCodefield = 11;
-                int stateIdfield = 12;
-                int stateNamefield = 13;
-                int zipCodefield = 14;
+                int createdDatefield = 3;
+                int emailAddressfield = 4;
+                int firstNamefield = 5;
+                int followUpDatefield = 6;
+                int idfield = 7;
+                int imagePathfield = 8;
+                int lastContactDatefield = 9;
+                int lastNamefield = 10;
+                int notesfield = 11;
+                int phoneNumberfield = 12;
+                int stateCodefield = 13;
+                int stateIdfield = 14;
+                int stateNamefield = 15;
+                int subscriberfield = 16;
+                int zipCodefield = 17;
 
                 try
                 {
@@ -58,6 +61,7 @@ namespace DataAccessComponent.Data.Readers
                     contactView.Address = DataHelper.ParseString(dataRow.ItemArray[addressfield]);
                     contactView.BirthDate = DataHelper.ParseDate(dataRow.ItemArray[birthDatefield]);
                     contactView.City = DataHelper.ParseString(dataRow.ItemArray[cityfield]);
+                    contactView.CreatedDate = DataHelper.ParseDate(dataRow.ItemArray[createdDatefield]);
                     contactView.EmailAddress = DataHelper.ParseString(dataRow.ItemArray[emailAddressfield]);
                     contactView.FirstName = DataHelper.ParseString(dataRow.ItemArray[firstNamefield]);
                     contactView.FollowUpDate = DataHelper.ParseDate(dataRow.ItemArray[followUpDatefield]);
@@ -65,10 +69,12 @@ namespace DataAccessComponent.Data.Readers
                     contactView.ImagePath = DataHelper.ParseString(dataRow.ItemArray[imagePathfield]);
                     contactView.LastContactDate = DataHelper.ParseDate(dataRow.ItemArray[lastContactDatefield]);
                     contactView.LastName = DataHelper.ParseString(dataRow.ItemArray[lastNamefield]);
+                    contactView.Notes = DataHelper.ParseString(dataRow.ItemArray[notesfield]);
                     contactView.PhoneNumber = DataHelper.ParseString(dataRow.ItemArray[phoneNumberfield]);
                     contactView.StateCode = DataHelper.ParseString(dataRow.ItemArray[stateCodefield]);
                     contactView.StateId = DataHelper.ParseInteger(dataRow.ItemArray[stateIdfield], 0);
                     contactView.StateName = DataHelper.ParseString(dataRow.ItemArray[stateNamefield]);
+                    contactView.Subscriber = DataHelper.ParseBoolean(dataRow.ItemArray[subscriberfield], false);
                     contactView.ZipCode = DataHelper.ParseString(dataRow.ItemArray[zipCodefield]);
                 }
                 catch

@@ -19,6 +19,7 @@ namespace ObjectLibrary.BusinessObjects
         private string address;
         private DateTime birthDate;
         private string city;
+        private DateTime createdDate;
         private string emailAddress;
         private string firstName;
         private DateTime followUpDate;
@@ -26,10 +27,12 @@ namespace ObjectLibrary.BusinessObjects
         private string imagePath;
         private DateTime lastContactDate;
         private string lastName;
+        private string notes;
         private string phoneNumber;
         private string stateCode;
         private int stateId;
         private string stateName;
+        private bool subscriber;
         private string zipCode;
         #endregion
 
@@ -78,6 +81,20 @@ namespace ObjectLibrary.BusinessObjects
                 set
                 {
                     city = value;
+                }
+            }
+            #endregion
+
+            #region DateTime CreatedDate
+            public DateTime CreatedDate
+            {
+                get
+                {
+                    return createdDate;
+                }
+                set
+                {
+                    createdDate = value;
                 }
             }
             #endregion
@@ -180,6 +197,20 @@ namespace ObjectLibrary.BusinessObjects
             }
             #endregion
 
+            #region string Notes
+            public string Notes
+            {
+                get
+                {
+                    return notes;
+                }
+                set
+                {
+                    notes = value;
+                }
+            }
+            #endregion
+
             #region string PhoneNumber
             public string PhoneNumber
             {
@@ -232,6 +263,20 @@ namespace ObjectLibrary.BusinessObjects
                 set
                 {
                     stateName = value;
+                }
+            }
+            #endregion
+
+            #region bool Subscriber
+            public bool Subscriber
+            {
+                get
+                {
+                    return subscriber;
+                }
+                set
+                {
+                    subscriber = value;
                 }
             }
             #endregion
