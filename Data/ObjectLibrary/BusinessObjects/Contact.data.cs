@@ -30,6 +30,7 @@ namespace ObjectLibrary.BusinessObjects
         private string notes;
         private string phoneNumber;
         private int stateId;
+        private bool subscriber;
         private string zipCode;
         #endregion
 
@@ -239,6 +240,20 @@ namespace ObjectLibrary.BusinessObjects
                 set
                 {
                     stateId = value;
+                }
+            }
+            #endregion
+
+            #region bool Subscriber
+            public bool Subscriber
+            {
+                get
+                {
+                    return subscriber;
+                }
+                set
+                {
+                    subscriber = value;
                 }
             }
             #endregion

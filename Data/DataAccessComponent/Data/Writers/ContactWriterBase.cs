@@ -117,7 +117,7 @@ namespace DataAccessComponent.Data.Writers
             internal static SqlParameter[] CreateInsertParameters(Contact contact)
             {
                 // Initial Values
-                SqlParameter[] parameters = new SqlParameter[14];
+                SqlParameter[] parameters = new SqlParameter[15];
                 SqlParameter param = null;
 
                 // verify contactexists
@@ -245,11 +245,17 @@ namespace DataAccessComponent.Data.Writers
                     // set parameters[12]
                     parameters[12] = param;
 
-                    // Create [ZipCode] parameter
-                    param = new SqlParameter("@ZipCode", contact.ZipCode);
+                    // Create [Subscriber] parameter
+                    param = new SqlParameter("@Subscriber", contact.Subscriber);
 
                     // set parameters[13]
                     parameters[13] = param;
+
+                    // Create [ZipCode] parameter
+                    param = new SqlParameter("@ZipCode", contact.ZipCode);
+
+                    // set parameters[14]
+                    parameters[14] = param;
                 }
 
                 // return value
@@ -296,7 +302,7 @@ namespace DataAccessComponent.Data.Writers
             internal static SqlParameter[] CreateUpdateParameters(Contact contact)
             {
                 // Initial Values
-                SqlParameter[] parameters = new SqlParameter[15];
+                SqlParameter[] parameters = new SqlParameter[16];
                 SqlParameter param = null;
 
                 // verify contactexists
@@ -432,15 +438,21 @@ namespace DataAccessComponent.Data.Writers
                     // set parameters[12]
                     parameters[12] = param;
 
-                    // Create parameter for [ZipCode]
-                    param = new SqlParameter("@ZipCode", contact.ZipCode);
+                    // Create parameter for [Subscriber]
+                    param = new SqlParameter("@Subscriber", contact.Subscriber);
 
                     // set parameters[13]
                     parameters[13] = param;
 
+                    // Create parameter for [ZipCode]
+                    param = new SqlParameter("@ZipCode", contact.ZipCode);
+
+                    // set parameters[14]
+                    parameters[14] = param;
+
                     // Create parameter for [Id]
                     param = new SqlParameter("@Id", contact.Id);
-                    parameters[14] = param;
+                    parameters[15] = param;
                 }
 
                 // return value
