@@ -89,6 +89,11 @@
             @if ((HasSelectedContact) && (TextHelper.Exists(SelectedContact.ImagePath)))
             {
                 <img src="@SelectedContactImagePath" class="down8" height="256" width="256" />
+                <div class="right320 up140">
+                    <ToggleComponent Parent="this" Width="60" CircleColor="@Color.AliceBlue"
+                        CircleWidth="12" CircleHeight="12" Caption="Subscriber: " OvalWidth="24"                       
+                        BackgroundColorOn="Color.CornflowerBlue" BackgroundColorOff="@Color.Gray"></ToggleComponent>
+                </div>
             }
         </div>
         <div class="up650 width240 height128 right260">

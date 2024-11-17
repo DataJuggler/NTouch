@@ -20,6 +20,7 @@ using DataJuggler.Blazor.FileUpload;
 using Microsoft.AspNetCore.Components.Forms;
 using System.IO;
 using System.Diagnostics;
+using NPOI.SS.Formula.Eval;
 
 #endregion
 
@@ -50,6 +51,7 @@ namespace NTouch.Components
         private CalendarComponent lastContactedDateControl;
         private CalendarComponent followUpDateControl;
         private CalendarComponent birthDateControl;
+        private ToggleComponent subcriberComponent;
         private string title;
         private Contact selectedContact;
         private string uploadButtonStyle;
@@ -511,6 +513,11 @@ namespace NTouch.Components
                         }
                     }
                 }
+                else if (component is ToggleComponent)
+                {
+                    // Store
+                    SubcriberComponent = component as ToggleComponent;
+                }
             }
             #endregion
 
@@ -656,16 +663,6 @@ namespace NTouch.Components
                         }
                     }
                 }
-            }
-            #endregion
-            
-            #region Cancel(object sender, EventArgs e)
-            /// <summary>
-            /// This event is fired when Cancel
-            /// </summary>
-            public void Cancel(object sender, EventArgs e)
-            {
-                
             }
             #endregion
             
@@ -1076,6 +1073,23 @@ namespace NTouch.Components
             }
             #endregion
             
+            #region HasSubcriberComponent
+            /// <summary>
+            /// This property returns true if this object has a 'SubcriberComponent'.
+            /// </summary>
+            public bool HasSubcriberComponent
+            {
+                get
+                {
+                    // initial value
+                    bool hasSubcriberComponent = (this.SubcriberComponent != null);
+                    
+                    // return value
+                    return hasSubcriberComponent;
+                }
+            }
+            #endregion
+            
             #region HasZipControl
             /// <summary>
             /// This property returns true if this object has a 'ZipControl'.
@@ -1288,6 +1302,17 @@ namespace NTouch.Components
             {
                 get { return stateComboBox; }
                 set { stateComboBox = value; }
+            }
+            #endregion
+            
+            #region SubcriberComponent
+            /// <summary>
+            /// This property gets or sets the value for 'SubcriberComponent'.
+            /// </summary>
+            public ToggleComponent SubcriberComponent
+            {
+                get { return subcriberComponent; }
+                set { subcriberComponent = value; }
             }
             #endregion
             
