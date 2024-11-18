@@ -65,6 +65,9 @@ namespace NTouch.Components
         {
             // Setup the Title
             Title = "Add Contact";
+
+            // Create the Children
+            Children = new List<IBlazorComponent>();
         }
         #endregion
 
@@ -128,7 +131,7 @@ namespace NTouch.Components
             /// Display Selected Contact
             /// </summary>
             public void DisplaySelectedContact()
-            {
+            {  
                 // initial values
                 string firstName = "";
                 string lastName = "";
@@ -423,6 +426,13 @@ namespace NTouch.Components
             /// </summary>
             public void Register(IBlazorComponent component)
             {
+                // if the value for HasChildren is true
+                if (HasChildren)
+                {
+                    // Add this item
+                    Children.Add(component);
+                }
+
                 if (component is TextBoxComponent)
                 {
                     if (component.Name == "FirstNameControl")

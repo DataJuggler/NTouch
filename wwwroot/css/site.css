@@ -45,11 +45,11 @@
     color: white;
     vertical-align: middle;
 }
-.blackbuttonwide
+.blackbuttonwide2
 {
     background-image: url('../Images/blackbutton.png');
     background-size: 100% 100%;    
-    width: 240px;
+    width: 184px;
     height: 40px;
     cursor: pointer;
     background-color: transparent;
@@ -191,7 +191,7 @@ input[type=file]::-webkit-file-upload-button
 }
 
 html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;    
+    font-family: Verdana, Arial;
     overflow: hidden !important;
 }
 
