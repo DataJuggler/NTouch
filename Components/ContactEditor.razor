@@ -54,7 +54,7 @@
     </CalendarComponent>
     <CalendarComponent Name="FollowUpDateControl" Unit="px" HeightUnit="px" Height="146" 
         Position="relative" Theme="ThemeEnum.BlueGold"
-        ButtonHeight=25 ButtonWidth=24 CalendarTop="-116" CalendarLeft="64" Caption="Follow Up Date:" 
+        ButtonHeight=24 ButtonWidth=24 CalendarTop="-116" CalendarLeft="64" Caption="Follow Up Date:" 
         Parent="this" ButtonTop = "0" Width="224" Column2Width="128" ControlHeight="32" ZIndex="60"
         Top="0" LabelClassName="down4 right2" TextBoxHeight="24" TextBoxWidth="124">
     </CalendarComponent>
@@ -64,7 +64,7 @@
     <div class="rightcolumn">
         <ComboBox Name="ContactPreferencesComboBox" Theme=ThemeEnum.BlueGold Unit="px"
                 HeightUnit="px" Height="32" LabelText="Contact Methods:" Width="224" 
-                Parent="this" ButtonHeight=25 ButtonWidth=24 Left="0" Top="-400" 
+                Parent="this" ButtonHeight=24 ButtonWidth=24 Left="0" Top="-400" 
                 ListItemHeight="2.4" ZIndex=201 ControlHeight=32
                 CheckedListClassName="container border1gray textdonotwrap" TextBoxLeft="1" 
                 ButtonTop=0 ButtonLeft="0" Column2Width="128" Position="relative" 
@@ -92,9 +92,9 @@
                 <div class="right371 up180">
                     <ToggleComponent Parent="this" Width="60" CircleColor="@Color.AliceBlue"
                         OvalTop="-22" OvalLeft="72" OvalWidth="32"  OvalRadius="40"
-                        LabelFontName="Calibri" LabelFontSize="14"
+                        LabelFontName="Calibri" LabelFontSize="14"                        
                         CircleWidth="12" CircleHeight="12" Caption="Subscriber: " Column1Width="100"                     
-                        BackgroundColorOn="Color.CornflowerBlue" BackgroundColorOff="@Color.Gray">
+                        BackgroundColorOn="Color.CornflowerBlue" BackgroundColorOff="@Color.DimGray">
                     </ToggleComponent>
                 </div>
             }
@@ -102,7 +102,7 @@
         <div class="up650 width240 height128 right260">
             <CalendarComponent Name="BirthDateControl" Unit="px" HeightUnit="px" Height="146"
                     Position="relative" Theme="ThemeEnum.BlueGold" Caption="Birth Date:"
-                    ButtonHeight=25 ButtonWidth=24 CalendarTop="-148" CalendarLeft="-220" 
+                    ButtonHeight=24 ButtonWidth=24 CalendarTop="-148" CalendarLeft="-220" 
                     AllowYearSelector="true" YearSelectorAlignment="YearSelectorAlignmentEnum.OnLeft"
                     Parent="this" ButtonTop="0" Width="224" Column2Width="128" ControlHeight="32"
                     Top="0" LabelClassName="down4 right2" TextBoxHeight="24" TextBoxWidth="124">
@@ -113,5 +113,7 @@
 <div class="buttoncontainer">
     <button class="blackbutton" @onclick=Save>Save</button>
     <button class="blackbutton" @onclick=Cancel>Cancel</button>
-    <button class="blackbuttonwide" @onclick=ViewSecret>View Secret</button>
+    <ImageButton ImageUrl="../Images/blackbutton.png" Width="164" Height="40" ClickHandler="ButtonClicked"
+        TextColor="Color.White" Position="relative" Top="-140" Left="48" ButtonText="View Secret" 
+        Name="ViewSecretButton" ButtonNumber="1"></ImageButton>
 </div>

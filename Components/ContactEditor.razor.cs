@@ -73,6 +73,21 @@ namespace NTouch.Components
 
         #region Methods
             
+            #region ButtonClicked(int buttonNumber, string buttonText)
+            /// <summary>
+            /// Button Clicked
+            /// </summary>
+            public void ButtonClicked(int buttonNumber, string buttonText)
+            {
+                // only button for now
+                if (buttonNumber == 1)
+                {
+                    // Call View Secret
+                    ViewSecret();
+                }
+            }
+            #endregion
+            
             #region Cancel()
             /// <summary>
             /// Cancel

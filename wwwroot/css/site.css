@@ -45,11 +45,11 @@
     color: white;
     vertical-align: middle;
 }
-.blackbuttonwide2
+.blackbuttonwide
 {
     background-image: url('../Images/blackbutton.png');
     background-size: 100% 100%;    
-    width: 184px;
+    width: 180px;
     height: 40px;
     cursor: pointer;
     background-color: transparent;
