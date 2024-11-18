@@ -40,7 +40,7 @@
     <ComboBox Name="StateComboBox" Theme=ThemeEnum.BlueGold Unit="px" HeightUnit="px" Height="32" ZIndex="80"
         LabelText="State:" Width="224" Parent="this" ButtonHeight=25 ButtonWidth=24 ControlHeight="32"
         DropdownClassName="container2 border1gray textdonotwrap" TextBoxLeft="0" ButtonTop=0 ButtonLeft=0
-        ListItemWidth="180" ListZIndex=80 ListItemTop=24
+        ListItemWidth="180" ListZIndex=180 ListItemTop=24
         Column2Width="128" Position="relative" Top="0" LabelClassName="down4 right2" TextBoxWidth="124">
     </ComboBox>
     <TextBoxComponent Name="ZipControl" Parent="this" Caption="Zip:" ClassName="displayinlineblock"
@@ -50,12 +50,12 @@
         Position="relative" ButtonHeight=25 ButtonWidth=24 CalendarTop="-112" CalendarLeft="64" 
         Caption="Last Contacted:" Parent="this" ButtonTop = "0" Width="224" Column2Width="128" 
         ControlHeight="32" TextBoxHeight="24" ButtonLeft="0" Theme="ThemeEnum.BlueGold"
-        Top="0" LabelClassName="down4 right2" TextBoxWidth="124">
+        Top="0" LabelClassName="down4 right2" TextBoxWidth="124" ZIndex="60">
     </CalendarComponent>
     <CalendarComponent Name="FollowUpDateControl" Unit="px" HeightUnit="px" Height="146" 
         Position="relative" Theme="ThemeEnum.BlueGold"
         ButtonHeight=25 ButtonWidth=24 CalendarTop="-116" CalendarLeft="64" Caption="Follow Up Date:" 
-        Parent="this" ButtonTop = "0" Width="224" Column2Width="128" ControlHeight="32"
+        Parent="this" ButtonTop = "0" Width="224" Column2Width="128" ControlHeight="32" ZIndex="60"
         Top="0" LabelClassName="down4 right2" TextBoxHeight="24" TextBoxWidth="124">
     </CalendarComponent>
     <TextBoxComponent Name="NotesControl" Caption="Notes:" ClassName="displayinlineblock" Top=4
@@ -89,9 +89,10 @@
             @if ((HasSelectedContact) && (TextHelper.Exists(SelectedContact.ImagePath)))
             {
                 <img src="@SelectedContactImagePath" class="down8" height="256" width="256" />
-                <div class="right320 up140">
+                <div class="right364 up140">
                     <ToggleComponent Parent="this" Width="60" CircleColor="@Color.AliceBlue"
-                        CircleWidth="12" CircleHeight="12" Caption="Subscriber: " OvalWidth="24"                       
+                        OvalTop="-22" OvalLeft="72" OvalWidth="32"  OvalRadius="40" LabelFontName="Verdana"
+                        CircleWidth="12" CircleHeight="12" Caption="Subscriber: " Column1Width="100"                     
                         BackgroundColorOn="Color.CornflowerBlue" BackgroundColorOff="@Color.Gray"></ToggleComponent>
                 </div>
             }

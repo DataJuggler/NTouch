@@ -139,6 +139,8 @@ namespace NTouch.Components
                 string stateName = "";
                 string zip = "";
                 string notes = "";
+                DateTime birthDate = new DateTime();
+                bool subscriber = false;
 
                 // Create a new instance of a 'Gateway' object.
                 Gateway gateway = new Gateway(Connection.Name);
@@ -182,6 +184,8 @@ namespace NTouch.Components
                     city = SelectedContact.City;
                     zip = SelectedContact.ZipCode;
                     notes = SelectedContact.Notes;
+                    birthDate = SelectedContact.BirthDate;
+                    subscriber = SelectedContact.Subscriber;
 
                     // if the StateId is set
                     if (SelectedContact.StateId > 0)
@@ -287,11 +291,18 @@ namespace NTouch.Components
                 if (HasBirthDateControl)
                 {
                     // if a real date
-                    if (SelectedContact.FollowUpDate.Year > 1900)
+                    if (birthDate.Year > 1900)
                     {
                         // Set the SelectedDate
-                        BirthDateControl.SetSelectedDate(SelectedContact.BirthDate);
+                        BirthDateControl.SetSelectedDate(birthDate);
                     }
+                }
+
+                // if the value for HasSubcriberComponent is true
+                if (HasSubcriberComponent)
+                {
+                    // Set the value for On
+                    SubcriberComponent.SetOnValue(subscriber);
                 }
             }
             #endregion
@@ -578,6 +589,13 @@ namespace NTouch.Components
                     {
                         // Store
                         contact.BirthDate = BirthDateControl.SelectedDate;
+                    }
+                    
+                    // if On
+                    if (HasSubcriberComponent)
+                    {
+                        // It it currently On or Off
+                        contact.Subscriber = SubcriberComponent.On;
                     }
 
                     contact.CreatedDate = DateTime.Now;
