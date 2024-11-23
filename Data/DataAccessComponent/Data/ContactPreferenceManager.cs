@@ -52,7 +52,7 @@ namespace DataAccessComponent.Data
             /// </summary>
             /// <returns>True if successful false if not.</returns>
             /// </summary>
-            public bool DeleteContactPreference(DeleteContactPreferenceStoredProcedure deleteContactPreferenceProc, DataConnector databaseConnector)
+            public static bool DeleteContactPreference(DeleteContactPreferenceStoredProcedure deleteContactPreferenceProc, DataConnector databaseConnector)
             {
                 // Initial Value
                 bool deleted = false;
@@ -61,7 +61,7 @@ namespace DataAccessComponent.Data
                 if ((databaseConnector != null) && (databaseConnector.Connected))
                 {
                     // Execute Non Query
-                    deleted = this.DataHelper.DeleteRecord(deleteContactPreferenceProc, databaseConnector);
+                    deleted =DataHelper.DeleteRecord(deleteContactPreferenceProc, databaseConnector);
                 }
 
                 // return value
@@ -85,7 +85,7 @@ namespace DataAccessComponent.Data
                 if ((databaseConnector != null) && (databaseConnector.Connected))
                 {
                     // First Get Dataset
-                    DataSet allContactPreferencesDataSet = this.DataHelper.LoadDataSet(fetchAllContactPreferencesProc, databaseConnector);
+                    DataSet allContactPreferencesDataSet = DataHelper.LoadDataSet(fetchAllContactPreferencesProc, databaseConnector);
 
                     // Verify DataSet Exists
                     if(allContactPreferencesDataSet != null)
@@ -123,7 +123,7 @@ namespace DataAccessComponent.Data
                 if ((databaseConnector != null) && (databaseConnector.Connected))
                 {
                     // First Get Dataset
-                    DataSet contactPreferenceDataSet = this.DataHelper.LoadDataSet(findContactPreferenceProc, databaseConnector);
+                    DataSet contactPreferenceDataSet = DataHelper.LoadDataSet(findContactPreferenceProc, databaseConnector);
 
                     // Verify DataSet Exists
                     if(contactPreferenceDataSet != null)
@@ -163,7 +163,7 @@ namespace DataAccessComponent.Data
             /// </summary>
             /// <returns>The identity value of the new record.</returns>
             /// </summary>
-            public int InsertContactPreference(InsertContactPreferenceStoredProcedure insertContactPreferenceProc, DataConnector databaseConnector)
+            public static int InsertContactPreference(InsertContactPreferenceStoredProcedure insertContactPreferenceProc, DataConnector databaseConnector)
             {
                 // Initial Value
                 int newIdentity = -1;
@@ -172,7 +172,7 @@ namespace DataAccessComponent.Data
                 if ((databaseConnector != null) && (databaseConnector.Connected))
                 {
                     // Execute Non Query
-                    newIdentity = this.DataHelper.InsertRecord(insertContactPreferenceProc, databaseConnector);
+                    newIdentity = DataHelper.InsertRecord(insertContactPreferenceProc, databaseConnector);
                 }
 
                 // return value

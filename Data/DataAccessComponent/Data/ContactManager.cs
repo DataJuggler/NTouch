@@ -52,7 +52,7 @@ namespace DataAccessComponent.Data
             /// </summary>
             /// <returns>True if successful false if not.</returns>
             /// </summary>
-            public bool DeleteContact(DeleteContactStoredProcedure deleteContactProc, DataConnector databaseConnector)
+            public static bool DeleteContact(DeleteContactStoredProcedure deleteContactProc, DataConnector databaseConnector)
             {
                 // Initial Value
                 bool deleted = false;
@@ -61,7 +61,7 @@ namespace DataAccessComponent.Data
                 if ((databaseConnector != null) && (databaseConnector.Connected))
                 {
                     // Execute Non Query
-                    deleted = this.DataHelper.DeleteRecord(deleteContactProc, databaseConnector);
+                    deleted = DataHelper.DeleteRecord(deleteContactProc, databaseConnector);
                 }
 
                 // return value
@@ -85,7 +85,7 @@ namespace DataAccessComponent.Data
                 if ((databaseConnector != null) && (databaseConnector.Connected))
                 {
                     // First Get Dataset
-                    DataSet allContactsDataSet = this.DataHelper.LoadDataSet(fetchAllContactsProc, databaseConnector);
+                    DataSet allContactsDataSet = DataHelper.LoadDataSet(fetchAllContactsProc, databaseConnector);
 
                     // Verify DataSet Exists
                     if(allContactsDataSet != null)
@@ -123,7 +123,7 @@ namespace DataAccessComponent.Data
                 if ((databaseConnector != null) && (databaseConnector.Connected))
                 {
                     // First Get Dataset
-                    DataSet contactDataSet = this.DataHelper.LoadDataSet(findContactProc, databaseConnector);
+                    DataSet contactDataSet = DataHelper.LoadDataSet(findContactProc, databaseConnector);
 
                     // Verify DataSet Exists
                     if(contactDataSet != null)
@@ -163,7 +163,7 @@ namespace DataAccessComponent.Data
             /// </summary>
             /// <returns>The identity value of the new record.</returns>
             /// </summary>
-            public int InsertContact(InsertContactStoredProcedure insertContactProc, DataConnector databaseConnector)
+            public static int InsertContact(InsertContactStoredProcedure insertContactProc, DataConnector databaseConnector)
             {
                 // Initial Value
                 int newIdentity = -1;
@@ -172,7 +172,7 @@ namespace DataAccessComponent.Data
                 if ((databaseConnector != null) && (databaseConnector.Connected))
                 {
                     // Execute Non Query
-                    newIdentity = this.DataHelper.InsertRecord(insertContactProc, databaseConnector);
+                    newIdentity = DataHelper.InsertRecord(insertContactProc, databaseConnector);
                 }
 
                 // return value

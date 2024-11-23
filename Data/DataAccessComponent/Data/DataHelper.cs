@@ -4,7 +4,7 @@
 using System;
 using System.Data;
 using DataAccessComponent.StoredProcedureManager;
-using DataJuggler.NET8.Sql;
+using DataJuggler.NET9.Sql;
 
 #endregion
 
@@ -30,7 +30,7 @@ namespace DataAccessComponent.Data
 
         #region Methods
 
-        #region deleteRecord(StoredProcedure storedProcedure)
+        #region DeleteRecord(StoredProcedure storedProcedure)
         /// <summary>
         /// This method uses the Microsoft.ApplicationBlocks.Data 
         /// Method to delete an existing record by executing
@@ -39,7 +39,7 @@ namespace DataAccessComponent.Data
         /// <param name="storedProcedure">The 'StoredProcedure' to execute.</param>
         /// <returns>True as long as there is not an error, false if there is.
         /// </returns>
-        public bool DeleteRecord(StoredProcedure deleteStoredProcedure, DataConnector databaseConnector)
+        public static bool DeleteRecord(StoredProcedure deleteStoredProcedure, DataConnector databaseConnector)
         {
             // initial value
             bool deleted = false;
@@ -64,7 +64,7 @@ namespace DataAccessComponent.Data
         /// <returns>The identity value of the new record if successful or 
         /// -1 if not.
         /// </returns>
-        public int InsertRecord(StoredProcedure storedProcedure, DataConnector databaseConnector)
+        public static int InsertRecord(StoredProcedure storedProcedure, DataConnector databaseConnector)
         {
             // initial value
             int identity = -1;
@@ -85,7 +85,7 @@ namespace DataAccessComponent.Data
         /// <param name="storedProcedure">The 'StoredProcedure' to execute.</param>
         /// <returns>A DataSet if successful or null if not. Always test for null
         /// befure using the returned data set.</returns>
-        public DataSet LoadDataSet(StoredProcedure storedProcedure, DataConnector databaseConnector)
+        public static DataSet LoadDataSet(StoredProcedure storedProcedure, DataConnector databaseConnector)
         {
             // initial value
             DataSet dataSet = null;
@@ -150,10 +150,10 @@ namespace DataAccessComponent.Data
                 // dateValue = System.DateTime.Parse(dataRowFieldValue.ToString());
 
                 // if the object is a dateTime
-                if (dataRowFieldValue is DateTime)
+                if (dataRowFieldValue is DateTime dateTimeValue)
                 {
                     // cast as a DateTime
-                    dateValue = (DateTime)dataRowFieldValue;
+                    dateValue = dateTimeValue;
                 }
             }
             catch
@@ -180,10 +180,10 @@ namespace DataAccessComponent.Data
             try
             {
                 // test for the is
-                if (dataRowFieldValue is Guid)
+                if (dataRowFieldValue is Guid guitDataValue)
                 {
                     // Parse guidValue
-                    guidValue = (Guid)dataRowFieldValue;
+                    guidValue = guitDataValue;
                 }
             }
             catch
@@ -236,23 +236,23 @@ namespace DataAccessComponent.Data
             try
             {
                 // if dataRowFieldValue can be cast as a Double (Faster then parsing a string)
-                if (dataRowFieldValue is Single)
+                if (dataRowFieldValue is Single singleDataValue)
                 {
                     // cast as a Single first
-                    Single singleValue = (Single)dataRowFieldValue;
+                    Single singleValue = singleDataValue;
 
                     // cast as a Double now.
                     doubleValue = (Double)singleValue;
                 }
-                else if (dataRowFieldValue is Double)
+                else if (dataRowFieldValue is Double doubleDataValue)
                 {
                     // cast a double
-                    doubleValue = (Double)dataRowFieldValue;
+                    doubleValue = doubleDataValue;
                 }
-                else if (dataRowFieldValue is Decimal)
+                else if (dataRowFieldValue is Decimal decimalDataValue)
                 {
                     // cast as a decimal
-                    Decimal decimalValue = (Decimal)dataRowFieldValue;
+                    Decimal decimalValue = decimalDataValue;
 
                     // parse as a Double
                     doubleValue = (Double)decimalValue;

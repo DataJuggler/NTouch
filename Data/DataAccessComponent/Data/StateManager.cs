@@ -61,7 +61,7 @@ namespace DataAccessComponent.Data
                 if ((databaseConnector != null) && (databaseConnector.Connected))
                 {
                     // Execute Non Query
-                    deleted = this.DataHelper.DeleteRecord(deleteStateProc, databaseConnector);
+                    deleted = DataHelper.DeleteRecord(deleteStateProc, databaseConnector);
                 }
 
                 // return value
@@ -85,7 +85,7 @@ namespace DataAccessComponent.Data
                 if ((databaseConnector != null) && (databaseConnector.Connected))
                 {
                     // First Get Dataset
-                    DataSet allStatesDataSet = this.DataHelper.LoadDataSet(fetchAllStatesProc, databaseConnector);
+                    DataSet allStatesDataSet = DataHelper.LoadDataSet(fetchAllStatesProc, databaseConnector);
 
                     // Verify DataSet Exists
                     if(allStatesDataSet != null)
@@ -123,7 +123,7 @@ namespace DataAccessComponent.Data
                 if ((databaseConnector != null) && (databaseConnector.Connected))
                 {
                     // First Get Dataset
-                    DataSet stateDataSet = this.DataHelper.LoadDataSet(findStateProc, databaseConnector);
+                    DataSet stateDataSet = DataHelper.LoadDataSet(findStateProc, databaseConnector);
 
                     // Verify DataSet Exists
                     if(stateDataSet != null)
@@ -172,7 +172,7 @@ namespace DataAccessComponent.Data
                 if ((databaseConnector != null) && (databaseConnector.Connected))
                 {
                     // Execute Non Query
-                    newIdentity = this.DataHelper.InsertRecord(insertStateProc, databaseConnector);
+                    newIdentity = DataHelper.InsertRecord(insertStateProc, databaseConnector);
                 }
 
                 // return value

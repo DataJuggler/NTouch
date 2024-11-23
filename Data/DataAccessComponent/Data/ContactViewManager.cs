@@ -62,7 +62,7 @@ namespace DataAccessComponent.Data
                 if ((databaseConnector != null) && (databaseConnector.Connected))
                 {
                     // First Get Dataset
-                    DataSet allContactViewsDataSet = this.DataHelper.LoadDataSet(fetchAllContactViewsProc, databaseConnector);
+                    DataSet allContactViewsDataSet = DataHelper.LoadDataSet(fetchAllContactViewsProc, databaseConnector);
 
                     // Verify DataSet Exists
                     if(allContactViewsDataSet != null)

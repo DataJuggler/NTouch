@@ -80,7 +80,7 @@ namespace DataAccessComponent.DataOperations
                     if(deleteContactPreferenceProc != null)
                     {
                         // Execute Delete Stored Procedure
-                        bool deleted = this.DataManager.ContactPreferenceManager.DeleteContactPreference(deleteContactPreferenceProc, dataConnector);
+                        bool deleted = ContactPreferenceManager.DeleteContactPreference(deleteContactPreferenceProc, dataConnector);
 
                         // Create returnObject.Boolean
                         returnObject.Boolean = new NullableBoolean();
@@ -268,7 +268,7 @@ namespace DataAccessComponent.DataOperations
                         if(insertContactPreferenceProc != null)
                         {
                             // Execute Insert Stored Procedure
-                            returnObject.IntegerValue = this.DataManager.ContactPreferenceManager.InsertContactPreference(insertContactPreferenceProc, dataConnector);
+                            returnObject.IntegerValue = ContactPreferenceManager.InsertContactPreference(insertContactPreferenceProc, dataConnector);
                         }
 
                     }
