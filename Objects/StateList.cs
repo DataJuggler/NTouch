@@ -4,7 +4,7 @@
 
 using DataJuggler.Excelerate;
 using DataJuggler.Excelerate.Interfaces;
-using DataJuggler.NET8;
+using DataJuggler.NET9;
 using DataJuggler.UltimateHelper;
 
 #endregion

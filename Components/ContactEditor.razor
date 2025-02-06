@@ -46,18 +46,12 @@
     <TextBoxComponent Name="ZipControl" Parent="this" Caption="Zip:" ClassName="displayinlineblock"
         Column1Width="100" Column2Width="220" LabelClassName="down3 right2" ZIndex="0" Top=2
         TextBoxWidth="124" Width="360"></TextBoxComponent>
-    <CalendarComponent Name="LastContactedDateControl" Unit="px" HeightUnit="px" Height="146"
-        Position="relative" ButtonHeight=25 ButtonWidth=24 CalendarTop="-112" CalendarLeft="64" 
-        Caption="Last Contacted:" Parent="this" ButtonTop = "0" Width="224" Column2Width="128" 
-        ControlHeight="32" TextBoxHeight="24" ButtonLeft="0" Theme="ThemeEnum.BlueGold"
-        Top="0" LabelClassName="down4 right2" TextBoxWidth="124" ZIndex="60">
+    <CalendarComponent Name="LastContactedDateControl" Parent="this"
+        Caption="Last Contacted:">
     </CalendarComponent>
-    <CalendarComponent Name="FollowUpDateControl" Unit="px" HeightUnit="px" Height="146" 
-        Position="relative" Theme="ThemeEnum.BlueGold"
-        ButtonHeight=24 ButtonWidth=24 CalendarTop="-116" CalendarLeft="64" Caption="Follow Up Date:" 
-        Parent="this" ButtonTop = "0" Width="224" Column2Width="128" ControlHeight="32" ZIndex="60"
-        Top="0" LabelClassName="down4 right2" TextBoxHeight="24" TextBoxWidth="124">
-    </CalendarComponent>
+    <CalendarComponent Name="FollowUpDateControl" Parent="this"
+        Caption="Follow Up Date:">
+    </CalendarComponent>    
     <TextBoxComponent Name="NotesControl" Caption="Notes:" ClassName="displayinlineblock" Top=4
         Multiline="true" Column1Width="100" Column2Width="220" LabelClassName="up88 right2" Parent=this
         Height="96" TextBoxWidth="200" Width="360"></TextBoxComponent>
@@ -94,7 +88,7 @@
                         OvalTop="-22" OvalLeft="72" OvalWidth="32"  OvalRadius="50"
                         LabelFontName="Calibri" LabelFontSize="14"                        
                         CircleWidth="14" CircleHeight="14" Caption="Subscriber: " Column1Width="100"                     
-                        BackgroundColorOn="Color.CornflowerBlue" BackgroundColorOff="@Color.DimGray">
+                        OvalBackgroundColorOn="Color.CornflowerBlue" OvalBackgroundColorOff="@Color.DimGray">
                     </ToggleComponent>
                 </div>
             }
