@@ -37,37 +37,40 @@
     <TextBoxComponent Name="CityControl" Parent="this" Caption="City:" ClassName="displayinlineblock"
         Column1Width="100" Column2Width="220" LabelClassName="down3 right2" 
         TextBoxWidth="200" Width="360"></TextBoxComponent>
-    <ComboBox Name="StateComboBox" Theme=ThemeEnum.BlueGold Unit="px" HeightUnit="px" Height="32" ZIndex="80"
-        LabelText="State:" Width="224" Parent="this" ButtonHeight=25 ButtonWidth=24 ControlHeight="32"
-        DropdownClassName="container2 border1gray textdonotwrap" TextBoxLeft="0" ButtonTop=0 ButtonLeft=0
-        ListItemWidth="180" ListZIndex=180 ListItemTop=24
+    <ComboBox Name="StateComboBox" Theme=ThemeEnum.BlueGold Unit="px" HeightUnit="px" Height="32" ZIndex="1800"
+        LabelText="State:" Width="224" Parent="this" ButtonHeight=24 ButtonWidth=24 ControlHeight="32"
+        DropdownClassName="container2 border1gray textdonotwrap" TextBoxLeft="0" ButtonTop=1 ButtonLeft=0
+        ListItemWidth="140" ListItemTop="-2" ListItemLeft="-12"
         Column2Width="128" Position="relative" Top="0" LabelClassName="down4 right2" TextBoxWidth="124">
     </ComboBox>
     <TextBoxComponent Name="ZipControl" Parent="this" Caption="Zip:" ClassName="displayinlineblock"
         Column1Width="100" Column2Width="220" LabelClassName="down3 right2" ZIndex="0" Top=2
         TextBoxWidth="124" Width="360"></TextBoxComponent>
     <CalendarComponent Name="LastContactedDateControl" Parent="this"
-        Caption="Last Contacted:">
+        Caption="Last Contacted:" CalendarLeft="268" CalendarTop="-152">
     </CalendarComponent>
     <CalendarComponent Name="FollowUpDateControl" Parent="this"
-        Caption="Follow Up Date:">
+        Caption="Follow Up Date:" CalendarLeft="268" CalendarTop="-152">
     </CalendarComponent>    
     <TextBoxComponent Name="NotesControl" Caption="Notes:" ClassName="displayinlineblock" Top=4
         Multiline="true" Column1Width="100" Column2Width="220" LabelClassName="up88 right2" Parent=this
         Height="96" TextBoxWidth="200" Width="360"></TextBoxComponent>
     <div class="rightcolumn">
         <ComboBox Name="ContactPreferencesComboBox" Theme=ThemeEnum.BlueGold Unit="px"
-                HeightUnit="px" Height="32" LabelText="Contact Methods:" Width="224" 
-                Parent="this" ButtonHeight=24 ButtonWidth=24 Left="0" Top="-400" 
-                ListItemHeight="2.4" ZIndex=201 ControlHeight=32
-                CheckedListClassName="container border1gray textdonotwrap" TextBoxLeft="1" 
-                ButtonTop=0 ButtonLeft="0" Column2Width="128" Position="relative" 
-                LabelClassName="down4 right2" TextBoxWidth="124"
-                CheckListMode=true CheckedListUnit="vw" CheckedListHeightUnit="vh" CheckedListheight="4"             
-                CheckedListItemLeft="2" CheckedListItemTop=1 ListItemBackgroundColor=Color.White
-                CheckBoxXPosition="-2.4" CheckBoxYPosition=".4" CheckBoxTextXPosition="-.8" CheckBoxTextYPosition="0"
-                CheckedListWidth=8 CheckedListTop="2" CheckedListLeft="72" ListItemWidth=4>
-        </ComboBox>
+                HeightUnit="px" LabelText="Contact Methods:"
+                Height="32" Width="224" LabelPosition="relative" LabelLeft="32"
+                Parent="this" ButtonHeight=24 ButtonWidth=24 Left="-100" Top="-400" LabelColor="Color.Black"
+                ListItemHeight="2.4" ZIndex=201 ControlHeight=32 ListContainerLeft="36" ListContainerTop="1"
+                CheckedListClassName="container border1gray textdonotwrap" TextBoxLeft="-2"
+                ButtonTop=1 ButtonLeft="-4" Column2Width="128" Position="relative"
+                LabelFontSize="14"
+                LabelClassName="down4 left32" TextBoxWidth="@GlobalDefaults.TextBoxWidth" LabelFontName="Calibri"
+                CheckListMode=true CheckedListUnit="vw" CheckedListHeightUnit="vh" CheckedListheight="16"
+                CheckedListItemLeft="0" CheckedListItemTop=0 ListBackgroundColor="Color.Red"                
+                CheckBoxXPosition="-1.6" CheckBoxYPosition=".4" CheckBoxTextXPosition="-1.6"
+                CheckBoxTextYPosition="0" CheckedListWidth=9.3 CheckedListTop="24"
+                CheckedListLeft="5" ListItemWidth=4>
+            </ComboBox>
         <div class="up400">
             <div class="fontsize12 down8">Image:</div><br />
             <FileUpload CustomSuccessMessage="Your file uploaded successfully." Parent="this"
@@ -85,8 +88,9 @@
                 <img src="@SelectedContactImagePath" class="down8" height="256" width="256" />
                 <div class="right364 up180">
                     <ToggleComponent Parent="this" Width="60" CircleColor="@Color.Orange"
-                        OvalTop="-22" OvalLeft="72" OvalWidth="32"  OvalRadius="50"
-                        LabelFontName="Calibri" LabelFontSize="14"                        
+                        OvalTop="8" OvalLeft="24" OvalWidth="24"  OvalRadius="50"
+                        LabelFontName="Calibri" LabelFontSize="14" 
+                        CircleLeftOff="-56"
                         CircleWidth="14" CircleHeight="14" Caption="Subscriber: " Column1Width="100"                     
                         OvalBackgroundColorOn="Color.CornflowerBlue" OvalBackgroundColorOff="@Color.DimGray">
                     </ToggleComponent>

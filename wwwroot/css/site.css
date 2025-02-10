@@ -182,6 +182,10 @@
     width: 40vw;
     height: 20vh;
 }
+.zindex100 
+{
+    z-index: 100 !important;
+}
 
 input[type=file], /* FF, IE7+, chrome (except button) */
 input[type=file]::-webkit-file-upload-button
