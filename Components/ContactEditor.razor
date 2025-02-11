@@ -57,20 +57,19 @@
         Height="96" TextBoxWidth="200" Width="360"></TextBoxComponent>
     <div class="rightcolumn">
         <ComboBox Name="ContactPreferencesComboBox" Theme=ThemeEnum.BlueGold Unit="px"
-                HeightUnit="px" LabelText="Contact Methods:"
-                Height="32" Width="224" LabelPosition="relative" LabelLeft="32"
-                Parent="this" ButtonHeight=24 ButtonWidth=24 Left="-100" Top="-400" LabelColor="Color.Black"
-                ListItemHeight="2.4" ZIndex=201 ControlHeight=32 ListContainerLeft="36" ListContainerTop="1"
+                HeightUnit="px" LabelText="Contact Methods:"                  
+                Parent="this" ButtonHeight=24 ButtonWidth=24 Left="-100" Top="-400" LabelColor="Color.GhostWhite"
+                ListItemHeight="3" ZIndex=1201 ControlHeight=32 ListContainerLeft="36" ListContainerTop="1"
                 CheckedListClassName="container border1gray textdonotwrap" TextBoxLeft="-2"
-                ButtonTop=1 ButtonLeft="-4" Column2Width="128" Position="relative"
-                LabelFontSize="14"
+                ButtonTop=0 ButtonLeft="-4" Column2Width="128" Position="relative"
+                LabelFontSize="14" ListItemMarginBottom="1" ListItemContainerHeight="20" ListBackgroundColor="Color.RosyBrown"
                 LabelClassName="down4 left32" TextBoxWidth="@GlobalDefaults.TextBoxWidth" LabelFontName="Calibri"
-                CheckListMode=true CheckedListUnit="vw" CheckedListHeightUnit="vh" CheckedListheight="16"
-                CheckedListItemLeft="0" CheckedListItemTop=0 ListBackgroundColor="Color.Red"                
-                CheckBoxXPosition="-1.6" CheckBoxYPosition=".4" CheckBoxTextXPosition="-1.6"
-                CheckBoxTextYPosition="0" CheckedListWidth=9.3 CheckedListTop="24"
+                CheckListMode=true CheckedListUnit="vw" CheckedListHeightUnit="vh" CheckedListheight="8"
+                CheckedListItemLeft="0" CheckedListItemTop=0 CheckBoxHeight="1.85" CheckBoxWidth="1.85"
+                CheckBoxXPosition="0" CheckBoxYPosition=".32" CheckBoxTextXPosition=".2"
+                CheckBoxTextYPosition="0" CheckedListWidth=9.3 CheckedListTop="26"
                 CheckedListLeft="5" ListItemWidth=4>
-            </ComboBox>
+        </ComboBox>
         <div class="up400">
             <div class="fontsize12 down8">Image:</div><br />
             <FileUpload CustomSuccessMessage="Your file uploaded successfully." Parent="this"
