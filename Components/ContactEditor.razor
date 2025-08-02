@@ -66,18 +66,18 @@
         Height="96" TextBoxWidth="200" Width="360"></TextBoxComponent>
     <div class="rightcolumn">
         <ComboBox Name="ContactPreferencesComboBox" Theme=ThemeEnum.BlueGold Unit="px"
-                HeightUnit="px" LabelText="Contact Methods:" ListItemBackgroundColor="Color.Transparent"               
-                Parent="this" ButtonHeight=24 ButtonWidth=24 Left="-100" Top="-400" LabelColor="Color.Black"
-                ListItemHeight="3" ZIndex=1201 ControlHeight=32 ListContainerLeft="36" ListContainerTop="1"
-                CheckedListClassName="container border1gray textdonotwrap" TextBoxLeft="-2"
-                ButtonTop=0 ButtonLeft="-4" Column2Width="128" Position="relative" LabelLeft="32"
-                LabelFontSize="14" ListItemMarginBottom="1" ListContainerHeight="20" 
-                LabelClassName="down4 left32" TextBoxWidth="@GlobalDefaults.TextBoxWidth" LabelFontName="Calibri"
-                CheckListMode=true CheckedListUnit="vw" CheckedListHeightUnit="vh" CheckedListheight="10"
-                CheckedListItemLeft="0" CheckedListItemTop=0 CheckBoxHeight="1.85" CheckBoxWidth="1.85"
-                CheckBoxXPosition="0" CheckBoxYPosition=".32" CheckBoxTextXPosition=".2"
-                CheckBoxTextYPosition="0" CheckedListWidth=9.9 CheckedListTop="25.4"
-                CheckedListLeft="5.2" ListItemWidth=4>
+            HeightUnit="px" LabelText="Contact Methods:" ListItemBackgroundColor="Color.Transparent"
+            Parent="this" ButtonHeight=24 ButtonWidth=24 Left="-100" Top="-400" LabelColor="Color.Black"
+            ZIndex=1201 ControlHeight=32 ListContainerLeft="36" ListContainerTop="1"
+            CheckedListClassName="container border1gray textdonotwrap" TextBoxLeft="-2"
+            ButtonTop=0 ButtonLeft="-4" Column2Width="128" Position="relative" LabelLeft="32"
+            LabelFontSize="14" ListItemMarginBottom="1" ListContainerHeight="20"
+            LabelClassName="down4 left32" TextBoxWidth="@GlobalDefaults.TextBoxWidth" LabelFontName="Calibri"
+            CheckListMode=true CheckedListUnit="px" CheckedListHeightUnit="px" CheckedListheight="72"
+            CheckedListItemLeft="8" CheckedListItemTop=0 CheckBoxHeight="14" CheckBoxWidth="14"
+            CheckBoxX="0" CheckBoxY="2" CheckBoxTextX="16"
+            CheckBoxTextY="0" CheckedListWidth="132" CheckedListTop="24"
+            CheckedListLeft="36" ListItemWidth="80" ListItemHeight="20">
         </ComboBox>
         <div class="up400">
             <div class="fontsize12 down8">Image:</div><br />
@@ -109,8 +109,8 @@
             <CalendarComponent Name="BirthDateControl" Unit="px" HeightUnit="px" Height="146"
                     Position="relative" Theme="ThemeEnum.BlueGold" Caption="Birth Date:"
                     ButtonHeight=24 ButtonWidth=24 CalendarTop="-148" CalendarLeft="-220" 
-                    AllowYearSelector="true" YearSelectorAlignment="YearSelectorAlignmentEnum.OnLeft"
-                    Parent="this" ButtonTop="0" Width="224" Column2Width="128" ControlHeight="32"
+                    AllowYearSelector="true" YearSelectorAlignment="YearSelectorAlignmentEnum.OnBottom"
+                    Parent="this" ButtonTop="0" Width="228" Column2Width="128" ControlHeight="32"
                     Top="0" LabelClassName="down4 right2" TextBoxHeight="24" TextBoxWidth="124">
             </CalendarComponent>
         </div>
