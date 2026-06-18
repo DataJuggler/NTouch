@@ -3,7 +3,7 @@
   <PropertyGroup>
 	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 	<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <Version>8.0.0</Version>
     <PackageId>DataJuggler.DataTier.Net8.DataAccessComponent</PackageId>
     <Authors>DataJuggler</Authors>
@@ -21,8 +21,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DataJuggler.Net9" Version="9.0.4" />
-    <PackageReference Include="DataJuggler.UltimateHelper" Version="9.1.2" />
+    <PackageReference Include="DataJuggler.NET.Data" Version="10.0.6" />
+    <PackageReference Include="DataJuggler.UltimateHelper" Version="10.0.4" />
   </ItemGroup>
 
   <ItemGroup>

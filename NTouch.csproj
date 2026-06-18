@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
@@ -22,9 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="DataJuggler.Blazor.Components" Version="9.17.2" />
+    <PackageReference Include="DataJuggler.Blazor.Components" Version="10.0.53" />
     <PackageReference Include="DataJuggler.Blazor.FileUpload" Version="9.0.3" />
-    <PackageReference Include="DataJuggler.Net9" Version="9.0.4" />
+    <PackageReference Include="DataJuggler.NET.Data" Version="10.0.6" />
   </ItemGroup>
 
   <ItemGroup>

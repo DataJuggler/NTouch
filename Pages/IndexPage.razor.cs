@@ -475,17 +475,6 @@ namespace NTouch.Pages
             }
             #endregion
             
-            #region FindChildByName(string name)
-            /// <summary>
-            /// method Find Child By Name
-            /// </summary>
-            public IBlazorComponent FindChildByName(string name)
-            {
-                 // probably not used
-                return ComponentHelper.FindChildByName(Children, name);
-            }
-            #endregion
-            
             #region GetTime()
             /// <summary>
             /// Get Time

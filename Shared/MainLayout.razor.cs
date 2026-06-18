@@ -39,17 +39,6 @@ namespace NTouch.Shared
         
         #region Methods
             
-            #region FindChildByName(string name)
-            /// <summary>
-            /// method Find Child By Name
-            /// </summary>
-            public IBlazorComponent FindChildByName(string name)
-            {
-                // probably not used
-                return ComponentHelper.FindChildByName(Children, name);
-            }
-            #endregion
-            
             #region ReceiveData(Message message)
             /// <summary>
             /// method Receive Data

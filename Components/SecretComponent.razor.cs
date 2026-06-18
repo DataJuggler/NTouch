@@ -59,17 +59,6 @@ namespace NTouch.Components
             }
             #endregion
             
-            #region FindChildByName(string name)
-            /// <summary>
-            /// method returns the Child By Name
-            /// </summary>
-            public IBlazorComponent FindChildByName(string name)
-            {
-                // Find the Child By Name
-                return ComponentHelper.FindChildByName(Children, name);
-            }
-            #endregion
-            
             #region Init()
             /// <summary>
             ///  This method performs initializations for this object.

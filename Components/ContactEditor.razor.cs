@@ -12,8 +12,8 @@ using NTouch.Pages;
 using ObjectLibrary.Enumerations;
 using DataAccessComponent.DataGateway;
 using DataAccessComponent.Connection;
-using DataJuggler.NET9;
-using DataJuggler.NET9.Enumerations;
+using DataJuggler.NET.Data;
+using DataJuggler.NET.Data.Enumerations;
 using ObjectLibrary.BusinessObjects;
 using System.Xml.Serialization;
 using DataJuggler.Blazor.FileUpload;
@@ -325,17 +325,6 @@ namespace NTouch.Components
             }
             #endregion
             
-            #region FindChildByName(string name)
-            /// <summary>
-            /// method Find Child By Name
-            /// </summary>
-            public IBlazorComponent FindChildByName(string name)
-            {
-                 // probably not used
-                return ComponentHelper.FindChildByName(Children, name);
-            }
-            #endregion
-
             #region FormatPhoneNumber(string number)
             /// <summary>
             /// returns the Phone Number
@@ -1396,4 +1385,5 @@ namespace NTouch.Components
 
     }
     #endregion
+
 }
