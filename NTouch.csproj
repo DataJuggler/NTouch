@@ -1,17 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
+    <TargetFramework>net11.0</TargetFramework>
     <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <NoWarn>1701;1702;BL0007;IDE0028;IDE0090;IDE0059;IDE0017;IDE0305;TS1109;</NoWarn>
+    <NoWarn>1701;1702;BL0007;IDE0028;IDE0090;IDE0059;IDE0017;IDE0305;TS1109;BL0005;IDE0028;</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <NoWarn>1701;1702;BL0007;IDE0028;IDE0090;IDE0059;IDE0017;IDE0305;TS1109;</NoWarn>
+    <NoWarn>1701;1702;BL0007;IDE0028;IDE0090;IDE0059;IDE0017;IDE0305;TS1109;BL0005;IDE0028;</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,9 +22,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="DataJuggler.Blazor.Components" Version="10.0.53" />
-    <PackageReference Include="DataJuggler.Blazor.FileUpload" Version="9.0.3" />
-    <PackageReference Include="DataJuggler.NET.Data" Version="10.0.6" />
+    <PackageReference Include="DataJuggler.Blazor.Components" Version="11.1.18" />
+    <PackageReference Include="DataJuggler.Blazor.FileUpload" Version="11.0.0" />
+    <PackageReference Include="DataJuggler.Excelerate" Version="11.0.2" />
+    <PackageReference Include="DataJuggler.NET.Data" Version="11.0.2" />
   </ItemGroup>
 
   <ItemGroup>

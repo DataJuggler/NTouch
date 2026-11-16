@@ -1,14 +1,12 @@
 
 #region using statements
 
-using DataJuggler.UltimateHelper;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using DataAccessComponent.Controllers;
 using DataAccessComponent.Data;
 using DataAccessComponent.Logging;
-using DataAccessComponent.Exceptions;
-using DataAccessComponent.Controllers;
+using DataJuggler.UltimateHelper;
+using System;
+using System.Runtime.Versioning;
 
 #endregion
 
@@ -21,6 +19,7 @@ namespace DataAccessComponent.Connection
     /// connecting to the database and validating the
     /// user's username / password.
     /// </summary>
+    [SupportedOSPlatform("windows")]
     public class AuthenticationManager
     {
 

@@ -1,18 +1,19 @@
 
 #region using statements
 
-using DataJuggler.UltimateHelper;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Data;
 using DataAccessComponent.Connection;
-using DataAccessComponent.Logging;
-using DataAccessComponent.Exceptions;
-using DataAccessComponent.DataOperations;
 using DataAccessComponent.Controllers;
 using DataAccessComponent.Data;
+using DataAccessComponent.DataOperations;
+using DataAccessComponent.Exceptions;
+using DataAccessComponent.Logging;
+using DataJuggler.UltimateHelper;
 using ObjectLibrary.BusinessObjects;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Runtime.Versioning;
+using System.Text;
 
 #endregion
 
@@ -27,6 +28,7 @@ namespace DataAccessComponent.DataBridge
     /// This object requires that a delagate (method pointer) be passed
     /// in that will perform the data operation using the open connection.
     /// </summary>
+    [SupportedOSPlatform("Windows")]
     public class DataBridgeManager
     {
 

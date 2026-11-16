@@ -5,6 +5,7 @@
 using DataJuggler.Blazor.Components;
 using DataJuggler.Blazor.Components.Enumerations;
 using DataJuggler.Blazor.Components.Interfaces;
+using DataJuggler.Blazor.Components.Objects;
 using DataJuggler.Blazor.Components.Util;
 using Microsoft.AspNetCore.Components;
 using NTouch.Shared;
@@ -12,7 +13,6 @@ using NTouch.Components;
 using ObjectLibrary.BusinessObjects;
 using ObjectLibrary.Enumerations;
 using DataAccessComponent.Connection;
-using DataJuggler.Excelerate;
 using DataJuggler.UltimateHelper;
 using NTouch.Objects;
 using DataAccessComponent.DataGateway;
@@ -101,131 +101,131 @@ namespace NTouch.Pages
                 if (ListHelper.HasOneOrMoreItems(ContactsList))
                 {
                     // recreate, in case this is called twice due to a refresh
-                    ContactsGrid.Columns = new List<Column>();
+                    ContactsGrid.Columns = new List<GridColumn>();
                     ContactsGrid.Rows = new List<Row>();
 
                     // Create Column and set properties
-                    Column column = new Column();
+                    GridColumn column = new GridColumn();
                     column.Caption = "First";
-                    column.ColumnName = "FirstName";
+                    column.Name = "FirstName";
                     column.Index = 0;
                     column.ColumnNumber = 1;                        
-                    column.ColumnText = column.Caption;
+                    column.Text = column.Caption;
                     column.Width = 64;
                     column.Height = 16;                    
-                    column.ClassName = "displayinlineblock textdonotwrap width64 colorwhite textalignleft right16 down4 fontsize12";  
+                    column.ClassName = "displayinlineblock textdonotwrap width64 colorblack textalignleft right16 down4 fontsize12";  
 
                     // Add this column
                     ContactsGrid.Columns.Add(column);
 
                     // Create Column and set properties
-                    Column column2 = new Column();
+                    GridColumn column2 = new GridColumn();
                     column2.Caption = "Last";
-                    column2.ColumnName = "LastName";
+                    column2.Name = "LastName";
                     column2.Index = 1;
                     column2.ColumnNumber = 2;                        
-                    column2.ColumnText = column2.Caption;
+                    column2.Text = column2.Caption;
                     column2.Width = 64;
                     column2.Height = 16;
-                    column2.ClassName = "displayinlineblock textdonotwrap width64 colorwhite textalignleft down4 right16 fontsize12";  
+                    column2.ClassName = "displayinlineblock textdonotwrap width64 colorblack textalignleft down4 right16 fontsize12";  
 
                     // Add Column 2 to the header row
                     ContactsGrid.Columns.Add(column2);
 
                     // Create Column and set properties
-                    Column column3 = new Column();
+                    GridColumn column3 = new GridColumn();
                     column3.Caption = "Phone #";
-                    column3.ColumnName = "PhoneNumber";
+                    column3.Name = "PhoneNumber";
                     column3.Index = 2;
                     column3.ColumnNumber = 3;                        
-                    column3.ColumnText = column3.Caption;
+                    column3.Text = column3.Caption;
                     column3.Width = 96;
                     column3.Height = 16;
-                    column3.ClassName = "displayinlineblock textdonotwrap width96 colorwhite textalignleft down4 right20 fontsize12";  
+                    column3.ClassName = "displayinlineblock textdonotwrap width96 colorblack textalignleft down4 right20 fontsize12";  
 
                     // Add this column
                     ContactsGrid.Columns.Add(column3);
 
                     // Create Column and set properties
-                    Column column4 = new Column();
+                    GridColumn column4 = new GridColumn();
                     column4.Caption = "Email";
-                    column4.ColumnName = "EmailAddress";
+                    column4.Name = "EmailAddress";
                     column4.Index = 3;
                     column4.ColumnNumber = 4;                        
-                    column4.ColumnText = column4.Caption;
+                    column4.Text = column4.Caption;
                     column4.Width = 132;
                     column4.Height = 16;
-                    column4.ClassName = "displayinlineblock textdonotwrap width132 colorwhite textalignleft down4 right14 fontsize12";
+                    column4.ClassName = "displayinlineblock textdonotwrap width132 colorblack textalignleft down4 right14 fontsize12";
 
                     // Add this column
                     ContactsGrid.Columns.Add(column4);
 
                     // Create Column and set properties
-                    Column column5 = new Column();
+                    GridColumn column5 = new GridColumn();
                     column5.Caption = "Address";
-                    column5.ColumnName = "ShortAddress";
+                    column5.Name = "ShortAddress";
                     column5.Index = 4;
                     column5.ColumnNumber = 5;                        
-                    column5.ColumnText = column5.Caption;
+                    column5.Text = column5.Caption;
                     column5.Width = 120;
                     column5.Height = 16;
-                    column5.ClassName = "displayinlineblock textdonotwrap width120 colorwhite textalignleft down4 right16 fontsize12";
+                    column5.ClassName = "displayinlineblock textdonotwrap width120 colorblack textalignleft down4 right16 fontsize12";
 
                     // Add this column
                     ContactsGrid.Columns.Add(column5);
 
                     // Create Column and set properties
-                    Column column6 = new Column();
+                    GridColumn column6 = new GridColumn();
                     column6.Caption = "City";
-                    column6.ColumnName = "City";
+                    column6.Name = "City";
                     column6.Index = 5;
                     column6.ColumnNumber = 6;                        
-                    column6.ColumnText = column6.Caption;
+                    column6.Text = column6.Caption;
                     column6.Width = 88;
                     column6.Height = 16;
-                    column6.ClassName = "displayinlineblock textdonotwrap width88 colorwhite textalignleft down4 right8 fontsize12";
+                    column6.ClassName = "displayinlineblock textdonotwrap width88 colorblack textalignleft down4 right8 fontsize12";
 
                     // Add this column
                     ContactsGrid.Columns.Add(column6);
 
                     // Create Column and set properties
-                    Column column7 = new Column();
+                    GridColumn column7 = new GridColumn();
                     column7.Caption = "State";
-                    column7.ColumnName = "StateName";
+                    column7.Name = "StateName";
                     column7.Index = 6;
                     column7.ColumnNumber = 7;                        
-                    column7.ColumnText = column7.Caption;
+                    column7.Text = column7.Caption;
                     column7.Width = 48;
                     column7.Height = 16;
-                    column7.ClassName = "displayinlineblock textdonotwrap width48 colorwhite textalignleft down4 right2 fontsize12";
+                    column7.ClassName = "displayinlineblock textdonotwrap width48 colorblack textalignleft down4 right2 fontsize12";
 
                     // Add this column
                     ContactsGrid.Columns.Add(column7);
 
                     // Create Column and set properties
-                    Column column8 = new Column();
+                    GridColumn column8 = new GridColumn();
                     column8.Caption = "Last Contact";
-                    column8.ColumnName = "LastContactedDate";
+                    column8.Name = "LastContactedDate";
                     column8.Index = 7;
                     column8.ColumnNumber = 8;
-                    column8.ColumnText = column8.Caption;
+                    column8.Text = column8.Caption;
                     column8.Width = 80;
                     column8.Height = 16;
-                    column8.ClassName = "displayinlineblock textdonotwrap width80 colorwhite textalignleft down4 right4 fontsize12";
+                    column8.ClassName = "displayinlineblock textdonotwrap width80 colorblack textalignleft down4 right4 fontsize12";
 
                      // Add this column
                     ContactsGrid.Columns.Add(column8);
 
                     // Create Column and set properties
-                    Column column9 = new Column();
+                    GridColumn column9 = new GridColumn();
                     column9.Caption = "Follow Up";
-                    column9.ColumnName = "FollowUpDate";
+                    column9.Name = "FollowUpDate";
                     column9.Index = 8;
                     column9.ColumnNumber = 9;
-                    column9.ColumnText = column9.Caption;
+                    column9.Text = column9.Caption;
                     column9.Width = 80;
                     column9.Height = 16;
-                    column9.ClassName = "displayinlineblock textdonotwrap width80 colorwhite textalignleft down4 right4 fontsize12";
+                    column9.ClassName = "displayinlineblock textdonotwrap width80 colorblack textalignleft down4 right4 fontsize12";
 
                     // Add this column
                     ContactsGrid.Columns.Add(column9);
@@ -237,14 +237,14 @@ namespace NTouch.Pages
                         Row row = new Row();                        
                         row.ExternalId = contact.Id;
                         row.ExternalIdDescription = "A Contact Was Opened";
-                        row.ClassName = "textdonotwrap width448 height16 marginbottom0 down8";
+                        row.ClassName = "textdonotwrap width448 height16 marginbottom0 down4";
 
                         // Create Column and set properties
-                        column = new Column();                        
-                        column.ColumnName = "FirstName";
+                        column = new GridColumn();                        
+                        column.Name = "FirstName";
                         column.Index = 0;
                         column.ColumnNumber = 1;                        
-                        column.ColumnText = contact.FirstName;
+                        column.Text = contact.FirstName;
                         column.Width = 64;
                         column.Height = 16;                        
                         column.ClassName = "displayinlineblock textdonotwrap width64 colorwhite textalignleft down4 right16 fontsize12 cursorpointer";  
@@ -256,11 +256,11 @@ namespace NTouch.Pages
                         row.Columns.Add(column);
 
                         // Create Column and set properties
-                        column2 = new Column();
-                        column2.ColumnName = "LastName";
+                        column2 = new GridColumn();
+                        column2.Name = "LastName";
                         column2.Index = 1;
                         column2.ColumnNumber = 2;                        
-                        column2.ColumnText = contact.LastName;
+                        column2.Text = contact.LastName;
                         column2.Width = 64;
                         column2.Height = 16;
                         column2.ClassName = "displayinlineblock textdonotwrap width64 colorwhite textalignleft down4 right16 fontsize12";  
@@ -269,11 +269,11 @@ namespace NTouch.Pages
                         row.Columns.Add(column2);
 
                         // Create Column and set properties
-                        column3 = new Column();
-                        column3.ColumnName = "PhoneNumber";
+                        column3 = new GridColumn();
+                        column3.Name = "PhoneNumber";
                         column3.Index = 2;
                         column3.ColumnNumber = 3;                        
-                        column3.ColumnText = contact.PhoneNumber;
+                        column3.Text = contact.PhoneNumber;
                         column3.Width = 96;
                         column3.Height = 16;
                         column3.ClassName = "displayinlineblock textdonotwrap width96 colorwhite textalignleft down4 right18 fontsize12";  
@@ -282,11 +282,11 @@ namespace NTouch.Pages
                         row.Columns.Add(column3);
 
                         // Create Column and set properties
-                        column4 = new Column();
-                        column4.ColumnName = "Email";
+                        column4 = new GridColumn();
+                        column4.Name = "EmailAddress";
                         column4.Index = 3;
                         column4.ColumnNumber = 4;                        
-                        column4.ColumnText = contact.ShortEmail;
+                        column4.Text = contact.ShortEmail;
                         column4.Width = 132;
                         column4.Height = 16;
                         column4.ClassName = "displayinlineblock textdonotwrap width132 colorwhite textalignleft down4 right16 fontsize12";
@@ -295,11 +295,11 @@ namespace NTouch.Pages
                         row.Columns.Add(column4);
 
                         // Create Column and set properties
-                        column5 = new Column();
-                        column5.ColumnName = "ShortAddress";
-                        column5.Index = 3;
-                        column5.ColumnNumber = 4;                        
-                        column5.ColumnText = contact.ShortAddress;
+                        column5 = new GridColumn();
+                        column5.Name = "ShortAddress";
+                        column5.Index = 4;
+                        column5.ColumnNumber = 5;
+                        column5.Text = contact.ShortAddress;
                         column5.Width = 120;
                         column5.Height = 16;
                         column5.ClassName = "displayinlineblock textdonotwrap width120 colorwhite textalignleft down4 right16 fontsize12";
@@ -308,11 +308,11 @@ namespace NTouch.Pages
                         row.Columns.Add(column5);
 
                         // Create Column and set properties
-                        column6 = new Column();
-                        column6.ColumnName = "City";
+                        column6 = new GridColumn();
+                        column6.Name = "City";
                         column6.Index = 5;
                         column6.ColumnNumber = 6;                        
-                        column6.ColumnText = contact.City;
+                        column6.Text = contact.City;
                         column6.Width = 88;
                         column6.Height = 16;
                         column6.ClassName = "displayinlineblock textdonotwrap width88 colorwhite textalignleft down4 right8 fontsize12";
@@ -321,11 +321,11 @@ namespace NTouch.Pages
                         row.Columns.Add(column6);
 
                         // Create Column and set properties
-                        column7 = new Column();
-                        column7.ColumnName = "StateCode";
+                        column7 = new GridColumn();
+                        column7.Name = "StateCode";
                         column7.Index = 6;
                         column7.ColumnNumber = 7;                        
-                        column7.ColumnText = contact.StateCode;
+                        column7.Text = contact.StateCode;
                         column7.Width = 48;
                         column7.Height = 16;
                         column7.ClassName = "displayinlineblock textdonotwrap width48 colorwhite textalignleft down4 right8 fontsize12";
@@ -334,20 +334,20 @@ namespace NTouch.Pages
                         row.Columns.Add(column7);
 
                         // Create Column and set properties
-                        column8 = new Column();
-                        column8.ColumnName = "LastContactedDate";
+                        column8 = new GridColumn();
+                        column8.Name = "LastContactedDate";
                         column8.Index = 7;
                         column8.ColumnNumber = 8;
 
                         // if an actual date
                         if (contact.LastContactDate.Year > 1900)
                         {
-                            column8.ColumnText = contact.LastContactDate.ToShortDateString();
+                            column8.Text = contact.LastContactDate.ToShortDateString();
                         }
                         else
                         {
                             // Empty
-                            column8.ColumnText = "";
+                            column8.Text = "";
                         }
                         column8.Width = 80;
                         column8.Height = 16;
@@ -357,20 +357,20 @@ namespace NTouch.Pages
                         row.Columns.Add(column8);
 
                         // Create Column and set properties
-                        column9 = new Column();
-                        column9.ColumnName = "FollowUpDate";
+                        column9 = new GridColumn();
+                        column9.Name = "FollowUpDate";
                         column9.Index = 8;
                         column9.ColumnNumber = 9;
 
                         // if an actual date
                         if (contact.FollowUpDate.Year > 1900)
                         {
-                            column9.ColumnText = contact.FollowUpDate.ToShortDateString();
+                            column9.Text = contact.FollowUpDate.ToShortDateString();
                         }
                         else
                         {
                             // Empty
-                            column9.ColumnText = "";
+                            column9.Text = "";
                         }
 
                         column9.Width = 80;
@@ -487,51 +487,6 @@ namespace NTouch.Pages
 
                     string minute = TimeComponent.MinutesTextBox.Text;
                 }
-            }
-            #endregion
-            
-            #region ImportExcel()
-            /// <summary>
-            /// Import Excel
-            /// </summary>
-            public void ImportExcel()
-            {
-                // Create a new instance of a 'WorksheetInfo' object.
-                WorksheetInfo info = new WorksheetInfo();
-                info.LoadColumnOptions = LoadColumnOptionsEnum.LoadAllColumnsExceptExcluded;
-                info.ColumnsToLoad = 3;
-                info.SheetName = "StateList";
-
-                // Change to whereever you have the project saved
-                info.Path = "C:\\Projects\\GitHub\\NTouch\\Excel\\States.xlsx";
-
-                // Load the worksheet
-                Worksheet worksheet = ExcelDataLoader.LoadWorksheet(info);
-
-                // Load the States from Excel
-                List<StateList> states = StateList.Load(worksheet);
-
-                // If the states collection exists and has one or more items
-                if (ListHelper.HasOneOrMoreItems(states))
-                {
-                    // Set the Connection String
-                    Gateway gateway = new Gateway(Connection.Name);
-
-                    // iterate the states
-                    foreach (StateList tempState in states)
-                    {
-                        // Create a new state
-                        State state = new State();
-                        state.Name = tempState.Name;
-                        state.Code = tempState.Code;
-
-                        // Perform the save
-                        bool saved = gateway.SaveState(ref state);
-                    }
-                }
-
-                // Show a message
-                StatusLabel.SetTextValue("Import Excel Finished");
             }
             #endregion
             

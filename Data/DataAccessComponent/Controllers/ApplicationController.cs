@@ -13,6 +13,7 @@ using DataAccessComponent.DataBridge;
 using DataAccessComponent.DataOperations;
 using DataAccessComponent.Controllers;
 using ObjectLibrary.BusinessObjects;
+using System.Runtime.Versioning;
 
 #endregion
 
@@ -25,6 +26,7 @@ namespace DataAccessComponent.Controllers
     /// This class controls program flow and 
     /// application status.
     /// </summary>
+    [SupportedOSPlatform("Windows")]
     public class ApplicationController
     {
 

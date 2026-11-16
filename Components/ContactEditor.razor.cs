@@ -2,25 +2,17 @@
 
 #region using statements
 
+using DataAccessComponent.Connection;
+using DataAccessComponent.DataGateway;
 using DataJuggler.Blazor.Components;
 using DataJuggler.Blazor.Components.Interfaces;
 using DataJuggler.Blazor.Components.Util;
+using DataJuggler.Blazor.FileUpload;
 using DataJuggler.UltimateHelper;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
 using NTouch.Pages;
-using ObjectLibrary.Enumerations;
-using DataAccessComponent.DataGateway;
-using DataAccessComponent.Connection;
-using DataJuggler.NET.Data;
-using DataJuggler.NET.Data.Enumerations;
 using ObjectLibrary.BusinessObjects;
-using System.Xml.Serialization;
-using DataJuggler.Blazor.FileUpload;
-using Microsoft.AspNetCore.Components.Forms;
-using System.IO;
-using System.Diagnostics;
-using NPOI.SS.Formula.Eval;
+using ObjectLibrary.Enumerations;
 
 #endregion
 

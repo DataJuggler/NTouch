@@ -23,11 +23,11 @@ else if (ScreenType == ScreenTypeEnum.ViewSecret)
 else if (ScreenType == ScreenTypeEnum.ContactList)
 {
     <button class="displayinline blackbutton2" @onclick=AddContact>Add Contact</button>
-    <button class="blackbutton3" @onclick=@ShowInformationBox>Info Box Sample</button>
+    <button class="blackbutton4" @onclick=@ShowInformationBox>Info Box Sample</button>
     <Grid Name="ContactsGrid" ClassName="grid5" Unit="px" Width="880"
-        HeightUnit="px" Height=640 ShowHeader="false" Parent="this"
-        Left="0" HeaderClassName="gridheader5 textdonotwrap" ShowColumnHeaders=true Top=24
-        FontSize = "12" EnableClick=true ></Grid>
+        HeightUnit="px" Height=360 ShowHeader="false" Parent="this" ColumnHeaderHeight="28"
+        Left="0" ColumnHeaderClassName="gridheader5 textdonotwrap" ShowColumnHeaders=true Top=24
+        FontSize="12" EnableClick=true GridBackColor="Color.Transparent" ColumnHeaderColor="Color.Transparent"></Grid>
     
 }
 else if (ScreenType == ScreenTypeEnum.TestInfoBox)

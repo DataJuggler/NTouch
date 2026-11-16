@@ -45,6 +45,21 @@
     color: white;
     vertical-align: middle;
 }
+.blackbutton4
+{
+    background-image: url('../Images/blackbutton.png');
+    background-size: 100% 100%;    
+    width: 228px;
+    height: 40px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    position: relative;
+    top: 0px;
+    left: 16vw;
+    color: white;
+    vertical-align: middle;
+}
 .blackbuttonwide
 {
     background-image: url('../Images/blackbutton.png');
@@ -138,9 +153,7 @@
     background-size: 100% 100%;
     width: 880px;
     max-width: 880px;
-    min-width: 880px;
-    height: 360px; 
-    max-height: 360px;    
+    min-width: 880px;    
     min-width: 36px;
     overflow-x: hidden;    
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;    
@@ -151,16 +164,13 @@
 }
 .gridheader5
 {
-    background-image: url('../images/GridHeaderDark.png');
+    background-image: url('../images/GridHeaderlight.png');
     background-repeat: no-repeat;
-    background-color: darkgray;
+    background-color: lightgray;
     background-size: 100% 100%;
     width: 880px;
     max-width: 880px;
-    min-width: 880px;
-    height: 32px; 
-    max-height: 32px;    
-    min-height: 32px;
+    min-width: 880px;    
     vertical-align: top;
     overflow: hidden;    
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;    

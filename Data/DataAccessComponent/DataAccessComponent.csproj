@@ -3,7 +3,7 @@
   <PropertyGroup>
 	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 	<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
-    <TargetFramework>net10.0</TargetFramework>
+    <TargetFramework>net11.0</TargetFramework>
     <Version>8.0.0</Version>
     <PackageId>DataJuggler.DataTier.Net8.DataAccessComponent</PackageId>
     <Authors>DataJuggler</Authors>
@@ -13,16 +13,16 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <NoWarn>1701;1702;IDE0017;IDE0059;IDE0074;IDE0090;</NoWarn>
+    <NoWarn>1701;1702;IDE0017;IDE0059;IDE0074;IDE0090;CA1416;IDE0028;</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <NoWarn>1701;1702;IDE0017;IDE0059;IDE0074;IDE0090;</NoWarn>
+    <NoWarn>1701;1702;IDE0017;IDE0059;IDE0074;IDE0090;CA1416;IDE0028;</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DataJuggler.NET.Data" Version="10.0.6" />
-    <PackageReference Include="DataJuggler.UltimateHelper" Version="10.0.4" />
+    <PackageReference Include="DataJuggler.NET.Data" Version="11.0.2" />
+    <PackageReference Include="DataJuggler.UltimateHelper" Version="11.0.0" />
   </ItemGroup>
 
   <ItemGroup>
